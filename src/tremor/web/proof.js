@@ -29,8 +29,8 @@
   }
 
   window.renderProof = async function (el, api) {
-    let bt, ev, ledger;
-    try { [bt, ev, ledger] = await Promise.all([api("/results/backtest"), api("/results/eval").catch(() => null), api("/ledger").catch(() => null)]); }
+    let bt, ev, ledger, audit;
+    try { [bt, ev, ledger, audit] = await Promise.all([api("/results/backtest"), api("/results/eval").catch(() => null), api("/ledger").catch(() => null), api("/results/entity_audit").catch(() => null)]); }
     catch (e) { el.innerHTML = `<div class="empty">No results found. Run <span class="mono">python -m tremor.backtest</span> and <span class="mono">python -m tremor.evaluate</span>.</div>`; return; }
     const ex = bt.expanding, loo = bt.loo, sent = ev && ev.sentiment, ec = ev && ev.event_class, pipe = ev && ev.pipeline, es = ev && ev.event_study, link = ev && ev.entity_link;
     const gp = ex.graph_ablation.PEER;
@@ -38,8 +38,8 @@
       <div class="kpis">
         ${kpi("Out-of-sample band coverage", pc(ex.overall_coverage["90"]), `of realised market moves fell inside the predicted 90% band (nominal 90%). ${ex.intervals_scored["90"]} intervals over ${ex.episodes_tested} episodes, chronological, no look-ahead.`)}
         ${kpi("Skill vs unconditional history", sg(ex.overall_skill_vs_unconditional), `pinball-loss improvement from the systemic-vs-idiosyncratic mixture over drawing every event from the crisis library (${sg(ex.overall_skill_vs_ordinary)} vs ordinary weeks).`)}
-        ${sent && sent.cascade ? kpi("FinBERT calls avoided", pc(sent.cascade.finbert_calls_saved), `the lexicon tier resolves the easy items; the cascade agrees with FinBERT-only on ${pc(sent.cascade.agreement_with_finbert_only)} of ${sent.n.toLocaleString()} labelled posts.`) : ""}
-        ${es && es.n_events ? kpi("Direction vs the tape", pc(es.direction_accuracy_same_day.value), `same-day sign agreement between event sentiment and abnormal return (n=${es.direction_accuracy_same_day.n}, 95% CI ${pc(es.direction_accuracy_same_day.ci95[0])}–${pc(es.direction_accuracy_same_day.ci95[1])}).`) : ""}
+        ${sent && sent.cascade ? kpi("FinBERT calls avoided", pc(sent.cascade.finbert_calls_saved), `the lexicon resolves the easy items. On ${sent.n.toLocaleString()} labelled posts the cascade scores ${pc(sent.cascade.accuracy, 1)} accuracy vs ${pc(sent.finbert_only.accuracy, 1)} for FinBERT-only and ${pc(sent.lexicon_only.accuracy, 1)} for the lexicon alone.`) : ""}
+        ${es && es.n_events ? kpi("Impact vs realised move", "ρ " + f(es.impact_vs_abs_abnormal_return.spearman, 2), `Spearman rank correlation of Impact with the same-day |abnormal return| of the named stock (n=${es.n_events}, p=${f(es.impact_vs_abs_abnormal_return.p, 3)}). Modest but real; direction accuracy is inconclusive (${pc(es.direction_accuracy_same_day.value)}, n=${es.direction_accuracy_same_day.n}).`) : ""}
         ${ledger ? kpi("Ledger integrity", ledger.chain_valid ? "VALID" : "BROKEN", `${ledger.entries.toLocaleString()} hash-chained entries; UPDATE and DELETE are rejected by database triggers.`) : ""}
       </div>
 
@@ -60,7 +60,7 @@
           <tr><th>component</th><th>measure</th><th>value</th></tr>
           ${sent ? `<tr><td>Sentiment · lexicon</td><td class="faint">macro-F1 / acc</td><td>${f(sent.lexicon_only.macro_f1, 2)} / ${f(sent.lexicon_only.accuracy, 2)}</td></tr>${sent.finbert_only ? `<tr><td>Sentiment · FinBERT</td><td class="faint">macro-F1 / acc</td><td>${f(sent.finbert_only.macro_f1, 2)} / ${f(sent.finbert_only.accuracy, 2)}</td></tr><tr><td>Sentiment · cascade</td><td class="faint">macro-F1 / acc</td><td style="color:var(--mint)">${f(sent.cascade.macro_f1, 2)} / ${f(sent.cascade.accuracy, 2)}</td></tr>` : ""}` : ""}
           ${ec ? `<tr><td>Event class (mapped)</td><td class="faint">macro-F1 / acc</td><td>${f(ec.macro_f1, 2)} / ${f(ec.accuracy, 2)}</td></tr><tr><td>Event vs routine</td><td class="faint">F1 (P / R)</td><td>${f(ec.event_vs_routine.f1_event, 2)} (${f(ec.event_vs_routine.precision_event, 2)} / ${f(ec.event_vs_routine.recall_event, 2)})</td></tr>` : ""}
-          ${link ? `<tr><td>Entity linking</td><td class="faint">recall of tagged ticker</td><td>${pc(link.recall_of_tagged_ticker)}</td></tr>` : ""}
+          ${audit ? `<tr><td>Entity linking · precision</td><td class="faint">manual audit, n=${audit.n_mentions_audited}</td><td>${audit.identity_correct}/${audit.n_mentions_audited} correct · ${pc(audit.subject_relevance)} on-subject</td></tr>` : ""}${link ? `<tr><td>Entity linking · recall</td><td class="faint">vs noisy ticker tags</td><td>${pc(link.recall_of_tagged_ticker)}</td></tr>` : ""}
           ${pipe ? `<tr><td>Dedup / clustering</td><td class="faint">docs → events</td><td>${pipe.documents_in_events.toLocaleString()} → ${pipe.events.toLocaleString()}</td></tr><tr><td>Syndicated echoes</td><td class="faint">share of news</td><td>${pc(pipe.echo_share_of_news, 1)}</td></tr><tr><td>Throughput</td><td class="faint">incl. Monte Carlo</td><td>${f(pipe.ms_per_doc_including_stress, 1)} ms/doc</td></tr>` : ""}
           </table><p class="faint" style="font-size:11px;margin-top:8px">Sentiment: ${sent ? sent.dataset : ""}. Event class uses a different topic taxonomy mapped onto ours, so treat it as a sanity check, not a headline.</p>` : `<div class="empty">run python -m tremor.evaluate</div>`}</div></div>
       </div>
@@ -77,6 +77,7 @@
       <div class="panel" style="margin-top:14px"><h3>What did not work, and what we did about it <span class="tag">stated before you ask</span></h3><div class="pad">
         <div class="honest"><b>Sharper analogue retrieval lost to the unconditional baseline.</b> Conditioning the analogue weights on text, class or severity gave negative pinball skill at n=${ex.episodes_in_library} (class-only was worst). We therefore keep the text kernel soft and use what the data <i>did</i> support: P(systemic | class) mixes crisis-library shocks with ordinary-week shocks.</div>
         <div class="honest"><b>The Impact Score is a triage score, not a calibrated forecast.</b> Impact computed from analogue severity had no rank-correlation with realised severity (|ρ| &lt; 0.25, n.s.), so it is defined from observable evidence instead (intensity, P(systemic), confidence, polarity). Its relation to realised moves is reported above.</div>
+        <div class="honest"><b>Entity-link recall is weak against noisy tags (${link ? pc(link.recall_of_tagged_ticker) : "n/a"}) and FinBERT underperforms the lexicon on tweets.</b> FNSPID tags often name a ticker the headline never mentions, so recall is a floor, and precision is audited by hand instead. FinBERT is trained on formal news, not tweets, which is why the cascade, not FinBERT alone, is the default. Confirmation is rare in this corpus (${pipe ? pipe.confirmed_events : "n/a"} confirmed events vs ${pipe ? pipe.provisional_events.toLocaleString() : "n/a"} provisional): few events get two independent credible publishers.</div>
         <div class="honest"><b>News timestamps are day-resolution.</b> We assume 15:00 UTC publication, so the data cannot support any claim about minutes of lead time between social posts and news.</div>
         <div class="honest"><b>Small samples, synthetic book.</b> 36 episodes, one promoter-group episode, delisted names without prices, synthetic ratings and exposures. Ranges are indicative, not capital numbers.</div></div></div>`;
   };

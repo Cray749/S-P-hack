@@ -1,0 +1,12 @@
+{
+  "what": "Manual precision audit of the entity linker on a random sample of linked documents from the replay corpus (seeded sample, spam excluded).",
+  "n_mentions_audited": 70,
+  "identity_correct": 70,
+  "incidental_mentions": 10,
+  "incidental_breakdown": {"bank_named_as_analyst_on_price_target_note": 5, "name_inside_fund_holdings_list": 5},
+  "identity_precision": 1.0,
+  "subject_relevance": 0.857,
+  "judged_by": "the author, with AI assistance (no second annotator)",
+  "note": "Identity = the alias really refers to that company. Incidental = correct company but not the subject of the item. Analyst-note incidentals are removed by the routine-item gate before event formation. Sample of 70 gives only a wide interval: identity precision lower 95% bound is about 95%.",
+  "script": "see docs/EVALUATION.md (sample drawn with random.seed(11) over non-spam corpus documents that contain at least one link)"
+}

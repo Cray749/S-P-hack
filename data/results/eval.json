@@ -1,0 +1,109 @@
+{
+ "sentiment": {
+  "dataset": "zeroshot/twitter-financial-news-sentiment (validation, MIT)",
+  "n": 2388,
+  "lexicon_only": {
+   "macro_f1": 0.6294083750475259,
+   "accuracy": 0.7370184254606366
+  },
+  "finbert_only": {
+   "macro_f1": 0.6209803385392582,
+   "accuracy": 0.6545226130653267
+  },
+  "cascade": {
+   "macro_f1": 0.6338554011128243,
+   "accuracy": 0.748324958123953,
+   "escalation_rate": 0.2382747068676717,
+   "finbert_calls_saved": 0.7617252931323283,
+   "agreement_with_finbert_only": 0.6880234505862647
+  }
+ },
+ "event_class": {
+  "dataset": "zeroshot/twitter-financial-news-topic (validation, MIT), mapped to our taxonomy",
+  "n": 4117,
+  "macro_f1": 0.4416131979537772,
+  "accuracy": 0.46757347583191644,
+  "per_class_f1": {
+   "COMMODITY_SHOCK": 0.488,
+   "CREDIT_EVENT": 0.202,
+   "EARNINGS_GUIDANCE": 0.472,
+   "GEOPOLITICAL": 0.481,
+   "MACROECONOMIC": 0.554,
+   "MERGER_ACQUISITION": 0.325,
+   "OTHER": 0.5,
+   "PRODUCT_LAUNCH": 0.465,
+   "REGULATORY_LEGAL": 0.487
+  },
+  "event_vs_routine": {
+   "f1_event": 0.7817896389324961,
+   "precision_event": 0.6878453038674033,
+   "recall_event": 0.9054545454545454
+  },
+  "caveat": "The topic taxonomy is not ours; the mapping is approximate (e.g. 'Markets' -> routine), so absolute scores understate the classifier. Reported for reproducibility, not as a headline."
+ },
+ "entity_link": {
+  "dataset": "FNSPID ticker tags on headlines for in-universe US tickers",
+  "n": 4000,
+  "recall_of_tagged_ticker": 0.324,
+  "avg_additional_links_per_headline": 0.225,
+  "note": "Headline-only linking (article bodies are not used), so recall is a conservative floor. Precision is not measurable from tags because untagged mentions can be correct.",
+  "sample_misses": [
+   "GS: FOCUS-Tech firms sweeten deals for U.S. banks cutting costs in crisis",
+   "AAL: Warren Buffett's Berkshire Hathaway sells some stake in Delta Air Lines",
+   "CAT: Major Benchmarks Log Record Closes, Weekly Wins",
+   "BA: Why Triumph Group Stock Rocketed 45% Higher Today",
+   "GS: 3 More Takeaways From Apple's Earnings Call",
+   "UBS: After Virgin Galactic Stock Rockets Up, Should Investors Throttle Back?",
+   "OXY: Whiting Petroleum Files for Bankruptcy Amid Oil Price Crash",
+   "RCL: HFT VideoCast \u2013 Stock Market Commentary And Weekly Recap \u2013 Episode 20"
+  ]
+ },
+ "pipeline": {
+  "documents": 20836,
+  "routine_or_spam_filtered": 11096,
+  "documents_in_events": 9740,
+  "events": 6123,
+  "docs_per_event": 1.590723501551527,
+  "syndicated_echoes": 1232,
+  "echo_share_of_news": 0.3163841807909605,
+  "signals_emitted": 957,
+  "seconds": 105.6132378578186,
+  "ms_per_doc_including_stress": 5.0687866124888945,
+  "finbert_escalation_rate": 0.30605682472643503,
+  "confirmed_events": 37,
+  "provisional_events": 6086
+ },
+ "event_study": {
+  "n_events": 103,
+  "entity_linked_single_name_events": true,
+  "direction_accuracy_same_day": {
+   "value": 0.5625,
+   "n": 16,
+   "ci95": [
+    0.31942159829594075,
+    0.8055784017040593
+   ]
+  },
+  "impact_vs_abs_abnormal_return": {
+   "spearman": 0.22571298622855182,
+   "p": 0.021879789869748034
+  },
+  "intensity_vs_abs_abnormal_return": {
+   "spearman": 0.13819631579753988,
+   "p": 0.16388848749570678
+  },
+  "sentiment_vs_next_day_return": {
+   "spearman": 0.06788053363036707,
+   "p": 0.4956874018700694
+  },
+  "median_abs_ar_confirmed": 0.026825977500632862,
+  "median_abs_ar_provisional": 0.021203861387178505,
+  "n_confirmed": 8,
+  "n_provisional": 95,
+  "impact_vs_abs_ar_first_half_second_half": [
+   0.17742050023489347,
+   0.3039350675136768
+  ],
+  "caveat": "Concurrent validation, not forecasting. News is day-resolution, social posts partly react to the move. Abnormal return = stock return minus beta x S&P 500 return, same day."
+ }
+}
