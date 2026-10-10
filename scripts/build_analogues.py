@@ -172,6 +172,46 @@ def main() -> None:
         ph = pct_rank(hit, hit[i]) if o["roles"]["SELF"] else None
         o["severity"] = round(max(pm, 0.6 * (ph or 0.0)), 4)
 
+    # ---- ordinary-week reference distribution (non-event weeks), measured exactly like the episodes ---------
+    rng = np.random.default_rng(42)
+    spx_idx = prices["^GSPC"].dropna().index
+    ep_days = [pd.Timestamp(e["date"]) for e in eps]
+    ordinary: dict[str, list[float]] = {k: [] for k in ["spx", "nifty", "d10y_bps", "d5y_bps", "hy_bps", "vix_pts", "brent"] + list(out[0]["sector_excess"].keys())}
+    tries = 0
+    while len(ordinary["spx"]) < 1200 and tries < 20000:
+        tries += 1
+        i = int(rng.integers(5, len(spx_idx) - H - 2))
+        day = spx_idx[i]
+        if any(abs((day - d).days) <= 10 for d in ep_days):
+            continue
+        k = int(rng.integers(0, H))
+        def rr(t: str) -> float | None:
+            a_ = cum_path(prices[t], day) if t in prices else None
+            return None if a_ is None else float(a_[k])
+        def ll(t: str) -> float | None:
+            a_ = lvl_path(prices[t], day) if t in prices else None
+            return None if a_ is None else float(a_[k])
+        sp = rr("^GSPC")
+        if sp is None:
+            continue
+        ief, hyg = rr("IEF"), rr("HYG")
+        row = {"spx": sp, "nifty": rr("^NSEI"), "vix_pts": ll("^VIX"), "brent": rr("BZ=F"),
+               "d10y_bps": None if ll("^TNX") is None else ll("^TNX") * 100.0,
+               "d5y_bps": None if ll("^FVX") is None else ll("^FVX") * 100.0,
+               "hy_bps": None if None in (ief, hyg) else -(hyg - ief) / C.SPREAD_DURATION_HY * 1e4}
+        for sec, etf in SECTOR_ETF.items():
+            x = rr(etf)
+            row[sec] = None if x is None else x - sp
+        nb2, nf2 = rr("^NSEBANK"), rr("^NSEI")
+        row["IN_Financials"] = None if None in (nb2, nf2) else nb2 - nf2
+        k2, x2 = rr("KRE"), rr("XLF")
+        row["RegionalBanks"] = None if None in (k2, x2) else k2 - x2
+        for key in ordinary:
+            ordinary[key].append(row.get(key))
+    (ROOT / "data" / "analogues" / "ordinary.json").write_text(json.dumps(
+        {k: [None if v is None else round(float(v), 5) for v in vals] for k, vals in ordinary.items()}), encoding="utf-8")
+    print("ordinary weeks:", len(ordinary["spx"]), "spx sd:", round(float(np.nanstd([v for v in ordinary["spx"]])), 4))
+
     (ROOT / "data" / "analogues").mkdir(exist_ok=True)
     (ROOT / "data" / "analogues" / "library.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
 

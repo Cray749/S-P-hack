@@ -33,6 +33,7 @@ class StressResult:
     shock: dict[str, float]
     fallback_share: dict[str, float]
     components: dict[str, float] = field(default_factory=dict)   # median loss split: loans/bonds/swaps/cva
+    ob_median: np.ndarray | None = None                          # (O,) median loss for every obligor
 
 
 class StressModel:
@@ -43,6 +44,9 @@ class StressModel:
         self.O = len(ob)
         self.oid = {e: i for i, e in enumerate(ob["entity_id"])}
         self.ob = ob
+        self.ob_ids = ob["entity_id"].tolist()
+        self.ob_sector = ob["sector"].tolist()
+        self.ob_region = ob["region"].tolist()
         calib = json.loads((C.DATA / "market" / "calibration.json").read_text(encoding="utf-8"))
         self.kappa = float(calib["kappa_used"])
         betas = json.loads((C.DATA / "market" / "betas.json").read_text(encoding="utf-8"))
@@ -121,7 +125,7 @@ class StressModel:
         return out, fb
 
     def run(self, post: Posterior, exposures: dict[str, Exposure], seed: int, n: int | None = None,
-            scale: float = 1.0, use_graph: bool = True) -> StressResult:
+            scale: float = 1.0, use_graph: bool = True, p_sys: float = 1.0) -> StressResult:
         n = n or C.MC_DRAWS
         lib = self.lib
         rng = np.random.default_rng(seed)
@@ -129,18 +133,24 @@ class StressModel:
         g = np.exp(rng.normal(0.0, C.KERNEL_NOISE, n)) * scale
         nz = lambda a: np.nan_to_num(a, nan=0.0)  # noqa: E731
 
-        spx = nz(lib.fac["spx"][idx])
-        nif = lib.fac["nifty"][idx]
-        nif = np.where(np.isnan(nif), 0.7 * spx, nif)
-        d10, d5 = nz(lib.fac["d10y_bps"][idx]), nz(lib.fac["d5y_bps"][idx])
+        # systemic draws use the crisis library; idiosyncratic draws use an ordinary historical week
+        systemic = rng.random(n) < p_sys
+        oidx = rng.integers(0, lib.n_ord, n)
+        pick = lambda crisis, ordinary: np.where(systemic, crisis[idx], ordinary[oidx])  # noqa: E731
+        spx = nz(pick(lib.fac["spx"], lib.ord["spx"]))
+        nif_c = np.where(np.isnan(lib.fac["nifty"]), 0.7 * lib.fac["spx"], lib.fac["nifty"])
+        nif_o = np.where(np.isnan(lib.ord["nifty"]), 0.7 * lib.ord["spx"], lib.ord["nifty"])
+        nif = nz(pick(nif_c, nif_o))
+        d10, d5 = nz(pick(lib.fac["d10y_bps"], lib.ord["d10y_bps"])), nz(pick(lib.fac["d5y_bps"], lib.ord["d5y_bps"]))
         mkt = np.where(self.region_in[None, :], nif[:, None], spx[:, None])            # (n, O)
 
+        sec_draw = np.where(systemic[:, None], lib.sec[idx], lib.ord_sec[oidx])
         sec = np.zeros((n, self.O))
         for k in (0, 1):
             cols = self.sec_cols[:, k]
             ok = cols >= 0
             if ok.any():
-                sec[:, ok] += nz(lib.sec[idx][:, cols[ok]])
+                sec[:, ok] += nz(sec_draw[:, cols[ok]])
 
         role = self._role_matrix(exposures) if use_graph else np.zeros(self.O, dtype=int)
         if not use_graph:
@@ -171,13 +181,14 @@ class StressModel:
         shock = {
             "equity_pct": float(np.median(spx * g) * 100),
             "rates_10y_bps": float(np.median(d10 * g)),
-            "hy_spread_bps": float(np.median(nz(lib.fac["hy_bps"][idx]) * g)),
-            "oil_pct": float(np.median(nz(lib.fac["brent"][idx]) * g) * 100),
+            "hy_spread_bps": float(np.median(nz(pick(lib.fac["hy_bps"], lib.ord["hy_bps"])) * g)),
+            "oil_pct": float(np.median(nz(pick(lib.fac["brent"], lib.ord["brent"])) * g) * 100),
+            "p_systemic": float(p_sys),
         }
         comp = {"loans_ecl": float(np.median(ecl.sum(1))), "bonds_mtm": float(np.median(-bond.sum(1))),
                 "swaps_mtm": float(np.median(-swap.sum(1))), "swaps_cva": float(np.median(cva.sum(1)))}
         del w
-        return StressResult(total, by_ob, self.book.value, shock, fb, comp)
+        return StressResult(total, by_ob, self.book.value, shock, fb, comp, np.median(by_ob_all, axis=0))
 
     # ---------------------------------------------------------------------------------------------
     @staticmethod
@@ -188,11 +199,11 @@ class StressModel:
                 "var99": float(p99), "es99": float(tail.mean() if len(tail) else p99)}
 
     def reverse_stress(self, post: Posterior, exposures: dict[str, Exposure], seed: int, limit_usd_m: float,
-                       scales: tuple[float, ...] = (0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8)) -> dict:
+                       scales: tuple[float, ...] = (0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8), p_sys: float = 1.0) -> dict:
         """How many times the typical analogue shock is needed before the median loss breaches `limit`?"""
         curve = []
         for s in scales:
-            res = self.run(post, exposures, seed, n=1500, scale=s)
+            res = self.run(post, exposures, seed, n=1500, scale=s, p_sys=p_sys)
             q = self.summarise(res.loss_total)
             curve.append({"scale": s, "p50": q["p50"], "p95": q["p95"]})
         breach = next((c["scale"] for c in curve if c["p50"] >= limit_usd_m), None)

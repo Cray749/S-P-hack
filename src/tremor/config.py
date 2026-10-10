@@ -29,11 +29,16 @@ HORIZON_DAYS = 5                 # trading days over which analogue moves are me
 SPREAD_DURATION_HY = 3.8         # proxy: HYG spread duration (years)
 SPREAD_DURATION_IG = 8.5         # proxy: LQD spread duration (years)
 S0_HY_BPS = 450.0                # assumed baseline HY OAS used to log-scale the credit proxy
-SIM_TEMPERATURE = 0.12           # softmax temperature on text-embedding similarity
-SEVERITY_BANDWIDTH = 0.40        # kernel width on the severity-percentile prior
-CLASS_PRIOR_FLOOR = 0.05         # keeps off-class analogues in play when the class is uncertain
+SIM_TEMPERATURE = 0.5            # softmax temperature on text similarity (backtest: sharper kernels lose skill at n=36)
+# Probability that an event of a given class is systemic (market-wide) rather than idiosyncratic.
+# Fixed BEFORE it was evaluated (pre-registered), never tuned; see docs/EVALUATION.md.
+SYSTEMIC_PRIOR = {
+    "GEOPOLITICAL": 0.80, "MACROECONOMIC": 0.90, "COMMODITY_SHOCK": 0.70, "PANDEMIC_DISASTER": 0.90,
+    "CREDIT_EVENT": 0.35, "REGULATORY_LEGAL": 0.10, "OPERATIONAL": 0.10, "EARNINGS_GUIDANCE": 0.05,
+    "PRODUCT_LAUNCH": 0.05, "MERGER_ACQUISITION": 0.05,
+}
 KERNEL_NOISE = 0.20              # multiplicative jitter so a handful of analogues form a smooth range
-MC_DRAWS = 4000
+MC_DRAWS = 1500
 
 # ---- credit mapping (documented simplifications; see docs/LIMITATIONS.md) ---------------------
 RATING_SPREAD_BPS = {"AAA": 40, "AA": 55, "A": 80, "BBB": 130, "BB": 280, "B": 450, "CCC": 900}
