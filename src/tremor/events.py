@@ -62,6 +62,7 @@ class Event:
     _w_sum: float = 0.0
     _ent: Counter = field(default_factory=Counter)
     _dsu: dict[str, str] = field(default_factory=dict)
+    _cent: np.ndarray | None = None
 
     # ---- incremental updates ------------------------------------------------------------------------
     def _find(self, p: str) -> str:
@@ -73,6 +74,7 @@ class Event:
 
     def add(self, ds: DocState, echo_orig: DocState | None = None) -> None:
         self.members.append(ds)
+        self._cent = None
         self.last_offset, self.last_ts = ds.offset, ds.doc.ts
         self._sum_emb = ds.emb.copy() if self._sum_emb is None else self._sum_emb + ds.emb
         if echo_orig is not None:
@@ -95,7 +97,9 @@ class Event:
     @property
     def centroid(self) -> np.ndarray:
         assert self._sum_emb is not None
-        return self._sum_emb / max(np.linalg.norm(self._sum_emb), 1e-9)
+        if self._cent is None:
+            self._cent = self._sum_emb / max(float(np.linalg.norm(self._sum_emb)), 1e-9)
+        return self._cent
 
     @property
     def n_docs(self) -> int:

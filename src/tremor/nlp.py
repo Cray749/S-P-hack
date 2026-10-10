@@ -59,7 +59,10 @@ class Embedder:
             try:
                 from sentence_transformers import SentenceTransformer
 
-                self._model = SentenceTransformer(C.EMBED_MODEL, device="cpu")
+                try:
+                    self._model = SentenceTransformer(C.EMBED_MODEL, device="cpu", local_files_only=True)
+                except Exception:
+                    self._model = SentenceTransformer(C.EMBED_MODEL, device="cpu")
                 self.name = C.EMBED_MODEL.split("/")[-1]
                 self.dim = int(self._model.get_sentence_embedding_dimension())
             except Exception as exc:  # offline / not installed
@@ -140,8 +143,12 @@ class SentimentCascade:
                 import torch
                 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-                self._tok = AutoTokenizer.from_pretrained(C.SENT_MODEL)
-                self._model = AutoModelForSequenceClassification.from_pretrained(C.SENT_MODEL).eval()
+                try:  # prefer the local cache: deterministic and works offline
+                    self._tok = AutoTokenizer.from_pretrained(C.SENT_MODEL, local_files_only=True)
+                    self._model = AutoModelForSequenceClassification.from_pretrained(C.SENT_MODEL, local_files_only=True).eval()
+                except Exception:
+                    self._tok = AutoTokenizer.from_pretrained(C.SENT_MODEL)
+                    self._model = AutoModelForSequenceClassification.from_pretrained(C.SENT_MODEL).eval()
                 self._torch = torch
                 torch.set_num_threads(max(1, (os.cpu_count() or 2) - 1))
             except Exception as exc:

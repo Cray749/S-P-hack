@@ -73,6 +73,16 @@ class AnalogueUsed(BaseModel):
     severity: float
 
 
+class ObligorPoint(BaseModel):
+    entity_id: str
+    name: str
+    sector: str
+    region: str
+    exposure_usd_m: float
+    loss_p50_usd_m: float
+    role: Literal["SELF", "GROUP", "PEER"] | None = None
+
+
 class Signal(BaseModel):
     """The engine's structured output, consumed by downstream modules (Module B) and the API."""
 
@@ -110,4 +120,9 @@ class Signal(BaseModel):
     n_obligors_named: int
     shock: dict[str, float]             # headline factor shocks (median)
     evidence: list[Evidence]
+    hist_edges: list[float] = []
+    hist_counts: list[int] = []
+    components: dict[str, float] = {}
+    fallback_share: dict[str, float] = {}
+    obligor_map: list[ObligorPoint] = []
     hash: str                           # sha256 over the canonical, rounded signal core

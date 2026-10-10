@@ -26,7 +26,7 @@ from .entities import ExposureGraph, load_entities
 from .events import Event, EventTracker
 from .ingest import from_post, replay_corpus
 from .ledger import Ledger
-from .schemas import AnalogueUsed, Document, Evidence, LedgerEntry, LossRange, ObligorHit, Signal
+from .schemas import AnalogueUsed, Document, Evidence, LedgerEntry, LossRange, ObligorHit, ObligorPoint, Signal
 from .scoring import Scorer
 from .stress import StressModel
 
@@ -72,12 +72,15 @@ class Pipeline:
         self.tracker = EventTracker()
         self.versions: dict[str, list[Signal]] = defaultdict(list)
         self._key: dict[str, tuple] = {}
+        self._nver: dict[str, int] = defaultdict(int)       # version counter, independent of emission
+        self.ctx: dict[str, tuple] = {}                     # signal_id -> (posterior, exposures, seed) for what-ifs
         self.bus = bus
         self.offset = 0
         self.processed = 0
 
     # ---------------------------------------------------------------------------------------------
-    def process(self, entry: LedgerEntry) -> list[Signal]:
+    def process(self, entry: LedgerEntry, emit: bool | Callable[[Event], bool] = True) -> list[Signal]:
+        """Advance by one ledger entry. `emit` may be a predicate so replays only price the event of interest."""
         ds = self.c.scorer.state(entry.offset, entry.doc)
         self.offset = entry.offset
         self.processed += 1
@@ -90,7 +93,10 @@ class Pipeline:
         if self._key.get(ev.id) == key:
             return []
         self._key[ev.id] = key
-        sig = self.make_signal(ev, entry.offset)
+        self._nver[ev.id] += 1
+        if not (emit(ev) if callable(emit) else emit):
+            return []
+        sig = self.make_signal(ev, entry.offset, self._nver[ev.id])
         if sig is None:
             return []
         self.versions[ev.id].append(sig)
@@ -99,17 +105,19 @@ class Pipeline:
         return [sig]
 
     # ---------------------------------------------------------------------------------------------
-    def make_signal(self, ev: Event, offset: int) -> Signal | None:
+    def make_signal(self, ev: Event, offset: int, version: int) -> Signal | None:
         c = self.c
         cp = ev.class_probs
+        named = ev.named_entities()
+        p_sys = c.lib.p_systemic(cp)
+        if not named and p_sys < 0.4:          # nothing to stress: no entity to anchor and not a market-wide event
+            return None
         post = c.lib.posterior(ev.centroid, cp, ev.intensity, ev.last_ts)
         if post is None:
             return None
-        named = ev.named_entities()
         exposures = c.graph.propagate(named)
-        version = len(self.versions[ev.id]) + 1
         seed = int(hashlib.sha256(f"{ev.id}|{offset}|{c.config_hash}|{c.book.hash}".encode()).hexdigest()[:8], 16)
-        res = c.stress.run(post, exposures, seed)
+        res = c.stress.run(post, exposures, seed, p_sys=p_sys)
         q = StressModel.summarise(res.loss_total)
 
         ents = c.entities.by_id
@@ -123,6 +131,14 @@ class Pipeline:
                                    exposure_usd_m=round(exp, 3), expected_loss_usd_m=round(float(np.median(arr)), 4),
                                    loss_p95_usd_m=round(float(np.percentile(arr, 95)), 4)))
         hits.sort(key=lambda h: -h.expected_loss_usd_m)
+        omap = []
+        st = c.stress
+        for j, eid in enumerate(st.ob_ids):
+            omap.append(ObligorPoint(entity_id=eid, name=ents[eid].name, sector=st.ob_sector[j], region=st.ob_region[j],
+                                     exposure_usd_m=round(float(st.expo.get(eid, 0.0)), 2),
+                                     loss_p50_usd_m=round(float(res.ob_median[j]), 4),  # type: ignore[index]
+                                     role=exposures[eid].role if eid in exposures else None))  # type: ignore[arg-type]
+        counts, edges = np.histogram(res.loss_total, bins=40)
         named_obl = [e for e in named if e in res.by_obligor or e in c.stress.oid]
 
         evid = []
@@ -152,8 +168,12 @@ class Pipeline:
             loss=LossRange(**{k: round(v, 3) for k, v in q.items()}), ess=round(post.ess, 2),
             analogues=[AnalogueUsed(**a) for a in c.lib.describe(post)], obligors_hit=hits[:25],
             n_obligors_hit=len(hits), n_obligors_named=len(named_obl), shock={k: round(v, 3) for k, v in res.shock.items()},
-            evidence=evid, hash=h,
+            evidence=evid, hist_edges=[round(float(x), 3) for x in edges], hist_counts=[int(x) for x in counts],
+            components={k: round(v, 3) for k, v in res.components.items()},
+            fallback_share={k: round(v, 3) for k, v in res.fallback_share.items()}, obligor_map=omap, hash=h,
         )
+        self.ctx[sig.signal_id] = (post, exposures, seed, p_sys)
+        return sig
 
 
 # =================================================================================================
@@ -173,22 +193,23 @@ class Engine:
     def reset(self) -> None:
         self.pipe = Pipeline(self.c, self.bus)
 
-    def advance(self, to_offset: int) -> list[Signal]:
+    def advance(self, to_offset: int, emit: bool = True) -> list[Signal]:
         """Process ledger entries (pipe.offset, to_offset]."""
         out: list[Signal] = []
         for e in self.ledger.read(upto=to_offset, start=self.pipe.offset + 1):
-            out.extend(self.pipe.process(e))
+            out.extend(self.pipe.process(e, emit=emit))
         return out
 
-    def replay(self, to_offset: int) -> Pipeline:
+    def replay(self, to_offset: int, only_event: str | None = None) -> Pipeline:
         """Fresh pipeline over the ledger prefix. Same inputs -> identical signals (verified by hash)."""
         p = Pipeline(self.c, None)
+        pred = (lambda ev: ev.id == only_event) if only_event else True
         for e in self.ledger.read(upto=to_offset):
-            p.process(e)
+            p.process(e, emit=pred)
         return p
 
     def verify_signal(self, sig: Signal) -> dict:
-        p = self.replay(sig.ledger_offset)
+        p = self.replay(sig.ledger_offset, only_event=sig.event_id)
         redo = next((s for s in p.versions.get(sig.event_id, []) if s.ledger_offset == sig.ledger_offset), None)
         return {"signal_id": sig.signal_id, "original_hash": sig.hash, "replayed_hash": redo.hash if redo else None,
                 "match": bool(redo and redo.hash == sig.hash), "ledger_entries_replayed": sig.ledger_offset,
