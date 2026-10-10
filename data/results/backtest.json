@@ -1,0 +1,3202 @@
+{
+ "expanding": {
+  "mode": "expanding window (no look-ahead)",
+  "episodes_tested": 30,
+  "episodes_in_library": 36,
+  "min_priors": 6,
+  "overall_coverage": {
+   "50": 0.447,
+   "80": 0.74,
+   "90": 0.853
+  },
+  "nominal": {
+   "50": 0.5,
+   "80": 0.8,
+   "90": 0.9
+  },
+  "intervals_scored": {
+   "50": 150,
+   "80": 150,
+   "90": 150
+  },
+  "binomial_se_90": 0.024,
+  "overall_skill_vs_unconditional": 0.075,
+  "overall_skill_vs_ordinary": 0.183,
+  "targets": {
+   "spx": {
+    "label": "S&P 500 move",
+    "n": 30,
+    "coverage": {
+     "50": 0.367,
+     "80": 0.7,
+     "90": 0.833
+    },
+    "pinball_model": 0.244,
+    "pinball_unconditional": 0.2747,
+    "pinball_ordinary": 0.3329,
+    "skill_vs_unconditional": 0.112,
+    "skill_vs_ordinary": 0.267
+   },
+   "vix_pts": {
+    "label": "VIX change (pts)",
+    "n": 30,
+    "coverage": {
+     "50": 0.467,
+     "80": 0.733,
+     "90": 0.833
+    },
+    "pinball_model": 0.2373,
+    "pinball_unconditional": 0.2572,
+    "pinball_ordinary": 0.32,
+    "skill_vs_unconditional": 0.077,
+    "skill_vs_ordinary": 0.258
+   },
+   "d10y_bps": {
+    "label": "10y yield (bps)",
+    "n": 30,
+    "coverage": {
+     "50": 0.433,
+     "80": 0.8,
+     "90": 0.933
+    },
+    "pinball_model": 0.2297,
+    "pinball_unconditional": 0.2306,
+    "pinball_ordinary": 0.2335,
+    "skill_vs_unconditional": 0.004,
+    "skill_vs_ordinary": 0.017
+   },
+   "hy_bps": {
+    "label": "HY spread proxy (bps)",
+    "n": 30,
+    "coverage": {
+     "50": 0.467,
+     "80": 0.8,
+     "90": 0.933
+    },
+    "pinball_model": 0.1813,
+    "pinball_unconditional": 0.2051,
+    "pinball_ordinary": 0.2373,
+    "skill_vs_unconditional": 0.116,
+    "skill_vs_ordinary": 0.236
+   },
+   "brent": {
+    "label": "Brent crude move",
+    "n": 30,
+    "coverage": {
+     "50": 0.5,
+     "80": 0.667,
+     "90": 0.733
+    },
+    "pinball_model": 0.258,
+    "pinball_unconditional": 0.2762,
+    "pinball_ordinary": 0.2849,
+    "skill_vs_unconditional": 0.066,
+    "skill_vs_ordinary": 0.094
+   }
+  },
+  "graph_ablation": {
+   "PEER": {
+    "episodes_evaluable": 17,
+    "episodes_total": 17,
+    "mae_graph": 0.0563,
+    "mae_nograph": 0.0595,
+    "pinball_graph": 0.02129,
+    "pinball_nograph": 0.02317,
+    "coverage90_graph": 0.798
+   },
+   "GROUP": {
+    "episodes_evaluable": 0,
+    "episodes_total": 1,
+    "note": "no earlier analogue with this role - cannot be backtested"
+   }
+  },
+  "episodes": [
+   {
+    "id": "cambridge_2018",
+    "date": "2018-03-19",
+    "ess": 5.9,
+    "cls": "REGULATORY_LEGAL",
+    "predicted_class": "REGULATORY_LEGAL",
+    "targets": {
+     "spx": {
+      "actual": -0.0595,
+      "p5": -0.0605,
+      "p50": 0.001,
+      "p95": 0.0285,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 9.07,
+      "p5": -4.5059,
+      "p50": 0.0,
+      "p95": 9.1134,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -1.8,
+      "p5": -23.2243,
+      "p50": -0.2818,
+      "p95": 16.8245,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 35.4746,
+      "p5": -47.9068,
+      "p50": 0.9356,
+      "p95": 107.6997,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.064,
+      "p5": -0.0698,
+      "p50": -0.0032,
+      "p95": 0.0518,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.132
+   },
+   {
+    "id": "fb_earn_2018",
+    "date": "2018-07-26",
+    "ess": 6.4,
+    "cls": "EARNINGS_GUIDANCE",
+    "predicted_class": "EARNINGS_GUIDANCE",
+    "targets": {
+     "spx": {
+      "actual": -0.0153,
+      "p5": -0.0523,
+      "p50": 0.0014,
+      "p95": 0.0278,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 1.97,
+      "p5": -4.2206,
+      "p50": -0.0958,
+      "p95": 6.5834,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 3.9,
+      "p5": -17.4046,
+      "p50": -0.6894,
+      "p95": 16.0625,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -2.3781,
+      "p5": -45.2783,
+      "p50": 0.6896,
+      "p95": 61.547,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0141,
+      "p5": -0.0656,
+      "p50": 0.0006,
+      "p95": 0.0589,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.064
+   },
+   {
+    "id": "ilfs_2018",
+    "date": "2018-09-21",
+    "ess": 7.9,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0052,
+      "p5": -0.0753,
+      "p50": -0.0039,
+      "p95": 0.0289,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.62,
+      "p5": -4.9578,
+      "p50": 0.5655,
+      "p95": 12.9439,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 2.4,
+      "p5": -29.466,
+      "p50": -0.1774,
+      "p95": 17.3075,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -1.6826,
+      "p5": -33.7625,
+      "p50": 5.3642,
+      "p95": 195.2656,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0403,
+      "p5": -0.0685,
+      "p50": -0.0037,
+      "p95": 0.0606,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.355
+   },
+   {
+    "id": "boeing_2019",
+    "date": "2019-03-11",
+    "ess": 8.7,
+    "cls": "OPERATIONAL",
+    "predicted_class": "OPERATIONAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0238,
+      "p5": -0.0626,
+      "p50": 0.0004,
+      "p95": 0.0286,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -2.55,
+      "p5": -4.1157,
+      "p50": 0.0676,
+      "p95": 9.8395,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 0.5,
+      "p5": -19.6698,
+      "p50": -0.3028,
+      "p95": 14.9955,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -18.0505,
+      "p5": -43.9666,
+      "p50": 0.3823,
+      "p95": 104.5422,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0227,
+      "p5": -0.065,
+      "p50": 0.0,
+      "p95": 0.0594,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.16
+   },
+   {
+    "id": "chevron_anadarko_2019",
+    "date": "2019-04-12",
+    "ess": 9.9,
+    "cls": "MERGER_ACQUISITION",
+    "predicted_class": "MERGER_ACQUISITION",
+    "targets": {
+     "spx": {
+      "actual": 0.0066,
+      "p5": -0.0431,
+      "p50": 0.0011,
+      "p95": 0.0281,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -1.01,
+      "p5": -4.0856,
+      "p50": -0.0927,
+      "p95": 5.78,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 5.6,
+      "p5": -15.9631,
+      "p50": -0.365,
+      "p95": 15.4422,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -16.1329,
+      "p5": -49.512,
+      "p50": -0.9743,
+      "p95": 56.4902,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0102,
+      "p5": -0.0641,
+      "p50": 0.0012,
+      "p95": 0.058,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.064
+   },
+   {
+    "id": "uschina_2019",
+    "date": "2019-08-05",
+    "ess": 10.5,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": -0.0298,
+      "p5": -0.0795,
+      "p50": -0.013,
+      "p95": 0.028,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 6.98,
+      "p5": -5.0353,
+      "p50": 1.6562,
+      "p95": 14.5752,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -12.0,
+      "p5": -31.872,
+      "p50": 2.3972,
+      "p95": 17.051,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 50.1439,
+      "p5": -22.3986,
+      "p50": 5.1666,
+      "p95": 300.5687,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0336,
+      "p5": -0.0747,
+      "p50": -0.0042,
+      "p95": 0.0595,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.797
+   },
+   {
+    "id": "iphone_2019",
+    "date": "2019-09-11",
+    "ess": 11.7,
+    "cls": "PRODUCT_LAUNCH",
+    "predicted_class": "PRODUCT_LAUNCH",
+    "targets": {
+     "spx": {
+      "actual": 0.0072,
+      "p5": -0.0354,
+      "p50": 0.0019,
+      "p95": 0.0298,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -0.59,
+      "p5": -3.8641,
+      "p50": -0.1476,
+      "p95": 5.4847,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 3.1,
+      "p5": -16.0085,
+      "p50": -0.4978,
+      "p95": 15.4894,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -2.2838,
+      "p5": -53.8793,
+      "p50": -1.0916,
+      "p95": 57.634,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0252,
+      "p5": -0.0626,
+      "p50": 0.0018,
+      "p95": 0.0566,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.057
+   },
+   {
+    "id": "abqaiq_2019",
+    "date": "2019-09-16",
+    "ess": 11.8,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.0051,
+      "p5": -0.0745,
+      "p50": -0.0094,
+      "p95": 0.0269,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 1.58,
+      "p5": -4.3482,
+      "p50": 1.2461,
+      "p95": 14.3093,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -14.8,
+      "p5": -29.5326,
+      "p50": 0.5038,
+      "p95": 17.0245,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 26.0621,
+      "p5": -24.0663,
+      "p50": 6.006,
+      "p95": 211.0764,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0674,
+      "p5": -0.0704,
+      "p50": -0.0038,
+      "p95": 0.0589,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.659
+   },
+   {
+    "id": "fedcut_2020",
+    "date": "2020-03-03",
+    "ess": 13.6,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.1112,
+      "p5": -0.0781,
+      "p50": -0.0114,
+      "p95": 0.0271,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 21.04,
+      "p5": -4.7584,
+      "p50": 1.5911,
+      "p95": 14.4511,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": -58.9,
+      "p5": -31.2498,
+      "p50": 1.4495,
+      "p95": 17.7943,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 249.8411,
+      "p5": -20.8101,
+      "p50": 7.0424,
+      "p95": 300.7857,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.338,
+      "p5": -0.0681,
+      "p50": -0.0038,
+      "p95": 0.0713,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.895
+   },
+   {
+    "id": "yesbank_2020",
+    "date": "2020-03-06",
+    "ess": 13.4,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.017,
+      "p5": -0.0651,
+      "p50": -0.0009,
+      "p95": 0.0275,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 2.32,
+      "p5": -4.6647,
+      "p50": 0.2945,
+      "p95": 10.3657,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -22.0,
+      "p5": -25.7949,
+      "p50": 0.3993,
+      "p95": 16.207,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 56.3886,
+      "p5": -37.3309,
+      "p50": 0.4851,
+      "p95": 134.8825,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0944,
+      "p5": -0.067,
+      "p50": -0.0021,
+      "p95": 0.0628,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.349
+   },
+   {
+    "id": "oilwar_2020",
+    "date": "2020-03-09",
+    "ess": 13.5,
+    "cls": "COMMODITY_SHOCK",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.1654,
+      "p5": -0.0748,
+      "p50": -0.0058,
+      "p95": 0.0262,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 33.53,
+      "p5": -4.0757,
+      "p50": 1.3518,
+      "p95": 13.4657,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": 14.3,
+      "p5": -29.3406,
+      "p50": 0.4202,
+      "p95": 14.6967,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 180.3732,
+      "p5": -22.9122,
+      "p50": 5.5602,
+      "p95": 166.3607,
+      "covered90": false
+     },
+     "brent": {
+      "actual": -0.2662,
+      "p5": -0.0701,
+      "p50": -0.0031,
+      "p95": 0.0703,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.709
+   },
+   {
+    "id": "covid_2020",
+    "date": "2020-03-12",
+    "ess": 14.5,
+    "cls": "PANDEMIC_DISASTER",
+    "predicted_class": "PANDEMIC_DISASTER",
+    "targets": {
+     "spx": {
+      "actual": -0.1296,
+      "p5": -0.1096,
+      "p50": -0.0185,
+      "p95": 0.0263,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 28.79,
+      "p5": -4.2106,
+      "p50": 2.1769,
+      "p95": 21.3605,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": -9.2,
+      "p5": -57.9519,
+      "p50": -0.179,
+      "p95": 15.659,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 222.2228,
+      "p5": -20.5386,
+      "p50": 12.5004,
+      "p95": 319.5843,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.1604,
+      "p5": -0.3267,
+      "p50": -0.014,
+      "p95": 0.0696,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.897
+   },
+   {
+    "id": "hertz_2020",
+    "date": "2020-04-16",
+    "ess": 17.2,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": 0.0328,
+      "p5": -0.1076,
+      "p50": -0.0024,
+      "p95": 0.0263,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": -2.69,
+      "p5": -3.8714,
+      "p50": 0.3774,
+      "p95": 20.2909,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 1.6,
+      "p5": -30.8934,
+      "p50": -0.5492,
+      "p95": 15.6983,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -14.852,
+      "p5": -36.5345,
+      "p50": 2.7864,
+      "p95": 256.9188,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0141,
+      "p5": -0.1623,
+      "p50": -0.004,
+      "p95": 0.0605,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.358
+   },
+   {
+    "id": "wti_2020",
+    "date": "2020-04-20",
+    "ess": 17.5,
+    "cls": "COMMODITY_SHOCK",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.048,
+      "p5": -0.1525,
+      "p50": -0.0132,
+      "p95": 0.0259,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 7.26,
+      "p5": -3.6567,
+      "p50": 1.5974,
+      "p95": 31.316,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -8.3,
+      "p5": -37.2083,
+      "p50": -0.0932,
+      "p95": 16.4558,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 101.2367,
+      "p5": -24.5326,
+      "p50": 10.516,
+      "p95": 280.1365,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.3116,
+      "p5": -0.2918,
+      "p50": -0.0143,
+      "p95": 0.0637,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.699
+   },
+   {
+    "id": "nvidia_arm_2020",
+    "date": "2020-09-14",
+    "ess": 19.5,
+    "cls": "MERGER_ACQUISITION",
+    "predicted_class": "MERGER_ACQUISITION",
+    "targets": {
+     "spx": {
+      "actual": 0.018,
+      "p5": -0.0385,
+      "p50": 0.0016,
+      "p95": 0.0288,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -1.28,
+      "p5": -4.2043,
+      "p50": -0.1254,
+      "p95": 5.8642,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 1.0,
+      "p5": -16.1754,
+      "p50": -0.7668,
+      "p95": 14.1674,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -8.0301,
+      "p5": -48.9477,
+      "p50": -0.6981,
+      "p95": 62.6177,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0176,
+      "p5": -0.069,
+      "p50": 0.002,
+      "p95": 0.0569,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.058
+   },
+   {
+    "id": "pfizer_2020",
+    "date": "2020-11-09",
+    "ess": 20.3,
+    "cls": "PANDEMIC_DISASTER",
+    "predicted_class": "PANDEMIC_DISASTER",
+    "targets": {
+     "spx": {
+      "actual": 0.0117,
+      "p5": -0.1463,
+      "p50": -0.0138,
+      "p95": 0.0303,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.89,
+      "p5": -3.6064,
+      "p50": 1.9702,
+      "p95": 30.4691,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 13.8,
+      "p5": -41.1417,
+      "p50": -0.2192,
+      "p95": 15.1174,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -39.5062,
+      "p5": -19.7943,
+      "p50": 15.7787,
+      "p95": 297.6146,
+      "covered90": false
+     },
+     "brent": {
+      "actual": 0.0748,
+      "p5": -0.3256,
+      "p50": -0.0205,
+      "p95": 0.0634,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.886
+   },
+   {
+    "id": "archegos_2021",
+    "date": "2021-03-29",
+    "ess": 21.2,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0004,
+      "p5": -0.0853,
+      "p50": 0.0002,
+      "p95": 0.0292,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.54,
+      "p5": -4.3008,
+      "p50": 0.2248,
+      "p95": 16.8193,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 8.6,
+      "p5": -24.5889,
+      "p50": 0.1722,
+      "p95": 15.6861,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -22.9321,
+      "p5": -41.3359,
+      "p50": 0.5163,
+      "p95": 188.0054,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0159,
+      "p5": -0.1558,
+      "p50": -0.0002,
+      "p95": 0.0622,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.331
+   },
+   {
+    "id": "evergrande_2021",
+    "date": "2021-09-20",
+    "ess": 21.8,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0178,
+      "p5": -0.0895,
+      "p50": -0.0005,
+      "p95": 0.03,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 3.55,
+      "p5": -4.0052,
+      "p50": 0.3825,
+      "p95": 16.1583,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -4.6,
+      "p5": -24.318,
+      "p50": 0.073,
+      "p95": 15.4629,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 16.5338,
+      "p5": -39.8307,
+      "p50": 0.1363,
+      "p95": 193.4587,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.013,
+      "p5": -0.1662,
+      "p50": -0.0016,
+      "p95": 0.0634,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.366
+   },
+   {
+    "id": "russia_2022",
+    "date": "2022-02-24",
+    "ess": 22.7,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0381,
+      "p5": -0.1576,
+      "p50": -0.0103,
+      "p95": 0.028,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": -0.28,
+      "p5": -3.4058,
+      "p50": 1.7121,
+      "p95": 31.1465,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -11.2,
+      "p5": -34.4878,
+      "p50": 0.513,
+      "p95": 16.66,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -13.7036,
+      "p5": -30.5592,
+      "p50": 9.3224,
+      "p95": 266.8194,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.1661,
+      "p5": -0.3106,
+      "p50": -0.0134,
+      "p95": 0.0704,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.791
+   },
+   {
+    "id": "netflix_2022",
+    "date": "2022-04-20",
+    "ess": 23.9,
+    "cls": "EARNINGS_GUIDANCE",
+    "predicted_class": "EARNINGS_GUIDANCE",
+    "targets": {
+     "spx": {
+      "actual": -0.0643,
+      "p5": -0.0711,
+      "p50": 0.0004,
+      "p95": 0.0311,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 12.15,
+      "p5": -3.863,
+      "p50": 0.0915,
+      "p95": 10.858,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": -14.1,
+      "p5": -22.6493,
+      "p50": -0.3025,
+      "p95": 14.7074,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 60.9338,
+      "p5": -41.9085,
+      "p50": -0.0482,
+      "p95": 136.1124,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0211,
+      "p5": -0.1211,
+      "p50": -0.0005,
+      "p95": 0.0633,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.26
+   },
+   {
+    "id": "jackson_2022",
+    "date": "2022-08-26",
+    "ess": 25.1,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0581,
+      "p5": -0.1384,
+      "p50": -0.0147,
+      "p95": 0.034,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 4.09,
+      "p5": -3.247,
+      "p50": 1.8285,
+      "p95": 27.5838,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 10.7,
+      "p5": -41.2393,
+      "p50": -0.3462,
+      "p95": 16.6019,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 57.4166,
+      "p5": -25.9054,
+      "p50": 11.5107,
+      "p95": 266.4278,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0287,
+      "p5": -0.3105,
+      "p50": -0.0156,
+      "p95": 0.0807,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.858
+   },
+   {
+    "id": "cpi_2022",
+    "date": "2022-09-13",
+    "ess": 26.2,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0577,
+      "p5": -0.1417,
+      "p50": -0.0174,
+      "p95": 0.0307,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 2.43,
+      "p5": -3.1855,
+      "p50": 2.5588,
+      "p95": 28.1894,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 8.6,
+      "p5": -40.9183,
+      "p50": 0.4817,
+      "p95": 15.8442,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 43.3018,
+      "p5": -25.2525,
+      "p50": 15.1756,
+      "p95": 271.129,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0282,
+      "p5": -0.3248,
+      "p50": -0.0189,
+      "p95": 0.0804,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.898
+   },
+   {
+    "id": "ukbudget_2022",
+    "date": "2022-09-23",
+    "ess": 27.1,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0313,
+      "p5": -0.123,
+      "p50": -0.0107,
+      "p95": 0.0311,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 4.49,
+      "p5": -3.2396,
+      "p50": 1.4684,
+      "p95": 25.9869,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 3.9,
+      "p5": -35.4617,
+      "p50": -0.2636,
+      "p95": 15.5739,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 35.7475,
+      "p5": -29.5431,
+      "p50": 10.5634,
+      "p95": 251.1715,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0218,
+      "p5": -0.2992,
+      "p50": -0.0145,
+      "p95": 0.0752,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.693
+   },
+   {
+    "id": "adani_2023",
+    "date": "2023-01-25",
+    "ess": 28.4,
+    "cls": "REGULATORY_LEGAL",
+    "predicted_class": "REGULATORY_LEGAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0149,
+      "p5": -0.0513,
+      "p50": 0.0012,
+      "p95": 0.0299,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.2,
+      "p5": -4.0328,
+      "p50": -0.088,
+      "p95": 6.5984,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 6.0,
+      "p5": -17.1355,
+      "p50": -0.5182,
+      "p95": 14.8473,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -9.7013,
+      "p5": -46.4017,
+      "p50": 0.2254,
+      "p95": 68.8665,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.019,
+      "p5": -0.0671,
+      "p50": 0.0025,
+      "p95": 0.0612,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.118
+   },
+   {
+    "id": "svb_2023",
+    "date": "2023-03-09",
+    "ess": 28.8,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0341,
+      "p5": -0.0733,
+      "p50": -0.0003,
+      "p95": 0.0297,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 7.41,
+      "p5": -3.7416,
+      "p50": 0.2522,
+      "p95": 11.848,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -46.1,
+      "p5": -23.0941,
+      "p50": 0.5261,
+      "p95": 15.1792,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 126.3162,
+      "p5": -43.3659,
+      "p50": 1.2421,
+      "p95": 154.7912,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0229,
+      "p5": -0.1084,
+      "p50": -0.0034,
+      "p95": 0.066,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.351
+   },
+   {
+    "id": "cs_2023",
+    "date": "2023-03-15",
+    "ess": 28.8,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": 0.0213,
+      "p5": -0.078,
+      "p50": -0.0004,
+      "p95": 0.0293,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -2.35,
+      "p5": -3.5876,
+      "p50": 0.4206,
+      "p95": 14.3901,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -3.2,
+      "p5": -21.2922,
+      "p50": 0.1982,
+      "p95": 14.6685,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -2.9811,
+      "p5": -37.8279,
+      "p50": 1.4252,
+      "p95": 176.9333,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0275,
+      "p5": -0.1048,
+      "p50": -0.0032,
+      "p95": 0.0668,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.362
+   },
+   {
+    "id": "hamas_2023",
+    "date": "2023-10-09",
+    "ess": 30.5,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0159,
+      "p5": -0.1321,
+      "p50": -0.0095,
+      "p95": 0.0338,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -1.36,
+      "p5": -3.14,
+      "p50": 1.4615,
+      "p95": 26.9982,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -18.9,
+      "p5": -38.3144,
+      "p50": 0.1897,
+      "p95": 15.783,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 24.4856,
+      "p5": -29.7394,
+      "p50": 8.1087,
+      "p95": 224.1815,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0147,
+      "p5": -0.2811,
+      "p50": -0.0147,
+      "p95": 0.0954,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.789
+   },
+   {
+    "id": "yen_2024",
+    "date": "2024-08-05",
+    "ess": 31.9,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.03,
+      "p5": -0.114,
+      "p50": -0.0118,
+      "p95": 0.0299,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 15.18,
+      "p5": -3.2422,
+      "p50": 1.4011,
+      "p95": 24.357,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -0.7,
+      "p5": -38.21,
+      "p50": 0.3949,
+      "p95": 14.6672,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 18.9502,
+      "p5": -27.4797,
+      "p50": 9.3004,
+      "p95": 224.6249,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0066,
+      "p5": -0.2749,
+      "p50": -0.0167,
+      "p95": 0.0756,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.76
+   },
+   {
+    "id": "deepseek_2025",
+    "date": "2025-01-27",
+    "ess": 33.0,
+    "cls": "PRODUCT_LAUNCH",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.0146,
+      "p5": -0.0779,
+      "p50": -0.0018,
+      "p95": 0.0294,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 3.05,
+      "p5": -3.417,
+      "p50": 0.495,
+      "p95": 18.1134,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -9.8,
+      "p5": -24.6474,
+      "p50": -0.2759,
+      "p95": 14.6449,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 15.0962,
+      "p5": -35.1385,
+      "p50": 4.7673,
+      "p95": 176.027,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0181,
+      "p5": -0.1291,
+      "p50": -0.0068,
+      "p95": 0.0656,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.478
+   },
+   {
+    "id": "tariffs_2025",
+    "date": "2025-04-03",
+    "ess": 34.0,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": -0.1213,
+      "p5": -0.1219,
+      "p50": -0.0128,
+      "p95": 0.0297,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 30.82,
+      "p5": -3.152,
+      "p50": 1.5585,
+      "p95": 24.7131,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": 6.6,
+      "p5": -35.2924,
+      "p50": -0.3108,
+      "p95": 14.3183,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 92.9693,
+      "p5": -26.2527,
+      "p50": 14.2067,
+      "p95": 236.6973,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.1618,
+      "p5": -0.2784,
+      "p50": -0.0157,
+      "p95": 0.0757,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.777
+   }
+  ],
+  "caveat": "Small sample, overlapping episodes (not independent). Indicates the method is not obviously miscalibrated; it does not prove calibration."
+ },
+ "loo": {
+  "mode": "leave-one-out (stability only, uses future episodes)",
+  "episodes_tested": 36,
+  "episodes_in_library": 36,
+  "min_priors": 6,
+  "overall_coverage": {
+   "50": 0.428,
+   "80": 0.717,
+   "90": 0.833
+  },
+  "nominal": {
+   "50": 0.5,
+   "80": 0.8,
+   "90": 0.9
+  },
+  "intervals_scored": {
+   "50": 180,
+   "80": 180,
+   "90": 180
+  },
+  "binomial_se_90": 0.022,
+  "overall_skill_vs_unconditional": 0.033,
+  "overall_skill_vs_ordinary": 0.213,
+  "targets": {
+   "spx": {
+    "label": "S&P 500 move",
+    "n": 36,
+    "coverage": {
+     "50": 0.333,
+     "80": 0.667,
+     "90": 0.778
+    },
+    "pinball_model": 0.2402,
+    "pinball_unconditional": 0.2505,
+    "pinball_ordinary": 0.3435,
+    "skill_vs_unconditional": 0.041,
+    "skill_vs_ordinary": 0.301
+   },
+   "vix_pts": {
+    "label": "VIX change (pts)",
+    "n": 36,
+    "coverage": {
+     "50": 0.417,
+     "80": 0.722,
+     "90": 0.861
+    },
+    "pinball_model": 0.2263,
+    "pinball_unconditional": 0.235,
+    "pinball_ordinary": 0.3249,
+    "skill_vs_unconditional": 0.037,
+    "skill_vs_ordinary": 0.303
+   },
+   "d10y_bps": {
+    "label": "10y yield (bps)",
+    "n": 36,
+    "coverage": {
+     "50": 0.389,
+     "80": 0.722,
+     "90": 0.833
+    },
+    "pinball_model": 0.243,
+    "pinball_unconditional": 0.2437,
+    "pinball_ordinary": 0.2516,
+    "skill_vs_unconditional": 0.003,
+    "skill_vs_ordinary": 0.034
+   },
+   "hy_bps": {
+    "label": "HY spread proxy (bps)",
+    "n": 36,
+    "coverage": {
+     "50": 0.5,
+     "80": 0.778,
+     "90": 0.861
+    },
+    "pinball_model": 0.2195,
+    "pinball_unconditional": 0.2274,
+    "pinball_ordinary": 0.279,
+    "skill_vs_unconditional": 0.035,
+    "skill_vs_ordinary": 0.213
+   },
+   "brent": {
+    "label": "Brent crude move",
+    "n": 36,
+    "coverage": {
+     "50": 0.5,
+     "80": 0.694,
+     "90": 0.833
+    },
+    "pinball_model": 0.2181,
+    "pinball_unconditional": 0.2296,
+    "pinball_ordinary": 0.2578,
+    "skill_vs_unconditional": 0.05,
+    "skill_vs_ordinary": 0.154
+   }
+  },
+  "graph_ablation": {
+   "PEER": {
+    "episodes_evaluable": 20,
+    "episodes_total": 20,
+    "mae_graph": 0.0634,
+    "mae_nograph": 0.065,
+    "pinball_graph": 0.02277,
+    "pinball_nograph": 0.02524,
+    "coverage90_graph": 0.858
+   },
+   "GROUP": {
+    "episodes_evaluable": 0,
+    "episodes_total": 1,
+    "note": "no earlier analogue with this role - cannot be backtested"
+   }
+  },
+  "episodes": [
+   {
+    "id": "lehman_2008",
+    "date": "2008-09-15",
+    "ess": 33.4,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0761,
+      "p5": -0.0761,
+      "p50": 0.0002,
+      "p95": 0.0305,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 10.56,
+      "p5": -3.7051,
+      "p50": 0.195,
+      "p95": 13.5338,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -32.0,
+      "p5": -20.9248,
+      "p50": -0.2514,
+      "p95": 14.9637,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 370.7234,
+      "p5": -41.0655,
+      "p50": 0.9058,
+      "p95": 112.0649,
+      "covered90": false
+     },
+     "brent": {
+      "actual": -0.0281,
+      "p5": -0.1198,
+      "p50": -0.004,
+      "p95": 0.06,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.347
+   },
+   {
+    "id": "taper_2013",
+    "date": "2013-05-22",
+    "ess": 33.9,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0125,
+      "p5": -0.1278,
+      "p50": -0.0163,
+      "p95": 0.0301,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 1.46,
+      "p5": -3.1136,
+      "p50": 2.5343,
+      "p95": 27.4766,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 18.0,
+      "p5": -46.8732,
+      "p50": -0.2527,
+      "p95": 12.2954,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 11.0319,
+      "p5": -24.6531,
+      "p50": 20.103,
+      "p95": 238.1933,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0142,
+      "p5": -0.2796,
+      "p50": -0.0187,
+      "p95": 0.0716,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.883
+   },
+   {
+    "id": "snb_2015",
+    "date": "2015-01-15",
+    "ess": 33.9,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": 0.0258,
+      "p5": -0.1086,
+      "p50": -0.005,
+      "p95": 0.0279,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -5.08,
+      "p5": -2.983,
+      "p50": 0.844,
+      "p95": 20.6373,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": 5.9,
+      "p5": -31.6291,
+      "p50": -0.6957,
+      "p95": 14.9403,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -16.8843,
+      "p5": -32.7734,
+      "p50": 6.5712,
+      "p95": 197.0462,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0035,
+      "p5": -0.1805,
+      "p50": -0.0108,
+      "p95": 0.0661,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.534
+   },
+   {
+    "id": "china_2015",
+    "date": "2015-08-24",
+    "ess": 33.9,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0524,
+      "p5": -0.1227,
+      "p50": -0.0122,
+      "p95": 0.0294,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 7.99,
+      "p5": -3.1005,
+      "p50": 1.7337,
+      "p95": 27.6942,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 7.9,
+      "p5": -37.1403,
+      "p50": -0.3554,
+      "p95": 14.1719,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 6.2971,
+      "p5": -27.6817,
+      "p50": 14.9331,
+      "p95": 208.7584,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0495,
+      "p5": -0.2412,
+      "p50": -0.0152,
+      "p95": 0.0679,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.748
+   },
+   {
+    "id": "brexit_2016",
+    "date": "2016-06-24",
+    "ess": 34.1,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0534,
+      "p5": -0.122,
+      "p50": -0.0095,
+      "p95": 0.0292,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 6.6,
+      "p5": -3.3498,
+      "p50": 1.2141,
+      "p95": 26.2281,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -27.9,
+      "p5": -29.9973,
+      "p50": -0.1371,
+      "p95": 14.7981,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 139.967,
+      "p5": -31.2152,
+      "p50": 9.2906,
+      "p95": 201.1269,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0737,
+      "p5": -0.2386,
+      "p50": -0.0145,
+      "p95": 0.0722,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.667
+   },
+   {
+    "id": "volmageddon_2018",
+    "date": "2018-02-05",
+    "ess": 34.0,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0656,
+      "p5": -0.1309,
+      "p50": -0.0121,
+      "p95": 0.0288,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 16.15,
+      "p5": -2.9611,
+      "p50": 1.7398,
+      "p95": 28.067,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -0.3,
+      "p5": -38.0788,
+      "p50": -0.4834,
+      "p95": 13.7308,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 36.0727,
+      "p5": -26.5411,
+      "p50": 13.3223,
+      "p95": 222.8144,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.055,
+      "p5": -0.2433,
+      "p50": -0.015,
+      "p95": 0.0697,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.755
+   },
+   {
+    "id": "cambridge_2018",
+    "date": "2018-03-19",
+    "ess": 32.8,
+    "cls": "REGULATORY_LEGAL",
+    "predicted_class": "REGULATORY_LEGAL",
+    "targets": {
+     "spx": {
+      "actual": -0.0595,
+      "p5": -0.0476,
+      "p50": 0.0008,
+      "p95": 0.0292,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 9.07,
+      "p5": -3.8274,
+      "p50": 0.0,
+      "p95": 7.136,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": -1.8,
+      "p5": -18.1925,
+      "p50": -0.5051,
+      "p95": 14.9912,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 35.4746,
+      "p5": -48.5634,
+      "p50": -0.2695,
+      "p95": 74.7556,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.064,
+      "p5": -0.0719,
+      "p50": 0.001,
+      "p95": 0.0554,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.132
+   },
+   {
+    "id": "fb_earn_2018",
+    "date": "2018-07-26",
+    "ess": 32.9,
+    "cls": "EARNINGS_GUIDANCE",
+    "predicted_class": "EARNINGS_GUIDANCE",
+    "targets": {
+     "spx": {
+      "actual": -0.0153,
+      "p5": -0.0419,
+      "p50": 0.0016,
+      "p95": 0.0291,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 1.97,
+      "p5": -4.1083,
+      "p50": -0.0964,
+      "p95": 5.1205,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 3.9,
+      "p5": -16.4737,
+      "p50": -0.7829,
+      "p95": 15.624,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -2.3781,
+      "p5": -46.5323,
+      "p50": 0.0,
+      "p95": 61.9361,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0141,
+      "p5": -0.0667,
+      "p50": 0.0009,
+      "p95": 0.0579,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.064
+   },
+   {
+    "id": "ilfs_2018",
+    "date": "2018-09-21",
+    "ess": 33.9,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0052,
+      "p5": -0.0785,
+      "p50": -0.0005,
+      "p95": 0.0297,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.62,
+      "p5": -3.4806,
+      "p50": 0.2491,
+      "p95": 15.8453,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 2.4,
+      "p5": -23.2669,
+      "p50": -0.5798,
+      "p95": 14.7454,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -1.6826,
+      "p5": -42.339,
+      "p50": 2.0523,
+      "p95": 131.6583,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0403,
+      "p5": -0.1327,
+      "p50": -0.0058,
+      "p95": 0.0598,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.355
+   },
+   {
+    "id": "boeing_2019",
+    "date": "2019-03-11",
+    "ess": 33.6,
+    "cls": "OPERATIONAL",
+    "predicted_class": "OPERATIONAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0238,
+      "p5": -0.0598,
+      "p50": 0.0006,
+      "p95": 0.0274,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -2.55,
+      "p5": -3.4453,
+      "p50": 0.0361,
+      "p95": 8.8528,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 0.5,
+      "p5": -18.5618,
+      "p50": -0.7221,
+      "p95": 14.2704,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -18.0505,
+      "p5": -45.7978,
+      "p50": -0.5005,
+      "p95": 81.9838,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0227,
+      "p5": -0.0718,
+      "p50": 0.0,
+      "p95": 0.062,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.16
+   },
+   {
+    "id": "chevron_anadarko_2019",
+    "date": "2019-04-12",
+    "ess": 33.8,
+    "cls": "MERGER_ACQUISITION",
+    "predicted_class": "MERGER_ACQUISITION",
+    "targets": {
+     "spx": {
+      "actual": 0.0066,
+      "p5": -0.0379,
+      "p50": 0.0018,
+      "p95": 0.0311,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -1.01,
+      "p5": -4.1405,
+      "p50": -0.1025,
+      "p95": 5.5377,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 5.6,
+      "p5": -15.7759,
+      "p50": -0.4584,
+      "p95": 15.6044,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -16.1329,
+      "p5": -45.9528,
+      "p50": -0.2416,
+      "p95": 57.8959,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0102,
+      "p5": -0.0667,
+      "p50": 0.0021,
+      "p95": 0.0603,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.064
+   },
+   {
+    "id": "uschina_2019",
+    "date": "2019-08-05",
+    "ess": 33.4,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": -0.0298,
+      "p5": -0.1299,
+      "p50": -0.0149,
+      "p95": 0.0304,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 6.98,
+      "p5": -3.0286,
+      "p50": 2.1202,
+      "p95": 28.9652,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -12.0,
+      "p5": -40.8857,
+      "p50": 0.4754,
+      "p95": 14.364,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 50.1439,
+      "p5": -25.2453,
+      "p50": 15.3112,
+      "p95": 237.1957,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0336,
+      "p5": -0.2596,
+      "p50": -0.0161,
+      "p95": 0.0701,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.797
+   },
+   {
+    "id": "iphone_2019",
+    "date": "2019-09-11",
+    "ess": 34.4,
+    "cls": "PRODUCT_LAUNCH",
+    "predicted_class": "PRODUCT_LAUNCH",
+    "targets": {
+     "spx": {
+      "actual": 0.0072,
+      "p5": -0.0367,
+      "p50": 0.0017,
+      "p95": 0.0282,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -0.59,
+      "p5": -3.9288,
+      "p50": -0.1187,
+      "p95": 5.5699,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 3.1,
+      "p5": -16.0141,
+      "p50": -0.7385,
+      "p95": 15.6869,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -2.2838,
+      "p5": -48.5682,
+      "p50": -0.7164,
+      "p95": 57.5314,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0252,
+      "p5": -0.0635,
+      "p50": 0.0016,
+      "p95": 0.0607,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.057
+   },
+   {
+    "id": "abqaiq_2019",
+    "date": "2019-09-16",
+    "ess": 33.4,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.0051,
+      "p5": -0.1254,
+      "p50": -0.0059,
+      "p95": 0.03,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 1.58,
+      "p5": -3.0826,
+      "p50": 1.2035,
+      "p95": 29.1477,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -14.8,
+      "p5": -37.3337,
+      "p50": -0.2483,
+      "p95": 15.1919,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 26.0621,
+      "p5": -28.7754,
+      "p50": 10.9552,
+      "p95": 230.4804,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0674,
+      "p5": -0.2725,
+      "p50": -0.0148,
+      "p95": 0.0677,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.659
+   },
+   {
+    "id": "fedcut_2020",
+    "date": "2020-03-03",
+    "ess": 33.9,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.1112,
+      "p5": -0.12,
+      "p50": -0.015,
+      "p95": 0.0301,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 21.04,
+      "p5": -2.9186,
+      "p50": 2.2682,
+      "p95": 28.807,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -58.9,
+      "p5": -29.8995,
+      "p50": 0.6215,
+      "p95": 15.0417,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 249.8411,
+      "p5": -24.2216,
+      "p50": 17.5565,
+      "p95": 215.5069,
+      "covered90": false
+     },
+     "brent": {
+      "actual": -0.338,
+      "p5": -0.2357,
+      "p50": -0.0187,
+      "p95": 0.072,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.895
+   },
+   {
+    "id": "yesbank_2020",
+    "date": "2020-03-06",
+    "ess": 34.0,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.017,
+      "p5": -0.0773,
+      "p50": -0.0004,
+      "p95": 0.029,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 2.32,
+      "p5": -4.0646,
+      "p50": 0.2817,
+      "p95": 16.4893,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -22.0,
+      "p5": -24.809,
+      "p50": -0.3009,
+      "p95": 14.3565,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 56.3886,
+      "p5": -38.9147,
+      "p50": 1.092,
+      "p95": 152.3987,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0944,
+      "p5": -0.1392,
+      "p50": -0.0056,
+      "p95": 0.063,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.349
+   },
+   {
+    "id": "oilwar_2020",
+    "date": "2020-03-09",
+    "ess": 33.0,
+    "cls": "COMMODITY_SHOCK",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.1654,
+      "p5": -0.1037,
+      "p50": -0.0063,
+      "p95": 0.0336,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 33.53,
+      "p5": -2.8489,
+      "p50": 1.2488,
+      "p95": 22.3027,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": 14.3,
+      "p5": -33.4371,
+      "p50": -0.8952,
+      "p95": 12.7887,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 180.3732,
+      "p5": -26.7186,
+      "p50": 12.0331,
+      "p95": 181.4934,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.2662,
+      "p5": -0.189,
+      "p50": -0.0124,
+      "p95": 0.0907,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.709
+   },
+   {
+    "id": "covid_2020",
+    "date": "2020-03-12",
+    "ess": 34.2,
+    "cls": "PANDEMIC_DISASTER",
+    "predicted_class": "PANDEMIC_DISASTER",
+    "targets": {
+     "spx": {
+      "actual": -0.1296,
+      "p5": -0.1201,
+      "p50": -0.0166,
+      "p95": 0.0305,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 28.79,
+      "p5": -3.1547,
+      "p50": 2.2049,
+      "p95": 26.8452,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": -9.2,
+      "p5": -42.3753,
+      "p50": 0.483,
+      "p95": 15.2743,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 222.2228,
+      "p5": -27.2904,
+      "p50": 17.8592,
+      "p95": 216.5034,
+      "covered90": false
+     },
+     "brent": {
+      "actual": -0.1604,
+      "p5": -0.2955,
+      "p50": -0.0181,
+      "p95": 0.0791,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.897
+   },
+   {
+    "id": "hertz_2020",
+    "date": "2020-04-16",
+    "ess": 33.8,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": 0.0328,
+      "p5": -0.08,
+      "p50": -0.0004,
+      "p95": 0.0287,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": -2.69,
+      "p5": -3.6844,
+      "p50": 0.3419,
+      "p95": 17.0181,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 1.6,
+      "p5": -23.515,
+      "p50": -0.6276,
+      "p95": 15.0816,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -14.852,
+      "p5": -39.3723,
+      "p50": 2.3911,
+      "p95": 173.0891,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0141,
+      "p5": -0.1354,
+      "p50": -0.0041,
+      "p95": 0.0606,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.358
+   },
+   {
+    "id": "wti_2020",
+    "date": "2020-04-20",
+    "ess": 34.2,
+    "cls": "COMMODITY_SHOCK",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.048,
+      "p5": -0.1326,
+      "p50": -0.0107,
+      "p95": 0.029,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 7.26,
+      "p5": -3.2257,
+      "p50": 1.2632,
+      "p95": 28.8639,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -8.3,
+      "p5": -34.6255,
+      "p50": -0.0962,
+      "p95": 14.5796,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 101.2367,
+      "p5": -29.6317,
+      "p50": 10.9544,
+      "p95": 212.9243,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.3116,
+      "p5": -0.2238,
+      "p50": -0.0144,
+      "p95": 0.0735,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.699
+   },
+   {
+    "id": "nvidia_arm_2020",
+    "date": "2020-09-14",
+    "ess": 34.1,
+    "cls": "MERGER_ACQUISITION",
+    "predicted_class": "MERGER_ACQUISITION",
+    "targets": {
+     "spx": {
+      "actual": 0.018,
+      "p5": -0.0368,
+      "p50": 0.0019,
+      "p95": 0.0294,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -1.28,
+      "p5": -3.8964,
+      "p50": -0.0859,
+      "p95": 4.8104,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 1.0,
+      "p5": -15.7086,
+      "p50": -0.6232,
+      "p95": 14.7627,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -8.0301,
+      "p5": -45.4901,
+      "p50": -0.2835,
+      "p95": 59.8493,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0176,
+      "p5": -0.0644,
+      "p50": 0.0006,
+      "p95": 0.0568,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.058
+   },
+   {
+    "id": "pfizer_2020",
+    "date": "2020-11-09",
+    "ess": 34.1,
+    "cls": "PANDEMIC_DISASTER",
+    "predicted_class": "PANDEMIC_DISASTER",
+    "targets": {
+     "spx": {
+      "actual": 0.0117,
+      "p5": -0.1348,
+      "p50": -0.0156,
+      "p95": 0.032,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.89,
+      "p5": -2.8648,
+      "p50": 2.2081,
+      "p95": 29.0998,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 13.8,
+      "p5": -39.3292,
+      "p50": -0.3577,
+      "p95": 13.7083,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": -39.5062,
+      "p5": -21.0909,
+      "p50": 17.8798,
+      "p95": 239.3062,
+      "covered90": false
+     },
+     "brent": {
+      "actual": 0.0748,
+      "p5": -0.2798,
+      "p50": -0.0185,
+      "p95": 0.066,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.886
+   },
+   {
+    "id": "archegos_2021",
+    "date": "2021-03-29",
+    "ess": 33.2,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0004,
+      "p5": -0.0705,
+      "p50": 0.0,
+      "p95": 0.0296,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.54,
+      "p5": -3.5973,
+      "p50": 0.2855,
+      "p95": 14.5415,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 8.6,
+      "p5": -26.5539,
+      "p50": -0.7065,
+      "p95": 14.6383,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -22.9321,
+      "p5": -41.4214,
+      "p50": 0.9628,
+      "p95": 143.3917,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0159,
+      "p5": -0.1075,
+      "p50": -0.0038,
+      "p95": 0.0591,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.331
+   },
+   {
+    "id": "evergrande_2021",
+    "date": "2021-09-20",
+    "ess": 33.6,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0178,
+      "p5": -0.0816,
+      "p50": -0.0004,
+      "p95": 0.0301,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 3.55,
+      "p5": -3.5917,
+      "p50": 0.2478,
+      "p95": 15.3488,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -4.6,
+      "p5": -23.4569,
+      "p50": -0.2186,
+      "p95": 14.4739,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 16.5338,
+      "p5": -38.9959,
+      "p50": 1.2033,
+      "p95": 133.8259,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.013,
+      "p5": -0.1154,
+      "p50": -0.0056,
+      "p95": 0.0624,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.366
+   },
+   {
+    "id": "russia_2022",
+    "date": "2022-02-24",
+    "ess": 32.9,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0381,
+      "p5": -0.1459,
+      "p50": -0.0132,
+      "p95": 0.0263,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": -0.28,
+      "p5": -2.9554,
+      "p50": 1.7715,
+      "p95": 32.0003,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -11.2,
+      "p5": -31.607,
+      "p50": -0.2832,
+      "p95": 15.1894,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -13.7036,
+      "p5": -27.5782,
+      "p50": 17.4922,
+      "p95": 225.533,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.1661,
+      "p5": -0.2768,
+      "p50": -0.016,
+      "p95": 0.066,
+      "covered90": false
+     }
+    },
+    "p_systemic": 0.791
+   },
+   {
+    "id": "netflix_2022",
+    "date": "2022-04-20",
+    "ess": 33.7,
+    "cls": "EARNINGS_GUIDANCE",
+    "predicted_class": "EARNINGS_GUIDANCE",
+    "targets": {
+     "spx": {
+      "actual": -0.0643,
+      "p5": -0.064,
+      "p50": 0.0004,
+      "p95": 0.0282,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 12.15,
+      "p5": -3.6181,
+      "p50": 0.1423,
+      "p95": 13.5217,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -14.1,
+      "p5": -20.3009,
+      "p50": -0.504,
+      "p95": 14.4562,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 60.9338,
+      "p5": -45.0777,
+      "p50": 0.4837,
+      "p95": 112.2021,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0211,
+      "p5": -0.0995,
+      "p50": -0.0025,
+      "p95": 0.0624,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.26
+   },
+   {
+    "id": "jackson_2022",
+    "date": "2022-08-26",
+    "ess": 33.9,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0581,
+      "p5": -0.1297,
+      "p50": -0.0151,
+      "p95": 0.0297,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 4.09,
+      "p5": -2.8869,
+      "p50": 2.191,
+      "p95": 28.8286,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 10.7,
+      "p5": -43.9634,
+      "p50": -0.3719,
+      "p95": 15.0082,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 57.4166,
+      "p5": -25.6589,
+      "p50": 17.004,
+      "p95": 243.9912,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0287,
+      "p5": -0.2819,
+      "p50": -0.0177,
+      "p95": 0.0705,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.858
+   },
+   {
+    "id": "cpi_2022",
+    "date": "2022-09-13",
+    "ess": 34.1,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0577,
+      "p5": -0.1318,
+      "p50": -0.017,
+      "p95": 0.03,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 2.43,
+      "p5": -3.0373,
+      "p50": 2.4331,
+      "p95": 29.4534,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 8.6,
+      "p5": -43.5955,
+      "p50": -0.4122,
+      "p95": 14.5474,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 43.3018,
+      "p5": -24.956,
+      "p50": 19.9303,
+      "p95": 248.1933,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0282,
+      "p5": -0.2983,
+      "p50": -0.0182,
+      "p95": 0.0741,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.898
+   },
+   {
+    "id": "ukbudget_2022",
+    "date": "2022-09-23",
+    "ess": 34.1,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.0313,
+      "p5": -0.1244,
+      "p50": -0.0078,
+      "p95": 0.0299,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 4.49,
+      "p5": -3.1676,
+      "p50": 1.356,
+      "p95": 26.5306,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 3.9,
+      "p5": -38.9761,
+      "p50": -0.6716,
+      "p95": 14.74,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 35.7475,
+      "p5": -25.7804,
+      "p50": 11.4775,
+      "p95": 224.5652,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0218,
+      "p5": -0.2921,
+      "p50": -0.0158,
+      "p95": 0.0681,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.693
+   },
+   {
+    "id": "adani_2023",
+    "date": "2023-01-25",
+    "ess": 34.3,
+    "cls": "REGULATORY_LEGAL",
+    "predicted_class": "REGULATORY_LEGAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0149,
+      "p5": -0.0438,
+      "p50": 0.0014,
+      "p95": 0.0299,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 0.2,
+      "p5": -3.8558,
+      "p50": -0.0621,
+      "p95": 6.454,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": 6.0,
+      "p5": -16.4719,
+      "p50": -0.7538,
+      "p95": 15.3317,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -9.7013,
+      "p5": -43.8082,
+      "p50": 0.7081,
+      "p95": 71.0434,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.019,
+      "p5": -0.0709,
+      "p50": 0.0009,
+      "p95": 0.057,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.118
+   },
+   {
+    "id": "svb_2023",
+    "date": "2023-03-09",
+    "ess": 33.6,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": -0.0341,
+      "p5": -0.0759,
+      "p50": -0.0004,
+      "p95": 0.0295,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 7.41,
+      "p5": -3.6884,
+      "p50": 0.3317,
+      "p95": 14.9015,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -46.1,
+      "p5": -21.2154,
+      "p50": -0.3835,
+      "p95": 14.9983,
+      "covered90": false
+     },
+     "hy_bps": {
+      "actual": 126.3162,
+      "p5": -38.4843,
+      "p50": 1.6822,
+      "p95": 124.9212,
+      "covered90": false
+     },
+     "brent": {
+      "actual": -0.0229,
+      "p5": -0.1079,
+      "p50": -0.0033,
+      "p95": 0.0619,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.351
+   },
+   {
+    "id": "cs_2023",
+    "date": "2023-03-15",
+    "ess": 33.7,
+    "cls": "CREDIT_EVENT",
+    "predicted_class": "CREDIT_EVENT",
+    "targets": {
+     "spx": {
+      "actual": 0.0213,
+      "p5": -0.0764,
+      "p50": -0.0009,
+      "p95": 0.0282,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -2.35,
+      "p5": -3.7591,
+      "p50": 0.4822,
+      "p95": 16.4924,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -3.2,
+      "p5": -23.7694,
+      "p50": -0.2524,
+      "p95": 14.7584,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": -2.9811,
+      "p5": -40.8029,
+      "p50": 2.4747,
+      "p95": 147.8878,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0275,
+      "p5": -0.1213,
+      "p50": -0.0042,
+      "p95": 0.0662,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.362
+   },
+   {
+    "id": "hamas_2023",
+    "date": "2023-10-09",
+    "ess": 33.5,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": 0.0159,
+      "p5": -0.1368,
+      "p50": -0.012,
+      "p95": 0.0331,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": -1.36,
+      "p5": -3.0217,
+      "p50": 1.7327,
+      "p95": 29.631,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -18.9,
+      "p5": -33.8877,
+      "p50": -0.0941,
+      "p95": 14.8191,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 24.4856,
+      "p5": -28.1026,
+      "p50": 14.9805,
+      "p95": 233.9176,
+      "covered90": true
+     },
+     "brent": {
+      "actual": 0.0147,
+      "p5": -0.2675,
+      "p50": -0.016,
+      "p95": 0.0902,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.789
+   },
+   {
+    "id": "yen_2024",
+    "date": "2024-08-05",
+    "ess": 33.8,
+    "cls": "MACROECONOMIC",
+    "predicted_class": "MACROECONOMIC",
+    "targets": {
+     "spx": {
+      "actual": -0.03,
+      "p5": -0.1242,
+      "p50": -0.0127,
+      "p95": 0.0298,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 15.18,
+      "p5": -3.4027,
+      "p50": 1.6989,
+      "p95": 27.1912,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -0.7,
+      "p5": -34.6879,
+      "p50": -0.2819,
+      "p95": 14.215,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 18.9502,
+      "p5": -25.4647,
+      "p50": 13.382,
+      "p95": 218.0486,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0066,
+      "p5": -0.258,
+      "p50": -0.0176,
+      "p95": 0.0685,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.76
+   },
+   {
+    "id": "deepseek_2025",
+    "date": "2025-01-27",
+    "ess": 34.0,
+    "cls": "PRODUCT_LAUNCH",
+    "predicted_class": "COMMODITY_SHOCK",
+    "targets": {
+     "spx": {
+      "actual": -0.0146,
+      "p5": -0.0911,
+      "p50": -0.0014,
+      "p95": 0.0287,
+      "covered90": true
+     },
+     "vix_pts": {
+      "actual": 3.05,
+      "p5": -3.3046,
+      "p50": 0.5296,
+      "p95": 19.54,
+      "covered90": true
+     },
+     "d10y_bps": {
+      "actual": -9.8,
+      "p5": -28.5344,
+      "p50": -0.3127,
+      "p95": 13.7205,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 15.0962,
+      "p5": -35.8356,
+      "p50": 4.3154,
+      "p95": 154.0206,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.0181,
+      "p5": -0.1529,
+      "p50": -0.0068,
+      "p95": 0.0672,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.478
+   },
+   {
+    "id": "tariffs_2025",
+    "date": "2025-04-03",
+    "ess": 34.0,
+    "cls": "GEOPOLITICAL",
+    "predicted_class": "GEOPOLITICAL",
+    "targets": {
+     "spx": {
+      "actual": -0.1213,
+      "p5": -0.1195,
+      "p50": -0.0115,
+      "p95": 0.0312,
+      "covered90": false
+     },
+     "vix_pts": {
+      "actual": 30.82,
+      "p5": -2.9858,
+      "p50": 1.5376,
+      "p95": 24.0637,
+      "covered90": false
+     },
+     "d10y_bps": {
+      "actual": 6.6,
+      "p5": -36.8995,
+      "p50": -0.3006,
+      "p95": 14.349,
+      "covered90": true
+     },
+     "hy_bps": {
+      "actual": 92.9693,
+      "p5": -25.4916,
+      "p50": 15.514,
+      "p95": 231.415,
+      "covered90": true
+     },
+     "brent": {
+      "actual": -0.1618,
+      "p5": -0.2733,
+      "p50": -0.0158,
+      "p95": 0.0769,
+      "covered90": true
+     }
+    },
+    "p_systemic": 0.777
+   }
+  ],
+  "caveat": "Small sample, overlapping episodes (not independent). Indicates the method is not obviously miscalibrated; it does not prove calibration."
+ }
+}
