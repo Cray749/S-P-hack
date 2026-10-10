@@ -4,6 +4,7 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import os
 import re
 from collections.abc import Iterator
 from datetime import datetime, timezone
@@ -29,7 +30,7 @@ def read_jsonl_gz(path: Path) -> Iterator[Document]:
 
 def replay_corpus(root: Path | None = None) -> list[Document]:
     """Both sources merged into one chronological stream (ties broken by id for determinism)."""
-    root = root or (C.DATA / "corpus")
+    root = root or Path(os.environ.get("TREMOR_CORPUS_DIR", C.DATA / "corpus"))
     docs = [d for f in ("news.jsonl.gz", "social.jsonl.gz") if (root / f).exists() for d in read_jsonl_gz(root / f)]
     docs.sort(key=lambda d: (d.ts, d.id))
     return docs

@@ -165,7 +165,7 @@ class Event:
         if not self._ent:
             return []
         # an entity is *named* by the event only if it carries a real share of the evidence mass
-        floor = max(1.0, 0.25 * self._w_sum)
+        floor = 0.25 * self._w_sum
         keep = [e for e, c in self._ent.most_common() if c >= floor]
         return keep[:6]
 

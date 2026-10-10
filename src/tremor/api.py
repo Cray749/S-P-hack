@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import threading
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
@@ -63,7 +64,7 @@ def _scenario_offsets(eng: Engine, scenarios: list[dict]) -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     C.CACHE.mkdir(parents=True, exist_ok=True)
-    eng = Engine(C.DATA / "ledger.db")
+    eng = Engine(os.environ.get("TREMOR_LEDGER", C.DATA / "ledger.db"))
     added = eng.load_corpus()
     log.info("ledger ready: %d entries (%d new), chain valid=%s", len(eng.ledger), added, eng.ledger.verify())
     S.engine = eng
