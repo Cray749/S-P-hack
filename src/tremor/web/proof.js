@@ -85,7 +85,7 @@
   // Architecture diagram
   // ============================================================================================================
   window.renderArch = function (el) {
-    const box = (x, y, w, h, t, s, c = "#ff6a1f", extra = "") => `<g ${extra}><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="rgba(255,255,255,.04)" stroke="${c}" stroke-opacity=".7" stroke-width="1.4"/><text x="${x + w / 2}" y="${y + (s ? h / 2 - 3 : h / 2 + 4)}" text-anchor="middle" fill="#f3eee4" font-size="13" font-weight="700" font-family="Bricolage Grotesque">${t}</text>${s ? `<text x="${x + w / 2}" y="${y + h / 2 + 14}" text-anchor="middle" fill="#a39cb3" font-size="9.5">${s}</text>` : ""}</g>`;
+    const box = (x, y, w, h, t, s, c = "#ff6a1f", extra = "") => `<g ${extra}><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="rgba(255,255,255,.04)" stroke="${c}" stroke-opacity=".7" stroke-width="1.4"/><text x="${x + w / 2}" y="${y + (s ? h / 2 - 3 : h / 2 + 4)}" text-anchor="middle" fill="#f3eee4" font-size="13" font-weight="700" font-family="Bricolage Grotesque">${t}</text>${s ? s.split("|").map((ln, i, a) => `<text x="${x + w / 2}" y="${y + h / 2 + 14 + (i - (a.length - 1) / 2) * 12 + (a.length > 1 ? 2 : 0)}" text-anchor="middle" fill="#a39cb3" font-size="9.5">${ln}</text>`).join("") : ""}</g>`;
     const arrow = (x1, y1, x2, y2, c = "#ff6a1f") => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${c}" stroke-width="1.6" fill="none" class="flow" marker-end="url(#ah)"/>`;
     el.innerHTML = `<svg viewBox="0 0 1200 760" role="img" aria-label="TREMOR architecture">
       <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#ff6a1f"/></marker>
@@ -101,10 +101,10 @@
 
       ${arrow(425, 254, 425, 300)}
       <text x="30" y="296" fill="#a39cb3" font-size="10.5" letter-spacing="2">SCORE ONCE, REUSE EVERYWHERE</text>
-      ${box(30, 310, 190, 70, "Embed once", "MiniLM · cluster · class · analogues", "#8a45ff")}
-      ${box(236, 310, 190, 70, "Sentiment cascade", "lexicon → FinBERT if unsure", "#8a45ff")}
+      ${box(30, 310, 190, 70, "Embed once", "MiniLM · cluster · class|analogues", "#8a45ff")}
+      ${box(236, 310, 190, 70, "Sentiment cascade", "lexicon → FinBERT|if unsure", "#8a45ff")}
       ${box(442, 310, 190, 70, "Event class", "10 classes + routine gate", "#8a45ff")}
-      ${box(648, 310, 172, 70, "Entity linker", "trie regex · aliases · cashtags", "#8a45ff")}
+      ${box(648, 310, 172, 70, "Entity linker", "trie regex · aliases|cashtags", "#8a45ff")}
       ${arrow(425, 380, 425, 426)}
 
       <rect x="30" y="426" width="790" height="82" rx="18" fill="rgba(138,69,255,.07)" stroke="#8a45ff" stroke-opacity=".7" stroke-width="1.6"/>
@@ -114,17 +114,17 @@
       ${arrow(425, 508, 425, 556)}
 
       <text x="30" y="548" fill="#a39cb3" font-size="10.5" letter-spacing="2">MODULE B · STRATEGIC STRESS TEST (subscriber)</text>
-      ${box(30, 562, 190, 82, "Exposure graph", "control · promoter group · industry · text cue", "#ff2e7e")}
-      ${box(236, 562, 190, 82, "Scenario draws", "36 analogues + 1,200 ordinary weeks · P(systemic)", "#ff2e7e")}
-      ${box(442, 562, 190, 82, "Book revaluation", "loans ΔECL · bonds D/C · swaps DV01 + CVA", "#ff2e7e")}
-      ${box(648, 562, 172, 82, "Loss range", "P5/P50/P95 · VaR99 · ES99 · reverse stress", "#ff2e7e")}
+      ${box(30, 562, 190, 82, "Exposure graph", "control · promoter group|industry · text cue", "#ff2e7e")}
+      ${box(236, 562, 190, 82, "Scenario draws", "36 analogues + 1,200|ordinary weeks · P(systemic)", "#ff2e7e")}
+      ${box(442, 562, 190, 82, "Book revaluation", "loans ΔECL · bonds D/C|swaps DV01 + CVA", "#ff2e7e")}
+      ${box(648, 562, 172, 82, "Loss range", "P5/P50/P95 · VaR99|ES99 · reverse stress", "#ff2e7e")}
       ${arrow(220, 603, 236, 603)}${arrow(426, 603, 442, 603)}${arrow(632, 603, 648, 603)}
 
       ${arrow(820, 603, 900, 603, "#33f0c0")}
       <text x="880" y="40" fill="#a39cb3" font-size="10.5" letter-spacing="2">CONSUMERS</text>
-      ${box(900, 562, 270, 82, "Signal bus", "pub/sub · Kafka / Redis Streams in production", "#33f0c0")}
-      ${box(900, 330, 270, 80, "Module A · rebalancer", "decayed sentiment tilt · caps · no-trade band", "#33f0c0")}
-      ${box(900, 440, 270, 80, "Dashboard + REST API", "control room · evidence · replay", "#33f0c0")}
+      ${box(900, 562, 270, 82, "Signal bus", "pub/sub · Kafka / Redis|Streams in production", "#33f0c0")}
+      ${box(900, 330, 270, 80, "Module A · rebalancer", "decayed sentiment tilt|caps · no-trade band", "#33f0c0")}
+      ${box(900, 440, 270, 80, "Dashboard + REST API", "control room · evidence|replay", "#33f0c0")}
       ${box(900, 222, 270, 80, "Replay verifier", "re-derive any signal · hash must match", "#ffc23d")}
       ${arrow(1035, 562, 1035, 520, "#33f0c0")}${arrow(1035, 562, 1180, 540, "#33f0c0")}
       <path d="M820 211 L900 262" stroke="#ffc23d" stroke-width="1.4" stroke-dasharray="4 4" fill="none"/>
