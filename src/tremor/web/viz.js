@@ -136,8 +136,8 @@
         // edges
         for (const n of this.nodes) { if (!n.role) continue;
           const h_ = this.hitById && this.hitById[n.id], edge = h_ ? h_.edge : n.role === "PEER" ? "PEER" : n.role === "GROUP" ? "PROMOTER_GROUP" : "CONTROL";
-          const col = edge === "CONTROL" || edge === "SELF" ? "255,106,31" : edge === "PROMOTER_GROUP" ? "255,46,126" : edge === "MARKET" ? "138,69,255" : "127,212,255";
-          x.strokeStyle = `rgba(${col},${edge === "PEER" || edge === "MARKET" ? .2 : .55})`; x.lineWidth = edge === "CONTROL" ? 2 : 1.2; x.setLineDash(edge === "PROMOTER_GROUP" ? [2, 4] : edge === "PEER" || edge === "MARKET" ? [5, 5] : []);
+          const col = edge === "CONTROL" || edge === "SELF" ? "255,106,31" : edge === "PROMOTER_GROUP" ? "255,46,126" : edge === "MARKET" ? "138,69,255" : edge === "INDUSTRY" ? "51,240,192" : "127,212,255";
+          x.strokeStyle = `rgba(${col},${edge === "PEER" || edge === "MARKET" ? .2 : .55})`; x.lineWidth = edge === "CONTROL" ? 2 : 1.2; x.setLineDash(edge === "PROMOTER_GROUP" ? [2, 4] : edge === "PEER" || edge === "MARKET" || edge === "INDUSTRY" ? [5, 5] : []);
           const mx = (cx + n.x) / 2 + (n.y - cy) * .08, my = (cy + n.y) / 2 - (n.x - cx) * .08; x.beginPath(); x.moveTo(cx, cy); x.quadraticCurveTo(mx, my, n.x, n.y); x.stroke(); x.setLineDash([]); }
         // epicentre
         const pr = 7 + Math.sin(t * 3) * 1.6; const g = x.createRadialGradient(cx, cy, 0, cx, cy, 48); g.addColorStop(0, "rgba(255,106,31,.55)"); g.addColorStop(1, "rgba(255,106,31,0)");

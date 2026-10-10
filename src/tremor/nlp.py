@@ -350,7 +350,7 @@ class EventClassifier:
         vecs = embedder.embed([s for _, s in flat])
         self.protos = np.zeros((len(LABELS), vecs.shape[1]), dtype=np.float32)
         for i, lab in enumerate(LABELS):
-            rows = [j for j, (l, _) in enumerate(flat) if l == lab]
+            rows = [j for j, (name, _) in enumerate(flat) if name == lab]
             c = vecs[rows].mean(axis=0)
             self.protos[i] = c / np.linalg.norm(c)
 

@@ -170,6 +170,28 @@ def get_linker() -> Linker:
 
 
 # ---------------------------------------------------------------------------------------------------
+# Rule-based industry cues: text that talks about an industry without naming a company still has a footprint.
+# (regex, human label, industries in entities.csv). Deliberately short and auditable.
+INDUSTRY_CUES: list[tuple[re.Pattern[str], str, tuple[str, ...]]] = [
+    (re.compile(r"\b(oil|crude|opec|brent|wti|petroleum|shale|barrels?)\b", re.I), "oil & gas", ("OilMajors", "EnP", "OilServices")),
+    (re.compile(r"\b(airlines?|air travel|aviation|flights?|travel ban)\b|\bcruise", re.I), "airlines & travel", ("Airlines", "Cruise")),
+    (re.compile(r"\bbank run|\bbanks\b|\blenders?\b|depositors?|bank failure|regional banks?", re.I), "banking", ("BanksRegional", "BanksSuperRegional", "BanksGlobal", "InvestmentBanks")),
+    (re.compile(r"automakers?|car sales|auto sales|car rental|rental car", re.I), "autos & rental", ("Autos", "CarRental")),
+    (re.compile(r"\bretailers?\b|department stores?|store closures", re.I), "retail", ("Retail",)),
+    (re.compile(r"chipmakers?|semiconductors?|chip stocks", re.I), "semiconductors", ("Semis",)),
+]
+
+
+def detect_industries(texts: list[str], min_share: float = 0.15) -> dict[str, tuple[str, ...]]:
+    """Industries whose cue words appear in at least `min_share` of the given texts. Returns {label: industries}."""
+    out: dict[str, tuple[str, ...]] = {}
+    n = max(len(texts), 1)
+    for rx, label, inds in INDUSTRY_CUES:
+        if sum(1 for t in texts if rx.search(t)) / n >= min_share:
+            out[label] = inds
+    return out
+
+
 @dataclass
 class Exposure:
     entity_id: str
@@ -191,6 +213,16 @@ class ExposureGraph:
 
     def __init__(self, table: EntityTable | None = None):
         self.t = table or load_entities()
+
+    def industry_exposures(self, cues: dict[str, tuple[str, ...]], exclude: set[str]) -> dict[str, Exposure]:
+        """Obligors in industries the text talks about, even if no company is named (role PEER, edge INDUSTRY)."""
+        out: dict[str, Exposure] = {}
+        for label, inds in cues.items():
+            for eid, e in self.t.by_id.items():
+                if eid in exclude or eid in out or e.kind == "group" or e.watch_only or e.industry not in inds:
+                    continue
+                out[eid] = Exposure(eid, "PEER", [f"text cue: {label}", f"industry: {e.industry}", e.name], "INDUSTRY")
+        return out
 
     def propagate(self, named: list[str]) -> dict[str, Exposure]:
         t = self.t

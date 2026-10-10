@@ -1,0 +1,7 @@
+services:
+  tremor:
+    build: .
+    image: tremor:1.0
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

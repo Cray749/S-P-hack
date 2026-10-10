@@ -4,3 +4,5 @@ httpx==0.28.1
 ruff==0.8.4
 yfinance==1.6.0
 requests==2.32.3
+pyarrow==18.1.0
+matplotlib==3.9.3

@@ -75,3 +75,20 @@ def test_book_shape_and_instrument_mix():
 def test_exposure_is_positive_for_every_obligor():
     e = exposure_by_obligor(build_book())
     assert (e > 0).all() and np.isfinite(e).all()
+
+
+# ---- industry cues -------------------------------------------------------------------------------------
+def test_industry_cue_flags_oil_names_without_naming_a_company():
+    from tremor.entities import detect_industries
+
+    cues = detect_industries(["Crude futures turn negative as OPEC talks collapse", "Oil prices crash again"])
+    assert "oil & gas" in cues
+    x = ExposureGraph().industry_exposures(cues, exclude=set())
+    assert {"xom", "cvx", "oxy"} <= set(x) and all(v.edge == "INDUSTRY" and v.role == "PEER" for v in x.values())
+    assert "aapl" not in x
+
+
+def test_industry_cue_needs_a_real_share_of_the_documents():
+    from tremor.entities import detect_industries
+
+    assert detect_industries(["Apple unveils a phone"] * 9 + ["oil is mentioned once"]) == {}

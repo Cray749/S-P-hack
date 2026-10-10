@@ -22,7 +22,7 @@ import numpy as np
 from . import config as C
 from .analogues import AnalogueLibrary
 from .book import Book, build_book
-from .entities import ExposureGraph, load_entities
+from .entities import ExposureGraph, detect_industries, load_entities
 from .events import Event, EventTracker
 from .ingest import from_post, replay_corpus
 from .ledger import Ledger
@@ -122,13 +122,16 @@ class Pipeline:
         cp = ev.class_probs
         named = ev.named_entities()
         p_sys = c.lib.p_systemic(cp)
-        if not named and p_sys < 0.4:          # nothing to stress: no entity to anchor and not a market-wide event
-            return None
+        if not named and p_sys < 0.4 and not detect_industries([m.doc.text for m in ev.members[:12]]):
+            return None                        # nothing to stress: no entity, no industry cue, not market-wide
         post = c.lib.posterior(ev.centroid, cp, ev.intensity, ev.last_ts)
         if post is None:
             return None
         impact = impact_score(ev, p_sys)
         exposures = c.graph.propagate(named)
+        cues = detect_industries([m.doc.text for m in ev.members if m.doc.id not in ev.echo_of])
+        if cues:
+            exposures.update(c.graph.industry_exposures(cues, set(exposures)))
         seed = int(hashlib.sha256(f"{ev.id}|{offset}|{c.config_hash}|{c.book.hash}".encode()).hexdigest()[:8], 16)
         res = c.stress.run(post, exposures, seed, p_sys=p_sys)
         q = StressModel.summarise(res.loss_total)
@@ -187,7 +190,7 @@ class Pipeline:
             "book": c.book.hash, "cfg": c.config_hash,
         }
         h = hashlib.sha256(json.dumps(core, sort_keys=True).encode()).hexdigest()[:16]
-        return Signal(
+        sig = Signal(
             signal_id=f"{ev.id}.v{version}", event_id=ev.id, version=version, as_of=ev.last_ts, ledger_offset=offset,
             config_hash=c.config_hash, book_hash=c.book.hash, entities=named, sentiment=ev.sentiment,
             event_class=ev.top_class, impact=round(impact, 1), class_probs=probs, status=ev.status,  # type: ignore[arg-type]

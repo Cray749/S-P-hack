@@ -158,7 +158,7 @@
       const r = await post("/session/start", { scenario: id });
       S.scen = id; S.events.clear(); S.selected = null; S.detail = null; S.timeline = []; constel.clear(); $("#impact").innerHTML = `<div class="empty">Select a tremor to see the loss range, its drivers and what would break the limit.</div>`; $("#sigid").textContent = "--";
       S.cursor = Date.parse(r.start_ts); S.start = S.cursor; S.end = Date.parse(r.end_ts); $("#clock").textContent = fmtClock(S.cursor);
-      const sc = S.scens.find((x) => x.id === id); S.expected = sc.expected_entities || [];
+      const sc = S.scens.find((x) => x.id === id); S.expected = sc.expected_entities || []; S.focus = sc.focus ? new RegExp(sc.focus, "i") : null;
       renderScen(); renderFeed(); renderDock(); S.running = true; setPlay();
     } catch (e) { toast("Could not start: " + esc(e.message)); }
     S.busy = false;
@@ -181,7 +181,7 @@
         const prev = S.events.get(s.event_id); S.events.set(s.event_id, s);
         if (!prev || prev.status !== s.status || s.impact >= 6) seismo.pulse(s.impact / 10);
         if (s.event_id === S.selected) selUpdated = true;
-        const score = s.impact + (s.entities.length ? 1.2 : 0) + (s.status === "confirmed" ? .8 : 0) + Math.min(1.5, s.n_docs / 20);
+        const score = s.impact + (s.entities.length ? 1.2 : 0) + (s.status === "confirmed" ? .8 : 0) + Math.min(1.5, s.n_docs / 20) + (S.focus && S.focus.test(s.headline) ? 2.5 : 0);
         if (!best || score > best.score) best = { ...s, score };
       }
       renderFeed();

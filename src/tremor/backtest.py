@@ -187,7 +187,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     res = {"expanding": run(False), "loo": run(True)}
     (out / "backtest.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
-    e, l = res["expanding"], res["loo"]
+    e, lo = res["expanding"], res["loo"]
     print(f"expanding window: tested {e['episodes_tested']} episodes, coverage {e['overall_coverage']} (nominal 50/80/90), "
           f"intervals {e['intervals_scored']['90']}, se90={e['binomial_se_90']}")
     for t, s in e["targets"].items():
@@ -195,7 +195,7 @@ def main() -> None:
               f"skill vs unconditional={s['skill_vs_unconditional']} vs ordinary={s['skill_vs_ordinary']}")
     print(f"overall skill vs unconditional crisis library: {e['overall_skill_vs_unconditional']}  vs ordinary weeks: {e['overall_skill_vs_ordinary']}")
     print("graph ablation:", json.dumps(e["graph_ablation"]))
-    print(f"leave-one-out coverage {l['overall_coverage']}")
+    print(f"leave-one-out coverage {lo['overall_coverage']}")
 
 
 if __name__ == "__main__":

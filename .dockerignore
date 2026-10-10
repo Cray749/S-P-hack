@@ -1,0 +1,12 @@
+.venv/
+.git/
+.claude/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+data/_raw/
+data/cache/
+data/ledger.db
+docs/*.pdf
+tests/
