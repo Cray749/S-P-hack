@@ -1,0 +1,105 @@
+id,name,kind,ticker,parent_id,group_id,sector,country,rating,aliases
+xom,Exxon Mobil Corporation,listed,XOM,,,Energy,US,AA,Exxon|ExxonMobil|Exxon Mobil|$XOM
+cvx,Chevron Corporation,listed,CVX,,,Energy,US,AA,Chevron|$CVX
+oxy,Occidental Petroleum,listed,OXY,,,Energy,US,BB,Occidental|Oxy|$OXY
+anadarko,Anadarko Petroleum Corporation,legal_entity,,oxy,,Energy,US,BB,Anadarko
+apa,APA Corporation,listed,APA,,,Energy,US,BB,Apache|APA Corp|$APA
+cop,ConocoPhillips,listed,COP,,,Energy,US,A,ConocoPhillips|Conoco|$COP
+dvn,Devon Energy,listed,DVN,,,Energy,US,BBB,Devon Energy|$DVN
+hal,Halliburton,listed,HAL,,,Energy,US,BBB,Halliburton|$HAL
+slb,Schlumberger,listed,SLB,,,Energy,US,A,Schlumberger|$SLB
+bp,BP plc,listed,BP,,,Energy,EU,A,BP|British Petroleum|$BP
+dal,Delta Air Lines,listed,DAL,,,Industrials,US,BBB,Delta Air Lines|Delta Airlines|$DAL
+ual,United Airlines Holdings,listed,UAL,,,Industrials,US,BB,United Airlines|$UAL
+aal,American Airlines Group,listed,AAL,,,Industrials,US,B,American Airlines|$AAL
+luv,Southwest Airlines,listed,LUV,,,Industrials,US,BBB,Southwest Airlines|$LUV
+ba,Boeing Company,listed,BA,,,Industrials,US,BBB,Boeing|$BA
+ge,General Electric,listed,GE,,,Industrials,US,BBB,General Electric|$GE
+cat,Caterpillar,listed,CAT,,,Industrials,US,A,Caterpillar|$CAT
+ups,United Parcel Service,listed,UPS,,,Industrials,US,A,UPS|United Parcel Service|$UPS
+ccl,Carnival Corporation,listed,CCL,,,ConsumerDisc,US,BBB,Carnival|Carnival Corp|$CCL
+princess,Princess Cruises,legal_entity,,ccl,,ConsumerDisc,US,BBB,Princess Cruises
+hollandamerica,Holland America Line,legal_entity,,ccl,,ConsumerDisc,US,BBB,Holland America
+carnivalplc,Carnival plc,legal_entity,,ccl,,ConsumerDisc,EU,BBB,Carnival plc
+rcl,Royal Caribbean Cruises,listed,RCL,,,ConsumerDisc,US,BB,Royal Caribbean|$RCL
+nclh,Norwegian Cruise Line Holdings,listed,NCLH,,,ConsumerDisc,US,BB,Norwegian Cruise|NCLH|$NCLH
+htz,Hertz Global Holdings,listed,HTZ,,,ConsumerDisc,US,CCC,Hertz|Hertz Global|$HTZ
+hertzcorp,The Hertz Corporation,legal_entity,,htz,,ConsumerDisc,US,CCC,Hertz Corporation
+dollarthrifty,Dollar Thrifty Automotive Group,legal_entity,,htz,,ConsumerDisc,US,CCC,Dollar Thrifty|Dollar Rent A Car
+donlen,Donlen Corporation,legal_entity,,htz,,ConsumerDisc,US,CCC,Donlen
+car,Avis Budget Group,listed,CAR,,,ConsumerDisc,US,B,Avis|Avis Budget|$CAR
+avisrac,Avis Rent A Car System LLC,legal_entity,,car,,ConsumerDisc,US,B,Avis Rent A Car
+f,Ford Motor Company,listed,F,,,ConsumerDisc,US,BB,Ford|Ford Motor|$F
+fordcredit,Ford Motor Credit Company,legal_entity,,f,,Financials,US,BB,Ford Credit|Ford Motor Credit
+gm,General Motors,listed,GM,,,ConsumerDisc,US,BBB,General Motors|$GM
+gmfinancial,General Motors Financial Company,legal_entity,,gm,,Financials,US,BBB,GM Financial
+tsla,Tesla,listed,TSLA,,,ConsumerDisc,US,BB,Tesla|$TSLA
+amzn,Amazon.com,listed,AMZN,,,ConsumerDisc,US,AA,Amazon|$AMZN
+m,Macy's,listed,M,,,ConsumerDisc,US,BB,Macy's|$M
+kss,Kohl's,listed,KSS,,,ConsumerDisc,US,BBB,Kohl's|$KSS
+wmt,Walmart,listed,WMT,,,ConsumerStaples,US,AA,Walmart|$WMT
+aapl,Apple Inc.,listed,AAPL,,,Technology,US,AAA,Apple|$AAPL
+msft,Microsoft,listed,MSFT,,,Technology,US,AAA,Microsoft|$MSFT
+nvda,NVIDIA,listed,NVDA,,,Technology,US,A,Nvidia|NVIDIA|$NVDA
+amd,Advanced Micro Devices,listed,AMD,,,Technology,US,BBB,AMD|Advanced Micro Devices|$AMD
+intc,Intel,listed,INTC,,,Technology,US,A,Intel|$INTC
+googl,Alphabet,listed,GOOGL,,,Communication,US,AA,Alphabet|Google|$GOOGL
+meta,Meta Platforms,listed,META,,,Communication,US,AA,Facebook|Meta Platforms|$FB|$META
+t,AT&T,listed,T,,,Communication,US,BBB,AT&T|$T
+vz,Verizon,listed,VZ,,,Communication,US,BBB,Verizon|$VZ
+pfe,Pfizer,listed,PFE,,,Healthcare,US,AA,Pfizer|$PFE
+jnj,Johnson & Johnson,listed,JNJ,,,Healthcare,US,AAA,Johnson & Johnson|J&J|$JNJ
+unh,UnitedHealth Group,listed,UNH,,,Healthcare,US,A,UnitedHealth|$UNH
+nee,NextEra Energy,listed,NEE,,,Utilities,US,A,NextEra|$NEE
+duk,Duke Energy,listed,DUK,,,Utilities,US,BBB,Duke Energy|$DUK
+fcx,Freeport-McMoRan,listed,FCX,,,Materials,US,BB,Freeport|Freeport-McMoRan|$FCX
+dow,Dow Inc.,listed,DOW,,,Materials,US,BBB,Dow Inc|$DOW
+jpm,JPMorgan Chase & Co.,listed,JPM,,,Financials,US,A,JPMorgan|JP Morgan|JPMorgan Chase|$JPM
+jpmbank,JPMorgan Chase Bank N.A.,legal_entity,,jpm,,Financials,US,A,JPMorgan Chase Bank
+bac,Bank of America,listed,BAC,,,Financials,US,A,Bank of America|BofA|$BAC
+c,Citigroup,listed,C,,,Financials,US,A,Citigroup|Citi|$C
+citibank,Citibank N.A.,legal_entity,,c,,Financials,US,A,Citibank
+wfc,Wells Fargo,listed,WFC,,,Financials,US,A,Wells Fargo|$WFC
+gs,Goldman Sachs,listed,GS,,,Financials,US,A,Goldman Sachs|Goldman|$GS
+ms,Morgan Stanley,listed,MS,,,Financials,US,A,Morgan Stanley|$MS
+usb,U.S. Bancorp,listed,USB,,,Financials,US,A,U.S. Bancorp|US Bancorp|$USB
+pnc,PNC Financial Services,listed,PNC,,,Financials,US,A,PNC|$PNC
+zion,Zions Bancorporation,listed,ZION,,,Financials,US,BBB,Zions|$ZION
+key,KeyCorp,listed,KEY,,,Financials,US,BBB,KeyCorp|Key Bank|$KEY
+wal,Western Alliance Bancorporation,listed,WAL,,,Financials,US,BBB,Western Alliance|$WAL
+cfg,Citizens Financial Group,listed,CFG,,,Financials,US,BBB,Citizens Financial|$CFG
+fitb,Fifth Third Bancorp,listed,FITB,,,Financials,US,BBB,Fifth Third|$FITB
+rf,Regions Financial,listed,RF,,,Financials,US,BBB,Regions Financial|$RF
+hban,Huntington Bancshares,listed,HBAN,,,Financials,US,BBB,Huntington|$HBAN
+tfc,Truist Financial,listed,TFC,,,Financials,US,A,Truist|$TFC
+axp,American Express,listed,AXP,,,Financials,US,A,American Express|Amex|$AXP
+cof,Capital One,listed,COF,,,Financials,US,BBB,Capital One|$COF
+schw,Charles Schwab,listed,SCHW,,,Financials,US,A,Charles Schwab|Schwab|$SCHW
+db,Deutsche Bank,listed,DB,,,Financials,EU,BBB,Deutsche Bank|$DB
+ubs,UBS Group,listed,UBS,,,Financials,EU,A,UBS|$UBS
+hsbc,HSBC Holdings,listed,HSBC,,,Financials,EU,A,HSBC|$HSBC
+tata_group,Tata Group (Tata Sons),group,,,,Conglomerate,IN,,Tata Sons|Tata Group
+tatamotors,Tata Motors,listed,TMPV.NS,,tata_group,ConsumerDisc,IN,BB,Tata Motors|TTMT
+jlr,Jaguar Land Rover Automotive plc,legal_entity,,tatamotors,tata_group,ConsumerDisc,EU,BB,Jaguar Land Rover|JLR
+tatasteel,Tata Steel,listed,TATASTEEL.NS,,tata_group,Materials,IN,BB,Tata Steel
+tcs,Tata Consultancy Services,listed,TCS.NS,,tata_group,Technology,IN,AA,Tata Consultancy|TCS
+tatapower,Tata Power,listed,TATAPOWER.NS,,tata_group,Utilities,IN,BBB,Tata Power
+adani_group,Adani Group (promoter group),group,,,,Conglomerate,IN,,Adani Group|Adani family
+adanient,Adani Enterprises,listed,ADANIENT.NS,,adani_group,Industrials,IN,BB,Adani Enterprises|Adani Ent
+adaniports,Adani Ports and SEZ,listed,ADANIPORTS.NS,,adani_group,Industrials,IN,BBB,Adani Ports|APSEZ
+adanipower,Adani Power,listed,ADANIPOWER.NS,,adani_group,Utilities,IN,BB,Adani Power
+adanigreen,Adani Green Energy,listed,ADANIGREEN.NS,,adani_group,Utilities,IN,BB,Adani Green
+adanienergy,Adani Energy Solutions,listed,ADANIENSOL.NS,,adani_group,Utilities,IN,BB,Adani Transmission|Adani Energy Solutions
+adanigas,Adani Total Gas,listed,ATGL.NS,,adani_group,Energy,IN,BB,Adani Total Gas|Adani Gas
+reliance,Reliance Industries,listed,RELIANCE.NS,,,Energy,IN,BBB,Reliance Industries|RIL
+jio,Reliance Jio Infocomm,legal_entity,,reliance,,Communication,IN,BBB,Reliance Jio|Jio
+relianceretail,Reliance Retail Ventures,legal_entity,,reliance,,ConsumerStaples,IN,BBB,Reliance Retail
+hdfcbank,HDFC Bank,listed,HDFCBANK.NS,,,Financials,IN,A,HDFC Bank
+icicibank,ICICI Bank,listed,ICICIBANK.NS,,,Financials,IN,A,ICICI Bank
+sbin,State Bank of India,listed,SBIN.NS,,,Financials,IN,A,State Bank of India|SBI
+kotak,Kotak Mahindra Bank,listed,KOTAKBANK.NS,,,Financials,IN,A,Kotak Mahindra|Kotak Bank
+yesbank,Yes Bank,listed,YESBANK.NS,,,Financials,IN,B,Yes Bank
+bajfin,Bajaj Finance,listed,BAJFINANCE.NS,,,Financials,IN,BBB,Bajaj Finance
+lt,Larsen & Toubro,listed,LT.NS,,,Industrials,IN,A,Larsen & Toubro|L&T
+itc,ITC Limited,listed,ITC.NS,,,ConsumerStaples,IN,A,ITC
+infy,Infosys,listed,INFY.NS,,,Technology,IN,AA,Infosys

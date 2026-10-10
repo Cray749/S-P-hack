@@ -1,0 +1,1946 @@
+[
+ {
+  "id": "lehman_2008",
+  "date": "2008-09-15",
+  "cls": "CREDIT_EVENT",
+  "title": "Lehman Brothers files for bankruptcy",
+  "text": "Lehman Brothers files for Chapter 11 bankruptcy after failing to find a buyer, the largest bankruptcy filing in US history, while Bank of America agrees to buy Merrill Lynch.",
+  "k_star": 3,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.07614,
+   "nifty": -0.05208,
+   "vix_pts": 10.56,
+   "brent": -0.02808,
+   "gold": 0.11351,
+   "usd": -0.01102,
+   "inr": 0.01044,
+   "gbp": 0.01267,
+   "d10y_bps": -31.99999,
+   "d5y_bps": -46.7,
+   "hy_bps": 370.72338,
+   "ig_bps": 162.8297
+  },
+  "sector_excess": {
+   "Energy": 0.0184,
+   "Financials": -0.04679,
+   "Technology": -0.00799,
+   "ConsumerDisc": 0.01044,
+   "Industrials": 0.00637,
+   "Healthcare": 0.03139,
+   "ConsumerStaples": 0.0288,
+   "Utilities": -0.01925,
+   "Materials": 0.02704,
+   "Communication": null,
+   "RealEstate": null,
+   "IN_Financials": 0.00661,
+   "RegionalBanks": 0.09271
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "MS": {
+     "ret": -0.41579,
+     "excess": -0.29286
+    },
+    "GS": {
+     "ret": -0.25751,
+     "excess": -0.13458
+    },
+    "C": {
+     "ret": -0.21882,
+     "excess": -0.09589
+    },
+    "BAC": {
+     "ret": -0.19384,
+     "excess": -0.0709
+    },
+    "JPM": {
+     "ret": -0.13116,
+     "excess": -0.00823
+    },
+    "WFC": {
+     "ret": -0.02508,
+     "excess": 0.09785
+    }
+   }
+  },
+  "missing": [],
+  "severity": 1.0
+ },
+ {
+  "id": "snb_2015",
+  "date": "2015-01-15",
+  "cls": "MACROECONOMIC",
+  "title": "Swiss National Bank scraps franc cap",
+  "text": "Swiss National Bank unexpectedly scraps the euro cap on the franc; the franc surges and currency brokers and banks face losses.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": 0.02579,
+   "nifty": 0.0546,
+   "vix_pts": -5.08,
+   "brent": -0.00349,
+   "gold": 0.05371,
+   "usd": 0.02257,
+   "inr": -0.00524,
+   "gbp": -0.00151,
+   "d10y_bps": 5.9,
+   "d5y_bps": 7.9,
+   "hy_bps": -16.88434,
+   "ig_bps": -5.69787
+  },
+  "sector_excess": {
+   "Energy": 0.02041,
+   "Financials": -0.00324,
+   "Technology": -0.00234,
+   "ConsumerDisc": -0.00613,
+   "Industrials": 0.0077,
+   "Healthcare": -0.00388,
+   "ConsumerStaples": 0.0031,
+   "Utilities": -0.0009,
+   "Materials": 0.01277,
+   "Communication": null,
+   "RealEstate": null,
+   "IN_Financials": 0.01202,
+   "RegionalBanks": 0.01314
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "UBS": {
+     "ret": 0.04612,
+     "excess": 0.02356
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.1111
+ },
+ {
+  "id": "china_2015",
+  "date": "2015-08-24",
+  "cls": "MACROECONOMIC",
+  "title": "China devaluation Black Monday",
+  "text": "China's stock market crash and surprise yuan devaluation trigger a global sell-off on Black Monday as the Dow falls over 1,000 points at the open.",
+  "k_star": 2,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.0524,
+   "nifty": -0.05051,
+   "vix_pts": 7.99,
+   "brent": -0.04949,
+   "gold": -0.01845,
+   "usd": -0.00316,
+   "inr": 0.02056,
+   "gbp": 0.00459,
+   "d10y_bps": 7.9,
+   "d5y_bps": 4.1,
+   "hy_bps": 6.29707,
+   "ig_bps": 4.74723
+  },
+  "sector_excess": {
+   "Energy": -0.015,
+   "Financials": -0.00301,
+   "Technology": 0.00539,
+   "ConsumerDisc": 0.00856,
+   "Industrials": 0.00421,
+   "Healthcare": 0.00024,
+   "ConsumerStaples": 0.01027,
+   "Utilities": -0.01463,
+   "Materials": -0.00455,
+   "Communication": null,
+   "RealEstate": null,
+   "IN_Financials": 0.00264,
+   "RegionalBanks": -0.01048
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.75
+ },
+ {
+  "id": "taper_2013",
+  "date": "2013-05-22",
+  "cls": "MACROECONOMIC",
+  "title": "Taper tantrum",
+  "text": "Fed Chair Bernanke signals the Fed could slow its bond purchases; emerging market currencies and the Indian rupee slump in a taper tantrum.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.01246,
+   "nifty": -0.00047,
+   "vix_pts": 1.46,
+   "brent": -0.01424,
+   "gold": 0.0098,
+   "usd": -0.00262,
+   "inr": 0.00829,
+   "gbp": -0.01005,
+   "d10y_bps": 18.00001,
+   "d5y_bps": 17.3,
+   "hy_bps": 11.03193,
+   "ig_bps": 3.92299
+  },
+  "sector_excess": {
+   "Energy": 0.0038,
+   "Financials": 0.00697,
+   "Technology": 0.00187,
+   "ConsumerDisc": -0.00281,
+   "Industrials": -0.00264,
+   "Healthcare": 0.00333,
+   "ConsumerStaples": -0.0015,
+   "Utilities": -0.04699,
+   "Materials": 0.00179,
+   "Communication": null,
+   "RealEstate": null,
+   "IN_Financials": -0.00845,
+   "RegionalBanks": -0.00115
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.4167
+ },
+ {
+  "id": "brexit_2016",
+  "date": "2016-06-24",
+  "cls": "GEOPOLITICAL",
+  "title": "Brexit referendum",
+  "text": "The UK votes to leave the European Union in a referendum; sterling plunges to a 31-year low and global stocks fall sharply.",
+  "k_star": 2,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.05337,
+   "nifty": -0.02125,
+   "vix_pts": 6.6,
+   "brent": -0.07366,
+   "gold": 0.0486,
+   "usd": 0.03218,
+   "inr": 0.00675,
+   "gbp": -0.0905,
+   "d10y_bps": -27.89999,
+   "d5y_bps": -25.29999,
+   "hy_bps": 139.96703,
+   "ig_bps": 16.03898
+  },
+  "sector_excess": {
+   "Energy": -0.00996,
+   "Financials": -0.02722,
+   "Technology": -0.0044,
+   "ConsumerDisc": -0.00149,
+   "Industrials": -0.00996,
+   "Healthcare": 0.01134,
+   "ConsumerStaples": 0.03213,
+   "Utilities": 0.06727,
+   "Materials": -0.02249,
+   "Communication": null,
+   "RealEstate": 0.03924,
+   "IN_Financials": 0.00015,
+   "RegionalBanks": -0.04414
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "DB": {
+     "ret": -0.22253,
+     "excess": -0.14195
+    },
+    "UBS": {
+     "ret": -0.20435,
+     "excess": -0.12377
+    },
+    "HSBC": {
+     "ret": -0.12897,
+     "excess": -0.04838
+    },
+    "BCS": {
+     "ret": -0.3712,
+     "excess": -0.29062
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.8889
+ },
+ {
+  "id": "volmageddon_2018",
+  "date": "2018-02-05",
+  "cls": "MACROECONOMIC",
+  "title": "Volmageddon",
+  "text": "The volatility index spikes in Volmageddon as the Dow suffers its largest point drop ever and inverse-VIX products collapse.",
+  "k_star": 4,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.06558,
+   "nifty": -0.01708,
+   "vix_pts": 16.15,
+   "brent": -0.05497,
+   "gold": -0.0126,
+   "usd": 0.01155,
+   "inr": 0.00352,
+   "gbp": -0.02716,
+   "d10y_bps": -0.3,
+   "d5y_bps": -3.09999,
+   "hy_bps": 36.07265,
+   "ig_bps": 12.08925
+  },
+  "sector_excess": {
+   "Energy": -0.01364,
+   "Financials": -0.00936,
+   "Technology": -0.00166,
+   "ConsumerDisc": 0.01415,
+   "Industrials": 0.00185,
+   "Healthcare": -0.00279,
+   "ConsumerStaples": 0.01475,
+   "Utilities": 0.01906,
+   "Materials": 0.01529,
+   "Communication": null,
+   "RealEstate": 0.00308,
+   "IN_Financials": -0.00298,
+   "RegionalBanks": 0.01602
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.8889
+ },
+ {
+  "id": "cambridge_2018",
+  "date": "2018-03-19",
+  "cls": "REGULATORY_LEGAL",
+  "title": "Facebook Cambridge Analytica scandal",
+  "text": "Facebook shares fall as reports reveal Cambridge Analytica improperly obtained data on tens of millions of users, prompting regulatory scrutiny.",
+  "k_star": 5,
+  "subject": "META",
+  "factors": {
+   "spx": -0.0595,
+   "nifty": -0.01933,
+   "vix_pts": 9.07,
+   "brent": 0.06404,
+   "gold": 0.02898,
+   "usd": -0.00876,
+   "inr": 0.00224,
+   "gbp": 0.01263,
+   "d10y_bps": -1.80001,
+   "d5y_bps": -3.39999,
+   "hy_bps": 35.47465,
+   "ig_bps": 14.27166
+  },
+  "sector_excess": {
+   "Energy": 0.05148,
+   "Financials": -0.01151,
+   "Technology": -0.01707,
+   "ConsumerDisc": 0.01196,
+   "Industrials": 0.00936,
+   "Healthcare": -0.00749,
+   "ConsumerStaples": 0.01462,
+   "Utilities": 0.03582,
+   "Materials": 0.00659,
+   "Communication": null,
+   "RealEstate": 0.02143,
+   "IN_Financials": -0.01412,
+   "RegionalBanks": -0.0078
+  },
+  "roles": {
+   "SELF": {
+    "META": {
+     "ret": -0.13885,
+     "excess": -0.07935
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "GOOGL": {
+     "ret": -0.09509,
+     "excess": -0.03559
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.8056
+ },
+ {
+  "id": "fb_earn_2018",
+  "date": "2018-07-26",
+  "cls": "EARNINGS_GUIDANCE",
+  "title": "Facebook earnings plunge",
+  "text": "Facebook shares plunge after second-quarter results show slowing user growth and a revenue outlook below expectations.",
+  "k_star": 3,
+  "subject": "META",
+  "factors": {
+   "spx": -0.01527,
+   "nifty": 0.01685,
+   "vix_pts": 1.97,
+   "brent": 0.01407,
+   "gold": -0.0082,
+   "usd": 0.0,
+   "inr": -0.00283,
+   "gbp": -0.00307,
+   "d10y_bps": 3.89998,
+   "d5y_bps": 3.6,
+   "hy_bps": -2.37814,
+   "ig_bps": -1.94616
+  },
+  "sector_excess": {
+   "Energy": 0.03012,
+   "Financials": 0.01777,
+   "Technology": -0.03201,
+   "ConsumerDisc": -0.00046,
+   "Industrials": 0.01315,
+   "Healthcare": 0.00582,
+   "ConsumerStaples": 0.02074,
+   "Utilities": 0.01661,
+   "Materials": 0.01544,
+   "Communication": -0.05556,
+   "RealEstate": 0.00853,
+   "IN_Financials": 0.01317,
+   "RegionalBanks": -0.00524
+  },
+  "roles": {
+   "SELF": {
+    "META": {
+     "ret": -0.21352,
+     "excess": -0.14268
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "GOOGL": {
+     "ret": -0.03597,
+     "excess": 0.03486
+    },
+    "AMZN": {
+     "ret": -0.04528,
+     "excess": -0.02955
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.55
+ },
+ {
+  "id": "ilfs_2018",
+  "date": "2018-09-21",
+  "cls": "CREDIT_EVENT",
+  "title": "IL&FS default NBFC crisis",
+  "text": "Indian shadow lender IL&FS defaults on debt payments, triggering a liquidity crunch among non-bank financial companies as shares of Indiabulls Housing and other NBFCs tumble.",
+  "k_star": 3,
+  "subject": "SAMMAANCAP.NS",
+  "factors": {
+   "spx": -0.00518,
+   "nifty": -0.01486,
+   "vix_pts": 0.62,
+   "brent": 0.04028,
+   "gold": -0.00514,
+   "usd": 0.00234,
+   "inr": 0.0132,
+   "gbp": -0.00181,
+   "d10y_bps": 2.39999,
+   "d5y_bps": 2.10001,
+   "hy_bps": -1.68256,
+   "ig_bps": 0.48064
+  },
+  "sector_excess": {
+   "Energy": 0.0331,
+   "Financials": -0.0136,
+   "Technology": 0.00497,
+   "ConsumerDisc": -0.00154,
+   "Industrials": -0.00861,
+   "Healthcare": 0.00547,
+   "ConsumerStaples": -0.01433,
+   "Utilities": -0.01308,
+   "Materials": -0.01609,
+   "Communication": 0.00112,
+   "RealEstate": -0.01533,
+   "IN_Financials": -0.02118,
+   "RegionalBanks": -0.00315
+  },
+  "roles": {
+   "SELF": {
+    "SAMMAANCAP.NS": {
+     "ret": -0.19806,
+     "excess": -0.1832
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "BAJFINANCE.NS": {
+     "ret": -0.08015,
+     "excess": -0.04412
+    },
+    "MUTHOOTFIN.NS": {
+     "ret": -0.07033,
+     "excess": -0.05547
+    },
+    "CHOLAFIN.NS": {
+     "ret": -0.06742,
+     "excess": -0.05256
+    },
+    "LICHSGFIN.NS": {
+     "ret": -0.05438,
+     "excess": -0.03953
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.6389
+ },
+ {
+  "id": "boeing_2019",
+  "date": "2019-03-11",
+  "cls": "OPERATIONAL",
+  "title": "Boeing 737 MAX second crash",
+  "text": "Boeing shares fall after a second 737 MAX crash in Ethiopia as regulators move to ground the aircraft worldwide.",
+  "k_star": 4,
+  "subject": "BA",
+  "factors": {
+   "spx": 0.02385,
+   "nifty": 0.0279,
+   "vix_pts": -2.55,
+   "brent": 0.02267,
+   "gold": -0.00278,
+   "usd": -0.00596,
+   "inr": -0.0108,
+   "gbp": 0.01476,
+   "d10y_bps": 0.50001,
+   "d5y_bps": 0.50001,
+   "hy_bps": -18.05053,
+   "ig_bps": -0.07812
+  },
+  "sector_excess": {
+   "Energy": 0.0098,
+   "Financials": -0.00036,
+   "Technology": 0.01254,
+   "ConsumerDisc": -0.00669,
+   "Industrials": -0.01832,
+   "Healthcare": 0.00423,
+   "ConsumerStaples": -0.0056,
+   "Utilities": -0.0089,
+   "Materials": -0.0085,
+   "Communication": -0.00284,
+   "RealEstate": 0.00459,
+   "IN_Financials": 0.01393,
+   "RegionalBanks": -0.00745
+  },
+  "roles": {
+   "SELF": {
+    "BA": {
+     "ret": -0.11653,
+     "excess": -0.12205
+    }
+   },
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.4667
+ },
+ {
+  "id": "chevron_anadarko_2019",
+  "date": "2019-04-12",
+  "cls": "MERGER_ACQUISITION",
+  "title": "Chevron to acquire Anadarko",
+  "text": "Chevron agrees to acquire Anadarko Petroleum in a 33 billion dollar deal, setting up a bidding contest with Occidental.",
+  "k_star": 1,
+  "subject": "CVX",
+  "factors": {
+   "spx": 0.00661,
+   "nifty": 0.00403,
+   "vix_pts": -1.01,
+   "brent": 0.01017,
+   "gold": 0.00155,
+   "usd": -0.00216,
+   "inr": 0.00419,
+   "gbp": -0.0033,
+   "d10y_bps": 5.6,
+   "d5y_bps": 5.9,
+   "hy_bps": -16.13293,
+   "ig_bps": -4.7597
+  },
+  "sector_excess": {
+   "Energy": -0.00394,
+   "Financials": 0.01178,
+   "Technology": 0.00034,
+   "ConsumerDisc": -0.0004,
+   "Industrials": 0.00663,
+   "Healthcare": -0.01577,
+   "ConsumerStaples": -0.0034,
+   "Utilities": -0.00195,
+   "Materials": 0.00664,
+   "Communication": 0.00203,
+   "RealEstate": -0.00113,
+   "IN_Financials": 0.00109,
+   "RegionalBanks": 0.00265
+  },
+  "roles": {
+   "SELF": {
+    "CVX": {
+     "ret": -0.04945,
+     "excess": -0.05212
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "OXY": {
+     "ret": -0.02754,
+     "excess": -0.03021
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.45
+ },
+ {
+  "id": "uschina_2019",
+  "date": "2019-08-05",
+  "cls": "GEOPOLITICAL",
+  "title": "Yuan breaks 7, trade war escalates",
+  "text": "China allows the yuan to weaken past 7 per dollar as the US-China trade war escalates and global equities sell off.",
+  "k_star": 1,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.02978,
+   "nifty": -0.01225,
+   "vix_pts": 6.98,
+   "brent": -0.03361,
+   "gold": 0.01314,
+   "usd": -0.00612,
+   "inr": 0.00519,
+   "gbp": 0.0023,
+   "d10y_bps": -12.0,
+   "d5y_bps": -13.39999,
+   "hy_bps": 50.14389,
+   "ig_bps": 9.31427
+  },
+  "sector_excess": {
+   "Energy": -2e-05,
+   "Financials": -0.00356,
+   "Technology": -0.01197,
+   "ConsumerDisc": 0.00294,
+   "Industrials": 0.00208,
+   "Healthcare": 0.00627,
+   "ConsumerStaples": 0.00378,
+   "Utilities": 0.01548,
+   "Materials": 0.01094,
+   "Communication": -0.00259,
+   "RealEstate": 0.01073,
+   "IN_Financials": -0.00749,
+   "RegionalBanks": 0.00069
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.6944
+ },
+ {
+  "id": "iphone_2019",
+  "date": "2019-09-11",
+  "cls": "PRODUCT_LAUNCH",
+  "title": "Apple iPhone 11 launch",
+  "text": "Apple unveils the iPhone 11 lineup with lower pricing and new cameras at its annual product event; shares edge higher.",
+  "k_star": 1,
+  "subject": "AAPL",
+  "factors": {
+   "spx": 0.00723,
+   "nifty": 0.00297,
+   "vix_pts": -0.59,
+   "brent": -0.02517,
+   "gold": 0.00275,
+   "usd": 0.00325,
+   "inr": -0.00324,
+   "gbp": 0.00077,
+   "d10y_bps": 3.1,
+   "d5y_bps": 2.7,
+   "hy_bps": -2.28383,
+   "ig_bps": -0.22345
+  },
+  "sector_excess": {
+   "Energy": -0.00624,
+   "Financials": -0.00151,
+   "Technology": 0.00321,
+   "ConsumerDisc": -0.00536,
+   "Industrials": 0.00211,
+   "Healthcare": 0.00269,
+   "ConsumerStaples": -0.00362,
+   "Utilities": 0.00268,
+   "Materials": 0.00234,
+   "Communication": -0.00193,
+   "RealEstate": -0.00954,
+   "IN_Financials": 0.00691,
+   "RegionalBanks": 0.0063
+  },
+  "roles": {
+   "SELF": {
+    "AAPL": {
+     "ret": 0.0318,
+     "excess": 0.02136
+    }
+   },
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.4722
+ },
+ {
+  "id": "abqaiq_2019",
+  "date": "2019-09-16",
+  "cls": "GEOPOLITICAL",
+  "title": "Abqaiq drone attack",
+  "text": "Drone attacks on Saudi Aramco's Abqaiq oil processing facility cut roughly half of Saudi output and Brent crude surges.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.00509,
+   "nifty": 0.0179,
+   "vix_pts": 1.58,
+   "brent": 0.06742,
+   "gold": 0.011,
+   "usd": 0.00254,
+   "inr": 0.00607,
+   "gbp": 0.01587,
+   "d10y_bps": -14.8,
+   "d5y_bps": -11.8,
+   "hy_bps": 26.06207,
+   "ig_bps": -7.52432
+  },
+  "sector_excess": {
+   "Energy": 0.01754,
+   "Financials": -0.00427,
+   "Technology": -0.00291,
+   "ConsumerDisc": -0.01622,
+   "Industrials": -0.00912,
+   "Healthcare": 0.01462,
+   "ConsumerStaples": -0.00086,
+   "Utilities": 0.02772,
+   "Materials": -0.00347,
+   "Communication": -0.0043,
+   "RealEstate": 0.02561,
+   "IN_Financials": 0.01351,
+   "RegionalBanks": -0.00824
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.75
+ },
+ {
+  "id": "fedcut_2020",
+  "date": "2020-03-03",
+  "cls": "MACROECONOMIC",
+  "title": "Fed emergency rate cut",
+  "text": "The Federal Reserve cuts interest rates by half a point in an emergency move as coronavirus fears grow and US stocks swing sharply.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.11121,
+   "nifty": -0.0612,
+   "vix_pts": 21.04,
+   "brent": -0.33796,
+   "gold": 0.05162,
+   "usd": -0.02527,
+   "inr": 0.02558,
+   "gbp": 0.02282,
+   "d10y_bps": -58.9,
+   "d5y_bps": -43.6,
+   "hy_bps": 249.84108,
+   "ig_bps": 50.79431
+  },
+  "sector_excess": {
+   "Energy": -0.16819,
+   "Financials": -0.07269,
+   "Technology": -0.00988,
+   "ConsumerDisc": 0.00788,
+   "Industrials": -0.01939,
+   "Healthcare": 0.06119,
+   "ConsumerStaples": 0.07471,
+   "Utilities": 0.07506,
+   "Materials": -0.00629,
+   "Communication": -0.00341,
+   "RealEstate": 0.03767,
+   "IN_Financials": -0.02214,
+   "RegionalBanks": -0.06907
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 1.0
+ },
+ {
+  "id": "yesbank_2020",
+  "date": "2020-03-06",
+  "cls": "CREDIT_EVENT",
+  "title": "Yes Bank moratorium",
+  "text": "Reserve Bank of India imposes a moratorium on Yes Bank capping withdrawals amid a capital crisis and the lender's shares collapse.",
+  "k_star": 1,
+  "subject": "YESBANK.NS",
+  "factors": {
+   "spx": -0.01705,
+   "nifty": -0.02481,
+   "vix_pts": 2.32,
+   "brent": -0.09442,
+   "gold": 0.00264,
+   "usd": -0.00899,
+   "inr": -0.00253,
+   "gbp": 0.00588,
+   "d10y_bps": -22.0,
+   "d5y_bps": -11.6,
+   "hy_bps": 56.38857,
+   "ig_bps": 3.73752
+  },
+  "sector_excess": {
+   "Energy": -0.03913,
+   "Financials": -0.01697,
+   "Technology": -0.00408,
+   "ConsumerDisc": 0.00168,
+   "Industrials": 0.0083,
+   "Healthcare": 0.01173,
+   "ConsumerStaples": 0.00915,
+   "Utilities": 0.00892,
+   "Materials": -0.00896,
+   "Communication": -0.0003,
+   "RealEstate": -5e-05,
+   "IN_Financials": -0.01038,
+   "RegionalBanks": -0.00976
+  },
+  "roles": {
+   "SELF": {
+    "YESBANK.NS": {
+     "ret": -0.56114,
+     "excess": -0.52596
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "ICICIBANK.NS": {
+     "ret": -0.03598,
+     "excess": -0.00079
+    },
+    "SBIN.NS": {
+     "ret": -0.06239,
+     "excess": -0.02721
+    },
+    "KOTAKBANK.NS": {
+     "ret": -0.01229,
+     "excess": 0.02289
+    },
+    "HDFCBANK.NS": {
+     "ret": -0.01429,
+     "excess": 0.0209
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.8333
+ },
+ {
+  "id": "oilwar_2020",
+  "date": "2020-03-09",
+  "cls": "COMMODITY_SHOCK",
+  "title": "Saudi-Russia oil price war",
+  "text": "Saudi Arabia launches an oil price war after OPEC+ talks with Russia collapse; crude prices crash by about a quarter in the biggest one-day drop since 1991.",
+  "k_star": 4,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.16543,
+   "nifty": -0.09411,
+   "vix_pts": 33.53,
+   "brent": -0.26618,
+   "gold": -0.04878,
+   "usd": 0.01584,
+   "inr": 0.01225,
+   "gbp": -0.01023,
+   "d10y_bps": 14.3,
+   "d5y_bps": 9.2,
+   "hy_bps": 180.37316,
+   "ig_bps": 120.80492
+  },
+  "sector_excess": {
+   "Energy": -0.14115,
+   "Financials": -0.03731,
+   "Technology": 0.01292,
+   "ConsumerDisc": 0.00573,
+   "Industrials": -0.02877,
+   "Healthcare": 0.03811,
+   "ConsumerStaples": 0.01318,
+   "Utilities": -0.01964,
+   "Materials": -0.02269,
+   "Communication": 0.0161,
+   "RealEstate": 0.00855,
+   "IN_Financials": -0.00067,
+   "RegionalBanks": -0.02601
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 1.0
+ },
+ {
+  "id": "covid_2020",
+  "date": "2020-03-12",
+  "cls": "PANDEMIC_DISASTER",
+  "title": "WHO declares COVID-19 pandemic",
+  "text": "The WHO declares the coronavirus a pandemic as the US imposes a European travel ban and global stock markets plunge in their worst day since 1987.",
+  "k_star": 3,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.12959,
+   "nifty": -0.12057,
+   "vix_pts": 28.79,
+   "brent": -0.16038,
+   "gold": -0.09474,
+   "usd": 0.01637,
+   "inr": -0.00406,
+   "gbp": -0.03949,
+   "d10y_bps": -9.2,
+   "d5y_bps": -16.5,
+   "hy_bps": 222.22277,
+   "ig_bps": 48.03981
+  },
+  "sector_excess": {
+   "Energy": -0.04445,
+   "Financials": 0.00043,
+   "Technology": -0.00143,
+   "ConsumerDisc": -0.03678,
+   "Industrials": -0.01353,
+   "Healthcare": 0.02153,
+   "ConsumerStaples": 0.04605,
+   "Utilities": -0.03004,
+   "Materials": -0.00973,
+   "Communication": 0.00579,
+   "RealEstate": -0.03515,
+   "IN_Financials": -0.00728,
+   "RegionalBanks": 0.00873
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.9722
+ },
+ {
+  "id": "hertz_2020",
+  "date": "2020-04-16",
+  "cls": "CREDIT_EVENT",
+  "title": "Hertz bankruptcy warning",
+  "text": "Car rental company Hertz seeks a coronavirus bailout and could be forced to file for bankruptcy by the summer according to a report, and rival Avis shares fall in sympathy.",
+  "k_star": 2,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": 0.03277,
+   "nifty": 0.03826,
+   "vix_pts": -2.69,
+   "brent": 0.01408,
+   "gold": -0.022,
+   "usd": 0.00322,
+   "inr": 0.02159,
+   "gbp": -0.01096,
+   "d10y_bps": 1.6,
+   "d5y_bps": 2.5,
+   "hy_bps": -14.85199,
+   "ig_bps": 0.14649
+  },
+  "sector_excess": {
+   "Energy": 0.02619,
+   "Financials": 0.00141,
+   "Technology": -0.00714,
+   "ConsumerDisc": 0.00912,
+   "Industrials": 0.00489,
+   "Healthcare": 0.01029,
+   "ConsumerStaples": -0.01081,
+   "Utilities": -0.00036,
+   "Materials": 0.00139,
+   "Communication": -0.01511,
+   "RealEstate": -0.00723,
+   "IN_Financials": 0.04698,
+   "RegionalBanks": 0.01619
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "CAR": {
+     "ret": -0.01544,
+     "excess": -0.05732
+    }
+   }
+  },
+  "missing": [
+   "HTZ"
+  ],
+  "severity": 0.1667
+ },
+ {
+  "id": "wti_2020",
+  "date": "2020-04-20",
+  "cls": "COMMODITY_SHOCK",
+  "title": "WTI crude futures turn negative",
+  "text": "US crude oil futures turn negative for the first time in history as storage fills up amid collapsing demand and energy stocks and oil funds plunge.",
+  "k_star": 2,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.04801,
+   "nifty": -0.03079,
+   "vix_pts": 7.26,
+   "brent": -0.31161,
+   "gold": -0.00651,
+   "usd": 0.00481,
+   "inr": -0.00464,
+   "gbp": -0.00361,
+   "d10y_bps": -8.3,
+   "d5y_bps": -3.0,
+   "hy_bps": 101.23674,
+   "ig_bps": 17.19028
+  },
+  "sector_excess": {
+   "Energy": -0.0003,
+   "Financials": -0.00112,
+   "Technology": -0.00924,
+   "ConsumerDisc": 0.00506,
+   "Industrials": -0.0016,
+   "Healthcare": 0.0099,
+   "ConsumerStaples": 0.00751,
+   "Utilities": -0.00568,
+   "Materials": -0.00074,
+   "Communication": 0.00773,
+   "RealEstate": -0.00324,
+   "IN_Financials": -0.03072,
+   "RegionalBanks": 0.01912
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.9722
+ },
+ {
+  "id": "nvidia_arm_2020",
+  "date": "2020-09-14",
+  "cls": "MERGER_ACQUISITION",
+  "title": "Nvidia to buy Arm",
+  "text": "Nvidia agrees to buy chip designer Arm from SoftBank for 40 billion dollars, raising regulatory questions across the semiconductor industry.",
+  "k_star": 2,
+  "subject": "NVDA",
+  "factors": {
+   "spx": 0.01803,
+   "nifty": 0.005,
+   "vix_pts": -1.28,
+   "brent": 0.01757,
+   "gold": 0.00939,
+   "usd": -0.003,
+   "inr": 0.00119,
+   "gbp": 0.00323,
+   "d10y_bps": 1.0,
+   "d5y_bps": 1.6,
+   "hy_bps": -8.03006,
+   "ig_bps": -5.898
+  },
+  "sector_excess": {
+   "Energy": -0.01772,
+   "Financials": -0.01803,
+   "Technology": 0.01305,
+   "ConsumerDisc": 0.00087,
+   "Industrials": -0.00385,
+   "Healthcare": -0.00235,
+   "ConsumerStaples": -0.01292,
+   "Utilities": 0.00251,
+   "Materials": 0.00134,
+   "Communication": 0.00372,
+   "RealEstate": 0.01995,
+   "IN_Financials": -0.00564,
+   "RegionalBanks": 0.0056
+  },
+  "roles": {
+   "SELF": {
+    "NVDA": {
+     "ret": 0.06794,
+     "excess": 0.03687
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "AMD": {
+     "ret": 0.03393,
+     "excess": 0.00285
+    },
+    "INTC": {
+     "ret": 0.01461,
+     "excess": -0.01646
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.2778
+ },
+ {
+  "id": "pfizer_2020",
+  "date": "2020-11-09",
+  "cls": "PANDEMIC_DISASTER",
+  "title": "Pfizer vaccine efficacy news",
+  "text": "Pfizer says its coronavirus vaccine is more than 90 percent effective in early analysis; airline and energy stocks soar while stay-at-home stocks fall.",
+  "k_star": 1,
+  "subject": "PFE",
+  "factors": {
+   "spx": 0.0117,
+   "nifty": 0.0161,
+   "vix_pts": 0.89,
+   "brent": 0.07478,
+   "gold": -0.04985,
+   "usd": 0.00542,
+   "inr": -0.00189,
+   "gbp": 0.00314,
+   "d10y_bps": 13.8,
+   "d5y_bps": 8.4,
+   "hy_bps": -39.50623,
+   "ig_bps": 0.20765
+  },
+  "sector_excess": {
+   "Energy": 0.13106,
+   "Financials": 0.07043,
+   "Technology": -0.01894,
+   "ConsumerDisc": -0.01497,
+   "Industrials": 0.02235,
+   "Healthcare": -0.00233,
+   "ConsumerStaples": -0.014,
+   "Utilities": 0.00686,
+   "Materials": 0.0108,
+   "Communication": -0.02018,
+   "RealEstate": 0.01468,
+   "IN_Financials": 0.01133,
+   "RegionalBanks": 0.07212
+  },
+  "roles": {
+   "SELF": {
+    "PFE": {
+     "ret": 0.07692,
+     "excess": 0.06755
+    }
+   },
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.8056
+ },
+ {
+  "id": "archegos_2021",
+  "date": "2021-03-29",
+  "cls": "CREDIT_EVENT",
+  "title": "Archegos forced liquidation",
+  "text": "Banks including Credit Suisse and Nomura warn of significant losses after the forced liquidation of leveraged positions held by family office Archegos Capital and bank shares tumble.",
+  "k_star": 3,
+  "subject": "NMR",
+  "factors": {
+   "spx": -0.00042,
+   "nifty": 0.02482,
+   "vix_pts": 0.54,
+   "brent": -0.01595,
+   "gold": -0.01068,
+   "usd": 0.00496,
+   "inr": 0.01146,
+   "gbp": -0.00018,
+   "d10y_bps": 8.60001,
+   "d5y_bps": 8.2,
+   "hy_bps": -22.93206,
+   "ig_bps": -10.63589
+  },
+  "sector_excess": {
+   "Energy": -0.02675,
+   "Financials": -0.00889,
+   "Technology": 0.00147,
+   "ConsumerDisc": 0.01252,
+   "Industrials": 0.00174,
+   "Healthcare": -0.00198,
+   "ConsumerStaples": -0.00352,
+   "Utilities": 0.0094,
+   "Materials": -0.01075,
+   "Communication": 0.01466,
+   "RealEstate": -0.01011,
+   "IN_Financials": -0.00862,
+   "RegionalBanks": -0.00846
+  },
+  "roles": {
+   "SELF": {
+    "NMR": {
+     "ret": -0.18911,
+     "excess": -0.1798
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "MS": {
+     "ret": -0.02901,
+     "excess": -0.0197
+    },
+    "GS": {
+     "ret": -0.00119,
+     "excess": 0.00812
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.5167
+ },
+ {
+  "id": "evergrande_2021",
+  "date": "2021-09-20",
+  "cls": "CREDIT_EVENT",
+  "title": "Evergrande default fears",
+  "text": "China Evergrande, the world's most indebted property developer, faces default as creditors demand payment and global equities sell off on contagion fears.",
+  "k_star": 2,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.01778,
+   "nifty": -0.00132,
+   "vix_pts": 3.55,
+   "brent": -0.01301,
+   "gold": 0.0153,
+   "usd": 0.0,
+   "inr": 0.00128,
+   "gbp": -0.00973,
+   "d10y_bps": -4.6,
+   "d5y_bps": -3.7,
+   "hy_bps": 16.53376,
+   "ig_bps": 1.68853
+  },
+  "sector_excess": {
+   "Energy": -0.0105,
+   "Financials": -0.00676,
+   "Technology": -5e-05,
+   "ConsumerDisc": -0.00357,
+   "Industrials": 0.00111,
+   "Healthcare": 0.00885,
+   "ConsumerStaples": 0.00666,
+   "Utilities": 0.01321,
+   "Materials": -0.00379,
+   "Communication": -0.00642,
+   "RealEstate": 0.01114,
+   "IN_Financials": -0.01392,
+   "RegionalBanks": -0.0024
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "2007.HK": {
+     "ret": 0.02296,
+     "excess": 0.05101
+    },
+    "1109.HK": {
+     "ret": 0.02105,
+     "excess": 0.04911
+    },
+    "1918.HK": {
+     "ret": -0.02897,
+     "excess": -0.00091
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.5556
+ },
+ {
+  "id": "russia_2022",
+  "date": "2022-02-24",
+  "cls": "GEOPOLITICAL",
+  "title": "Russia invades Ukraine",
+  "text": "Russia launches a full-scale invasion of Ukraine; oil and wheat prices surge, global stocks fall and Western sanctions are announced.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": 0.03811,
+   "nifty": -0.03312,
+   "vix_pts": -0.28,
+   "brent": 0.16615,
+   "gold": 0.00623,
+   "usd": 0.01248,
+   "inr": 0.01579,
+   "gbp": -0.01871,
+   "d10y_bps": -11.2,
+   "d5y_bps": -14.1,
+   "hy_bps": -13.70362,
+   "ig_bps": 0.49146
+  },
+  "sector_excess": {
+   "Energy": 0.03995,
+   "Financials": -0.04541,
+   "Technology": 0.00949,
+   "ConsumerDisc": 0.01813,
+   "Industrials": 0.01314,
+   "Healthcare": -0.00145,
+   "ConsumerStaples": -0.0325,
+   "Utilities": 0.01002,
+   "Materials": -0.01802,
+   "Communication": 0.00107,
+   "RealEstate": 0.00282,
+   "IN_Financials": -0.03234,
+   "RegionalBanks": 0.02775
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "UCG.MI": {
+     "ret": -0.22758,
+     "excess": -0.18912
+    },
+    "RBI.VI": {
+     "ret": -0.39538,
+     "excess": -0.35692
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.9167
+ },
+ {
+  "id": "netflix_2022",
+  "date": "2022-04-20",
+  "cls": "EARNINGS_GUIDANCE",
+  "title": "Netflix subscriber loss",
+  "text": "Netflix reports its first loss of subscribers in a decade and forecasts further losses; shares plunge.",
+  "k_star": 5,
+  "subject": "NFLX",
+  "factors": {
+   "spx": -0.06432,
+   "nifty": 0.01428,
+   "vix_pts": 12.15,
+   "brent": -0.02107,
+   "gold": -0.02802,
+   "usd": 0.01327,
+   "inr": 0.00325,
+   "gbp": -0.02074,
+   "d10y_bps": -14.1,
+   "d5y_bps": -9.2,
+   "hy_bps": 60.93384,
+   "ig_bps": 8.0475
+  },
+  "sector_excess": {
+   "Energy": -0.01756,
+   "Financials": 0.00318,
+   "Technology": -0.0028,
+   "ConsumerDisc": -0.02257,
+   "Industrials": 0.01383,
+   "Healthcare": 0.01938,
+   "ConsumerStaples": 0.05147,
+   "Utilities": 0.0227,
+   "Materials": -0.00014,
+   "Communication": -0.04607,
+   "RealEstate": 0.03834,
+   "IN_Financials": -0.01254,
+   "RegionalBanks": -0.00265
+  },
+  "roles": {
+   "SELF": {
+    "NFLX": {
+     "ret": -0.43088,
+     "excess": -0.32049
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "DIS": {
+     "ret": -0.12229,
+     "excess": -0.0119
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.8333
+ },
+ {
+  "id": "jackson_2022",
+  "date": "2022-08-26",
+  "cls": "MACROECONOMIC",
+  "title": "Powell Jackson Hole warning",
+  "text": "Fed Chair Powell warns at Jackson Hole that fighting inflation will bring some pain to households and businesses and US stocks tumble.",
+  "k_star": 4,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.05814,
+   "nifty": 0.00116,
+   "vix_pts": 4.09,
+   "brent": -0.02869,
+   "gold": -0.02552,
+   "usd": 0.00212,
+   "inr": -0.00143,
+   "gbp": -0.01119,
+   "d10y_bps": 10.69999,
+   "d5y_bps": 12.69999,
+   "hy_bps": 57.41656,
+   "ig_bps": 13.16577
+  },
+  "sector_excess": {
+   "Energy": 0.01853,
+   "Financials": 0.00894,
+   "Technology": -0.01619,
+   "ConsumerDisc": -0.00506,
+   "Industrials": -0.0027,
+   "Healthcare": 0.01094,
+   "ConsumerStaples": 0.01583,
+   "Utilities": 0.02497,
+   "Materials": -0.00672,
+   "Communication": 0.01251,
+   "RealEstate": 0.00712,
+   "IN_Financials": 0.00784,
+   "RegionalBanks": 0.00157
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.7778
+ },
+ {
+  "id": "cpi_2022",
+  "date": "2022-09-13",
+  "cls": "MACROECONOMIC",
+  "title": "Hot US CPI print",
+  "text": "US consumer prices come in hotter than expected raising expectations of larger Federal Reserve rate hikes as Wall Street suffers its worst day since June 2020.",
+  "k_star": 4,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.05768,
+   "nifty": -0.02261,
+   "vix_pts": 2.43,
+   "brent": -0.02819,
+   "gold": -0.0328,
+   "usd": 0.0132,
+   "inr": 0.00243,
+   "gbp": -0.01435,
+   "d10y_bps": 8.6,
+   "d5y_bps": 16.8,
+   "hy_bps": 43.30183,
+   "ig_bps": 2.20495
+  },
+  "sector_excess": {
+   "Energy": 0.01333,
+   "Financials": 0.01207,
+   "Technology": -0.01901,
+   "ConsumerDisc": 0.0057,
+   "Industrials": -0.01169,
+   "Healthcare": 0.02784,
+   "ConsumerStaples": 0.01809,
+   "Utilities": 0.01095,
+   "Materials": -0.0172,
+   "Communication": -0.00975,
+   "RealEstate": -0.0126,
+   "IN_Financials": 0.02761,
+   "RegionalBanks": 0.01871
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.75
+ },
+ {
+  "id": "ukbudget_2022",
+  "date": "2022-09-23",
+  "cls": "MACROECONOMIC",
+  "title": "UK mini-budget gilt crisis",
+  "text": "The UK government unveils unfunded tax cuts in a mini-budget; sterling hits a record low against the dollar and gilt yields surge.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.03127,
+   "nifty": -0.04604,
+   "vix_pts": 4.49,
+   "brent": -0.02178,
+   "gold": -0.00744,
+   "usd": 0.00808,
+   "inr": 0.01721,
+   "gbp": -0.03731,
+   "d10y_bps": 3.9,
+   "d5y_bps": 5.00002,
+   "hy_bps": 35.74747,
+   "ig_bps": 21.26675
+  },
+  "sector_excess": {
+   "Energy": -0.00968,
+   "Financials": 0.00243,
+   "Technology": -0.00286,
+   "ConsumerDisc": 0.00085,
+   "Industrials": 0.00314,
+   "Healthcare": 0.02673,
+   "ConsumerStaples": -0.00656,
+   "Utilities": -0.04862,
+   "Materials": 0.00737,
+   "Communication": -0.00068,
+   "RealEstate": -0.02937,
+   "IN_Financials": -0.02737,
+   "RegionalBanks": -0.00625
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "HSBC": {
+     "ret": -0.10917,
+     "excess": -0.08033
+    },
+    "BCS": {
+     "ret": -0.13944,
+     "excess": -0.1106
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.6111
+ },
+ {
+  "id": "adani_2023",
+  "date": "2023-01-25",
+  "cls": "REGULATORY_LEGAL",
+  "title": "Hindenburg report on Adani Group",
+  "text": "Short seller Hindenburg Research accuses India's Adani Group of stock manipulation and accounting fraud, and Adani group stocks plunge wiping out billions in market value.",
+  "k_star": 5,
+  "subject": "ADANIENT.NS",
+  "factors": {
+   "spx": 0.01485,
+   "nifty": -0.02771,
+   "vix_pts": 0.2,
+   "brent": -0.01904,
+   "gold": -0.00305,
+   "usd": 0.00177,
+   "inr": 0.00113,
+   "gbp": -0.00211,
+   "d10y_bps": 5.99999,
+   "d5y_bps": 5.39999,
+   "hy_bps": -9.70135,
+   "ig_bps": -3.12128
+  },
+  "sector_excess": {
+   "Energy": -0.0184,
+   "Financials": 0.00695,
+   "Technology": -0.00226,
+   "ConsumerDisc": 0.03984,
+   "Industrials": -0.00373,
+   "Healthcare": -0.01575,
+   "ConsumerStaples": -0.00678,
+   "Utilities": -0.02218,
+   "Materials": 0.0038,
+   "Communication": 0.00742,
+   "RealEstate": 0.01275,
+   "IN_Financials": -0.02425,
+   "RegionalBanks": 0.01353
+  },
+  "roles": {
+   "SELF": {
+    "ADANIENT.NS": {
+     "ret": -0.37962,
+     "excess": -0.35191
+    }
+   },
+   "GROUP": {
+    "ADANIPORTS.NS": {
+     "ret": -0.34951,
+     "excess": -0.32181
+    },
+    "ADANIPOWER.NS": {
+     "ret": -0.22574,
+     "excess": -0.19804
+    },
+    "ADANIGREEN.NS": {
+     "ret": -0.39725,
+     "excess": -0.36954
+    },
+    "ADANIENSOL.NS": {
+     "ret": -0.37603,
+     "excess": -0.34832
+    },
+    "ATGL.NS": {
+     "ret": -0.51246,
+     "excess": -0.48475
+    }
+   },
+   "PEER": {
+    "RELIANCE.NS": {
+     "ret": -0.03148,
+     "excess": -0.00377
+    },
+    "LT.NS": {
+     "ret": -0.02806,
+     "excess": -0.00036
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.5667
+ },
+ {
+  "id": "svb_2023",
+  "date": "2023-03-09",
+  "cls": "CREDIT_EVENT",
+  "title": "Silicon Valley Bank run",
+  "text": "Silicon Valley Bank announces a 1.8 billion dollar loss on securities sales and a capital raise; depositors rush to withdraw and regional bank shares plunge amid bank-run fears.",
+  "k_star": 3,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.03413,
+   "nifty": -0.0338,
+   "vix_pts": 7.41,
+   "brent": -0.02286,
+   "gold": 0.05383,
+   "usd": -0.0195,
+   "inr": -0.00142,
+   "gbp": 0.02127,
+   "d10y_bps": -46.1,
+   "d5y_bps": -67.00001,
+   "hy_bps": 126.31621,
+   "ig_bps": 26.98308
+  },
+  "sector_excess": {
+   "Energy": -0.01239,
+   "Financials": -0.06112,
+   "Technology": 0.00774,
+   "ConsumerDisc": 0.00259,
+   "Industrials": -0.00445,
+   "Healthcare": 0.0259,
+   "ConsumerStaples": 0.02498,
+   "Utilities": 0.02549,
+   "Materials": -0.0221,
+   "Communication": -0.0022,
+   "RealEstate": -0.00465,
+   "IN_Financials": -0.0146,
+   "RegionalBanks": -0.13438
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "WAL": {
+     "ret": -0.63499,
+     "excess": -0.53974
+    },
+    "ZION": {
+     "ret": -0.35797,
+     "excess": -0.26272
+    },
+    "KEY": {
+     "ret": -0.34258,
+     "excess": -0.24732
+    },
+    "CFG": {
+     "ret": -0.19512,
+     "excess": -0.09986
+    },
+    "FITB": {
+     "ret": -0.22084,
+     "excess": -0.12559
+    },
+    "RF": {
+     "ret": -0.1257,
+     "excess": -0.03044
+    },
+    "HBAN": {
+     "ret": -0.22992,
+     "excess": -0.13467
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.8611
+ },
+ {
+  "id": "cs_2023",
+  "date": "2023-03-15",
+  "cls": "CREDIT_EVENT",
+  "title": "Credit Suisse confidence crisis",
+  "text": "Credit Suisse shares hit a record low after its largest shareholder rules out further funding, deepening the confidence crisis in European banks.",
+  "k_star": 5,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": 0.02133,
+   "nifty": 0.00377,
+   "vix_pts": -2.35,
+   "brent": -0.0275,
+   "gold": 0.0158,
+   "usd": -0.00328,
+   "inr": 0.00136,
+   "gbp": 0.00862,
+   "d10y_bps": -3.20001,
+   "d5y_bps": -5.2,
+   "hy_bps": -2.98107,
+   "ig_bps": -12.59582
+  },
+  "sector_excess": {
+   "Energy": -0.0277,
+   "Financials": -0.02602,
+   "Technology": 0.01698,
+   "ConsumerDisc": 0.01442,
+   "Industrials": -0.0253,
+   "Healthcare": -0.0071,
+   "ConsumerStaples": -0.00844,
+   "Utilities": -0.02338,
+   "Materials": -0.02607,
+   "Communication": 0.03197,
+   "RealEstate": -0.03894,
+   "IN_Financials": 0.0085,
+   "RegionalBanks": 0.02845
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "UBS": {
+     "ret": 0.05303,
+     "excess": 0.05772
+    },
+    "DB": {
+     "ret": -0.0595,
+     "excess": -0.05481
+    },
+    "HSBC": {
+     "ret": -0.03416,
+     "excess": -0.02947
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.5
+ },
+ {
+  "id": "hamas_2023",
+  "date": "2023-10-09",
+  "cls": "GEOPOLITICAL",
+  "title": "Hamas attack on Israel",
+  "text": "Hamas launches a surprise attack on Israel triggering war; oil prices jump and defence stocks rally as markets price Middle East escalation risk.",
+  "k_star": 3,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": 0.01589,
+   "nifty": 0.00803,
+   "vix_pts": -1.36,
+   "brent": 0.01466,
+   "gold": 0.02282,
+   "usd": -0.00207,
+   "inr": 0.00031,
+   "gbp": 0.00851,
+   "d10y_bps": -18.90001,
+   "d5y_bps": -14.30001,
+   "hy_bps": 24.48564,
+   "ig_bps": -3.15698
+  },
+  "sector_excess": {
+   "Energy": 0.00546,
+   "Financials": -0.0065,
+   "Technology": 0.00016,
+   "ConsumerDisc": -0.00026,
+   "Industrials": 0.01209,
+   "Healthcare": -0.01212,
+   "ConsumerStaples": -0.01169,
+   "Utilities": 0.02446,
+   "Materials": -0.00153,
+   "Communication": 0.00997,
+   "RealEstate": 0.02136,
+   "IN_Financials": -0.00451,
+   "RegionalBanks": 0.00644
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {
+    "LMT": {
+     "ret": 0.08964,
+     "excess": 0.06165
+    },
+    "RTX": {
+     "ret": 0.05074,
+     "excess": 0.02276
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.5278
+ },
+ {
+  "id": "yen_2024",
+  "date": "2024-08-05",
+  "cls": "MACROECONOMIC",
+  "title": "Yen carry trade unwind",
+  "text": "A Bank of Japan rate hike and weak US jobs data trigger an unwinding of yen carry trades; the Nikkei suffers its worst day since 1987 and global volatility spikes.",
+  "k_star": 1,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.02997,
+   "nifty": -0.02679,
+   "vix_pts": 15.18,
+   "brent": -0.00664,
+   "gold": -0.01028,
+   "usd": -0.00504,
+   "inr": -0.0001,
+   "gbp": 0.00463,
+   "d10y_bps": -0.7,
+   "d5y_bps": 1.3,
+   "hy_bps": 18.95015,
+   "ig_bps": 4.18267
+  },
+  "sector_excess": {
+   "Energy": 0.00791,
+   "Financials": 0.00096,
+   "Technology": -0.00335,
+   "ConsumerDisc": 0.0017,
+   "Industrials": 0.01261,
+   "Healthcare": 0.00326,
+   "ConsumerStaples": 0.01029,
+   "Utilities": 0.00356,
+   "Materials": 0.00765,
+   "Communication": 0.00129,
+   "RealEstate": 0.00106,
+   "IN_Financials": 0.00229,
+   "RegionalBanks": 0.00151
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.8611
+ },
+ {
+  "id": "deepseek_2025",
+  "date": "2025-01-27",
+  "cls": "PRODUCT_LAUNCH",
+  "title": "DeepSeek model shock",
+  "text": "Chinese AI startup DeepSeek releases a low-cost reasoning model rivalling US models; Nvidia shares plunge and chip stocks sell off in the biggest one-day market value loss on record.",
+  "k_star": 1,
+  "subject": "NVDA",
+  "factors": {
+   "spx": -0.01458,
+   "nifty": -0.01139,
+   "vix_pts": 3.05,
+   "brent": -0.01809,
+   "gold": -0.01457,
+   "usd": -0.00093,
+   "inr": -0.00274,
+   "gbp": 0.00853,
+   "d10y_bps": -9.8,
+   "d5y_bps": -10.19998,
+   "hy_bps": 15.09623,
+   "ig_bps": -0.49342
+  },
+  "sector_excess": {
+   "Energy": 0.00418,
+   "Financials": 0.02559,
+   "Technology": -0.03444,
+   "ConsumerDisc": 0.02028,
+   "Industrials": 0.00118,
+   "Healthcare": 0.03703,
+   "ConsumerStaples": 0.04167,
+   "Utilities": -0.00857,
+   "Materials": 0.01514,
+   "Communication": 0.01976,
+   "RealEstate": 0.02445,
+   "IN_Financials": 0.00512,
+   "RegionalBanks": -0.00043
+  },
+  "roles": {
+   "SELF": {
+    "NVDA": {
+     "ret": -0.16968,
+     "excess": -0.12066
+    }
+   },
+   "GROUP": {},
+   "PEER": {
+    "AMD": {
+     "ret": -0.06374,
+     "excess": -0.01472
+    },
+    "AVGO": {
+     "ret": -0.17397,
+     "excess": -0.12495
+    },
+    "MU": {
+     "ret": -0.11707,
+     "excess": -0.06805
+    },
+    "INTC": {
+     "ret": -0.02592,
+     "excess": 0.02309
+    }
+   }
+  },
+  "missing": [],
+  "severity": 0.5278
+ },
+ {
+  "id": "tariffs_2025",
+  "date": "2025-04-03",
+  "cls": "GEOPOLITICAL",
+  "title": "Reciprocal tariffs announced",
+  "text": "The US President announces sweeping reciprocal tariffs on imports from most trading partners; global stock markets plunge and recession fears rise.",
+  "k_star": 4,
+  "subject": "^GSPC",
+  "factors": {
+   "spx": -0.12135,
+   "nifty": -0.03414,
+   "vix_pts": 30.82,
+   "brent": -0.16184,
+   "gold": -0.05559,
+   "usd": -0.00819,
+   "inr": 0.00487,
+   "gbp": -0.01456,
+   "d10y_bps": 6.6,
+   "d5y_bps": -3.69999,
+   "hy_bps": 92.96934,
+   "ig_bps": 34.1975
+  },
+  "sector_excess": {
+   "Energy": -0.06658,
+   "Financials": -0.00305,
+   "Technology": -0.02087,
+   "ConsumerDisc": -0.0113,
+   "Industrials": -0.00364,
+   "Healthcare": 0.04291,
+   "ConsumerStaples": 0.05759,
+   "Utilities": 0.04165,
+   "Materials": -0.02507,
+   "Communication": 0.01067,
+   "RealEstate": 0.00253,
+   "IN_Financials": 0.01784,
+   "RegionalBanks": -0.02257
+  },
+  "roles": {
+   "SELF": {},
+   "GROUP": {},
+   "PEER": {}
+  },
+  "missing": [],
+  "severity": 0.9722
+ }
+]

@@ -1,0 +1,116 @@
+# Historical analogue library. Descriptions are the author's own factual one-line
+# summaries of well-documented public events. Every NUMBER used by the engine is
+# computed from market data by scripts/build_analogues.py - none is typed here.
+# date  = first trading day on which markets could react (event day D)
+# self  = tickers of the entity directly hit      (role SELF)
+# group = tickers of its promoter/corporate group (role GROUP)
+# peers = tickers of comparable firms             (role PEER)
+episodes:
+- {id: lehman_2008, date: 2008-09-15, cls: CREDIT_EVENT, title: "Lehman Brothers files for bankruptcy",
+   text: "Lehman Brothers files for Chapter 11 bankruptcy after failing to find a buyer, the largest bankruptcy filing in US history, while Bank of America agrees to buy Merrill Lynch.",
+   self: [], group: [], peers: [MS, GS, C, BAC, JPM, WFC]}
+- {id: snb_2015, date: 2015-01-15, cls: MACROECONOMIC, title: "Swiss National Bank scraps franc cap",
+   text: "Swiss National Bank unexpectedly scraps the euro cap on the franc; the franc surges and currency brokers and banks face losses.",
+   self: [], group: [], peers: [UBS]}
+- {id: china_2015, date: 2015-08-24, cls: MACROECONOMIC, title: "China devaluation Black Monday",
+   text: "China's stock market crash and surprise yuan devaluation trigger a global sell-off on Black Monday as the Dow falls over 1,000 points at the open.",
+   self: [], group: [], peers: []}
+- {id: taper_2013, date: 2013-05-22, cls: MACROECONOMIC, title: "Taper tantrum",
+   text: "Fed Chair Bernanke signals the Fed could slow its bond purchases; emerging market currencies and the Indian rupee slump in a taper tantrum.",
+   self: [], group: [], peers: []}
+- {id: brexit_2016, date: 2016-06-24, cls: GEOPOLITICAL, title: "Brexit referendum",
+   text: "The UK votes to leave the European Union in a referendum; sterling plunges to a 31-year low and global stocks fall sharply.",
+   self: [], group: [], peers: [DB, UBS, HSBC, BCS]}
+- {id: volmageddon_2018, date: 2018-02-05, cls: MACROECONOMIC, title: "Volmageddon",
+   text: "The volatility index spikes in Volmageddon as the Dow suffers its largest point drop ever and inverse-VIX products collapse.",
+   self: [], group: [], peers: []}
+- {id: cambridge_2018, date: 2018-03-19, cls: REGULATORY_LEGAL, title: "Facebook Cambridge Analytica scandal",
+   text: "Facebook shares fall as reports reveal Cambridge Analytica improperly obtained data on tens of millions of users, prompting regulatory scrutiny.",
+   self: [META], group: [], peers: [GOOGL]}
+- {id: fb_earn_2018, date: 2018-07-26, cls: EARNINGS_GUIDANCE, title: "Facebook earnings plunge",
+   text: "Facebook shares plunge after second-quarter results show slowing user growth and a revenue outlook below expectations.",
+   self: [META], group: [], peers: [GOOGL, AMZN]}
+- {id: ilfs_2018, date: 2018-09-21, cls: CREDIT_EVENT, title: "IL&FS default NBFC crisis",
+   text: "Indian shadow lender IL&FS defaults on debt payments, triggering a liquidity crunch among non-bank financial companies as shares of Indiabulls Housing and other NBFCs tumble.",
+   self: [SAMMAANCAP.NS], group: [], peers: [BAJFINANCE.NS, MUTHOOTFIN.NS, CHOLAFIN.NS, LICHSGFIN.NS]}
+- {id: boeing_2019, date: 2019-03-11, cls: OPERATIONAL, title: "Boeing 737 MAX second crash",
+   text: "Boeing shares fall after a second 737 MAX crash in Ethiopia as regulators move to ground the aircraft worldwide.",
+   self: [BA], group: [], peers: []}
+- {id: chevron_anadarko_2019, date: 2019-04-12, cls: MERGER_ACQUISITION, title: "Chevron to acquire Anadarko",
+   text: "Chevron agrees to acquire Anadarko Petroleum in a 33 billion dollar deal, setting up a bidding contest with Occidental.",
+   self: [CVX], group: [], peers: [OXY]}
+- {id: uschina_2019, date: 2019-08-05, cls: GEOPOLITICAL, title: "Yuan breaks 7, trade war escalates",
+   text: "China allows the yuan to weaken past 7 per dollar as the US-China trade war escalates and global equities sell off.",
+   self: [], group: [], peers: []}
+- {id: iphone_2019, date: 2019-09-11, cls: PRODUCT_LAUNCH, title: "Apple iPhone 11 launch",
+   text: "Apple unveils the iPhone 11 lineup with lower pricing and new cameras at its annual product event; shares edge higher.",
+   self: [AAPL], group: [], peers: []}
+- {id: abqaiq_2019, date: 2019-09-16, cls: GEOPOLITICAL, title: "Abqaiq drone attack",
+   text: "Drone attacks on Saudi Aramco's Abqaiq oil processing facility cut roughly half of Saudi output and Brent crude surges.",
+   self: [], group: [], peers: []}
+- {id: fedcut_2020, date: 2020-03-03, cls: MACROECONOMIC, title: "Fed emergency rate cut",
+   text: "The Federal Reserve cuts interest rates by half a point in an emergency move as coronavirus fears grow and US stocks swing sharply.",
+   self: [], group: [], peers: []}
+- {id: yesbank_2020, date: 2020-03-06, cls: CREDIT_EVENT, title: "Yes Bank moratorium",
+   text: "Reserve Bank of India imposes a moratorium on Yes Bank capping withdrawals amid a capital crisis and the lender's shares collapse.",
+   self: [YESBANK.NS], group: [], peers: [ICICIBANK.NS, SBIN.NS, KOTAKBANK.NS, HDFCBANK.NS]}
+- {id: oilwar_2020, date: 2020-03-09, cls: COMMODITY_SHOCK, title: "Saudi-Russia oil price war",
+   text: "Saudi Arabia launches an oil price war after OPEC+ talks with Russia collapse; crude prices crash by about a quarter in the biggest one-day drop since 1991.",
+   self: [], group: [], peers: []}
+- {id: covid_2020, date: 2020-03-12, cls: PANDEMIC_DISASTER, title: "WHO declares COVID-19 pandemic",
+   text: "The WHO declares the coronavirus a pandemic as the US imposes a European travel ban and global stock markets plunge in their worst day since 1987.",
+   self: [], group: [], peers: []}
+- {id: hertz_2020, date: 2020-04-16, cls: CREDIT_EVENT, title: "Hertz bankruptcy warning",
+   text: "Car rental company Hertz seeks a coronavirus bailout and could be forced to file for bankruptcy by the summer according to a report, and rival Avis shares fall in sympathy.",
+   self: [HTZ], group: [], peers: [CAR]}
+- {id: wti_2020, date: 2020-04-20, cls: COMMODITY_SHOCK, title: "WTI crude futures turn negative",
+   text: "US crude oil futures turn negative for the first time in history as storage fills up amid collapsing demand and energy stocks and oil funds plunge.",
+   self: [], group: [], peers: []}
+- {id: nvidia_arm_2020, date: 2020-09-14, cls: MERGER_ACQUISITION, title: "Nvidia to buy Arm",
+   text: "Nvidia agrees to buy chip designer Arm from SoftBank for 40 billion dollars, raising regulatory questions across the semiconductor industry.",
+   self: [NVDA], group: [], peers: [AMD, INTC]}
+- {id: pfizer_2020, date: 2020-11-09, cls: PANDEMIC_DISASTER, title: "Pfizer vaccine efficacy news",
+   text: "Pfizer says its coronavirus vaccine is more than 90 percent effective in early analysis; airline and energy stocks soar while stay-at-home stocks fall.",
+   self: [PFE], group: [], peers: []}
+- {id: archegos_2021, date: 2021-03-29, cls: CREDIT_EVENT, title: "Archegos forced liquidation",
+   text: "Banks including Credit Suisse and Nomura warn of significant losses after the forced liquidation of leveraged positions held by family office Archegos Capital and bank shares tumble.",
+   self: [NMR], group: [], peers: [MS, GS]}
+- {id: evergrande_2021, date: 2021-09-20, cls: CREDIT_EVENT, title: "Evergrande default fears",
+   text: "China Evergrande, the world's most indebted property developer, faces default as creditors demand payment and global equities sell off on contagion fears.",
+   self: [], group: [], peers: [2007.HK, 1109.HK, 1918.HK]}
+- {id: russia_2022, date: 2022-02-24, cls: GEOPOLITICAL, title: "Russia invades Ukraine",
+   text: "Russia launches a full-scale invasion of Ukraine; oil and wheat prices surge, global stocks fall and Western sanctions are announced.",
+   self: [], group: [], peers: [UCG.MI, RBI.VI]}
+- {id: netflix_2022, date: 2022-04-20, cls: EARNINGS_GUIDANCE, title: "Netflix subscriber loss",
+   text: "Netflix reports its first loss of subscribers in a decade and forecasts further losses; shares plunge.",
+   self: [NFLX], group: [], peers: [DIS]}
+- {id: jackson_2022, date: 2022-08-26, cls: MACROECONOMIC, title: "Powell Jackson Hole warning",
+   text: "Fed Chair Powell warns at Jackson Hole that fighting inflation will bring some pain to households and businesses and US stocks tumble.",
+   self: [], group: [], peers: []}
+- {id: cpi_2022, date: 2022-09-13, cls: MACROECONOMIC, title: "Hot US CPI print",
+   text: "US consumer prices come in hotter than expected raising expectations of larger Federal Reserve rate hikes as Wall Street suffers its worst day since June 2020.",
+   self: [], group: [], peers: []}
+- {id: ukbudget_2022, date: 2022-09-23, cls: MACROECONOMIC, title: "UK mini-budget gilt crisis",
+   text: "The UK government unveils unfunded tax cuts in a mini-budget; sterling hits a record low against the dollar and gilt yields surge.",
+   self: [], group: [], peers: [HSBC, BCS]}
+- {id: adani_2023, date: 2023-01-25, cls: REGULATORY_LEGAL, title: "Hindenburg report on Adani Group",
+   text: "Short seller Hindenburg Research accuses India's Adani Group of stock manipulation and accounting fraud, and Adani group stocks plunge wiping out billions in market value.",
+   self: [ADANIENT.NS], group: [ADANIPORTS.NS, ADANIPOWER.NS, ADANIGREEN.NS, ADANIENSOL.NS, ATGL.NS], peers: [RELIANCE.NS, LT.NS]}
+- {id: svb_2023, date: 2023-03-09, cls: CREDIT_EVENT, title: "Silicon Valley Bank run",
+   text: "Silicon Valley Bank announces a 1.8 billion dollar loss on securities sales and a capital raise; depositors rush to withdraw and regional bank shares plunge amid bank-run fears.",
+   self: [], group: [], peers: [WAL, ZION, KEY, CFG, FITB, RF, HBAN]}
+- {id: cs_2023, date: 2023-03-15, cls: CREDIT_EVENT, title: "Credit Suisse confidence crisis",
+   text: "Credit Suisse shares hit a record low after its largest shareholder rules out further funding, deepening the confidence crisis in European banks.",
+   self: [], group: [], peers: [UBS, DB, HSBC]}
+- {id: hamas_2023, date: 2023-10-09, cls: GEOPOLITICAL, title: "Hamas attack on Israel",
+   text: "Hamas launches a surprise attack on Israel triggering war; oil prices jump and defence stocks rally as markets price Middle East escalation risk.",
+   self: [], group: [], peers: [LMT, RTX]}
+- {id: yen_2024, date: 2024-08-05, cls: MACROECONOMIC, title: "Yen carry trade unwind",
+   text: "A Bank of Japan rate hike and weak US jobs data trigger an unwinding of yen carry trades; the Nikkei suffers its worst day since 1987 and global volatility spikes.",
+   self: [], group: [], peers: []}
+- {id: deepseek_2025, date: 2025-01-27, cls: PRODUCT_LAUNCH, title: "DeepSeek model shock",
+   text: "Chinese AI startup DeepSeek releases a low-cost reasoning model rivalling US models; Nvidia shares plunge and chip stocks sell off in the biggest one-day market value loss on record.",
+   self: [NVDA], group: [], peers: [AMD, AVGO, MU, INTC]}
+- {id: tariffs_2025, date: 2025-04-03, cls: GEOPOLITICAL, title: "Reciprocal tariffs announced",
+   text: "The US President announces sweeping reciprocal tariffs on imports from most trading partners; global stock markets plunge and recession fears rise.",
+   self: [], group: [], peers: []}

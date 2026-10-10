@@ -1,0 +1,7 @@
+{
+ "kappa_fitted": 2.671,
+ "kappa_used": 2.671,
+ "n": 36,
+ "r2_through_origin": 0.706,
+ "note": "ln(1+dHY/S0) = -kappa*spx over analogue episodes; HY spread is an ETF-based proxy."
+}
