@@ -1,0 +1,25 @@
+# Replay scenarios shown in the dashboard. Windows are chosen from publicly documented events
+# inside the span covered by the public datasets (2020-04-09 .. 2020-07-16).
+# Selection is made BEFORE tuning any threshold; results are reported as they come out.
+scenarios:
+- id: hertz_apr2020
+  title: "Hertz bankruptcy warning"
+  start: 2020-04-14
+  end: 2020-04-21
+  blurb: "Car-rental giant Hertz is reported to be seeking a bailout and may file for bankruptcy; rival Avis falls in sympathy."
+  expected_entities: [htz]
+  focus: 'hertz|\$htz|avis|\$car(?!\w)|car rental|rental car|bailout|bankruptc'
+- id: wti_apr2020
+  title: "Crude oil goes negative"
+  start: 2020-04-17
+  end: 2020-04-24
+  blurb: "US crude futures settle below zero for the first time. Energy credits and oil-linked obligors are exposed."
+  expected_entities: [xom, cvx, oxy, apa]
+  focus: 'oil|crude|wti|\$uso|\$cl_f|brent|opec|\$xle|storage|negative price'
+- id: selloff_jun2020
+  title: "June 2020 market sell-off"
+  start: 2020-06-08
+  end: 2020-06-13
+  blurb: "Second-wave fears and a Fed outlook trigger the worst day for US equities since March."
+  expected_entities: []
+  focus: 'sell.?off|selloff|worst day|second wave|crash|plunge|powell|\$spy|\$spx|dow|circuit'

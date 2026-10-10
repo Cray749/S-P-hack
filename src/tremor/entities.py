@@ -85,53 +85,82 @@ class Mention:
     cashtag: bool = False
 
 
+def _trie_regex(words: list[str]) -> str:
+    """Compile literals into a prefix-sharing regex (greedy, so the longest alias wins)."""
+    trie: dict = {}
+    for w in words:
+        node = trie
+        for ch in w:
+            node = node.setdefault(ch, {})
+        node[""] = True
+
+    def build(node: dict) -> str:
+        terminal = "" in node
+        kids = sorted((k, v) for k, v in node.items() if k != "")
+        if not kids:
+            return ""
+        alts = [re.escape(k) + build(v) for k, v in kids]
+        body = alts[0] if len(alts) == 1 else "(?:" + "|".join(alts) + ")"
+        return body if not terminal else f"(?:{body})?"
+
+    return build(trie)
+
+
 @dataclass
 class Linker:
-    """Dictionary linker: word-boundary alias match, cashtags, case-sensitive for short/upper aliases."""
+    """Dictionary linker: boundary-aware alias match, cashtags, case-sensitive for short/upper aliases.
+
+    One trie-compiled regex per case mode keeps linking O(len(text)) regardless of alias count.
+    """
 
     table: EntityTable
-    _patterns: list[tuple[re.Pattern[str], str, str, bool]] = field(default_factory=list)
+    _ci: dict[str, str] = field(default_factory=dict)
+    _cs: dict[str, str] = field(default_factory=dict)
+    _ci_re: re.Pattern[str] | None = None
+    _cs_re: re.Pattern[str] | None = None
 
     def __post_init__(self) -> None:
-        raw: list[tuple[str, str, bool]] = []
-        for e in self.table.by_id.values():
-            if e.kind == "group":
-                for a in e.aliases:
-                    raw.append((a, e.id, False))
-                continue
+        def add(alias: str, eid: str) -> None:
+            cash = alias.startswith("$")
+            ci = cash or not (len(alias) <= 5 or alias.isupper())
+            target = self._ci if ci else self._cs
+            key = alias.lower() if ci else alias
+            target.setdefault(key, eid)
+
+        # listed parents first so a shared alias resolves to the parent, not a subsidiary
+        order = sorted(self.table.by_id.values(), key=lambda e: (e.kind != "listed", e.kind != "group"))
+        for e in order:
             for a in e.aliases:
-                raw.append((a, e.id, a.startswith("$")))
-            raw.append((e.name, e.id, False))
+                add(a, e.id)
+            if e.kind != "group":
+                add(e.name, e.id)
             if e.ticker:
                 base = e.ticker.split(".")[0]
-                raw.append((f"${base}", e.id, True))
+                add(f"${base}", e.id)
                 if len(base) >= 3 and base not in _AMBIGUOUS_BARE and e.country != "IN":
-                    raw.append((base, e.id, False))
-        raw.sort(key=lambda t: -len(t[0]))  # longest alias first
-        seen: set[tuple[str, str]] = set()
-        for alias, eid, cash in raw:
-            if (alias, eid) in seen:
-                continue
-            seen.add((alias, eid))
-            esc = re.escape(alias)
-            if cash:
-                pat = re.compile(rf"(?<![\w$]){esc}(?![\w])", re.IGNORECASE)
-            else:
-                flags = 0 if (len(alias) <= 5 or alias.isupper()) else re.IGNORECASE
-                pat = re.compile(rf"(?<![\w$]){esc}(?![\w])", flags)
-            self._patterns.append((pat, eid, alias, cash))
+                    add(base, e.id)
+        wrap = lambda keys: re.compile(r"(?<![\w$])" + _trie_regex(sorted(keys)) + r"(?![\w])", 0)  # noqa: E731
+        self._cs_re = wrap(list(self._cs))
+        self._ci_re = re.compile(r"(?<![\w$])" + _trie_regex(sorted(self._ci)) + r"(?![\w])", re.IGNORECASE)
 
     def link(self, text: str) -> list[Mention]:
-        out: list[Mention] = []
-        taken: list[tuple[int, int]] = []
-        for pat, eid, alias, cash in self._patterns:
-            for m in pat.finditer(text):
-                s, e = m.span()
-                if any(s < te and e > ts for ts, te in taken):
+        found: list[Mention] = []
+        for rx, table, ci in ((self._cs_re, self._cs, False), (self._ci_re, self._ci, True)):
+            assert rx is not None
+            for m in rx.finditer(text):
+                if m.end() == m.start():
                     continue
-                taken.append((s, e))
-                out.append(Mention(eid, alias, s, cash))
-        out.sort(key=lambda m: m.start)
+                surface = m.group(0)
+                eid = table.get(surface.lower() if ci else surface)
+                if eid:
+                    found.append(Mention(eid, surface, m.start(), surface.startswith("$")))
+        found.sort(key=lambda m: (m.start, -len(m.alias)))
+        out: list[Mention] = []
+        end = -1
+        for m in found:  # drop overlaps, keep the earliest/longest
+            if m.start >= end:
+                out.append(m)
+                end = m.start + len(m.alias)
         return out
 
 
