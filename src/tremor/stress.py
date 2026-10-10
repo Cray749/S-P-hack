@@ -34,6 +34,7 @@ class StressResult:
     fallback_share: dict[str, float]
     components: dict[str, float] = field(default_factory=dict)   # median loss split: loans/bonds/swaps/cva
     ob_median: np.ndarray | None = None                          # (O,) median loss for every obligor
+    ob_p95: np.ndarray | None = None                             # (O,) 95th-percentile loss for every obligor
 
 
 class StressModel:
@@ -188,7 +189,8 @@ class StressModel:
         comp = {"loans_ecl": float(np.median(ecl.sum(1))), "bonds_mtm": float(np.median(-bond.sum(1))),
                 "swaps_mtm": float(np.median(-swap.sum(1))), "swaps_cva": float(np.median(cva.sum(1)))}
         del w
-        return StressResult(total, by_ob, self.book.value, shock, fb, comp, np.median(by_ob_all, axis=0))
+        return StressResult(total, by_ob, self.book.value, shock, fb, comp, np.median(by_ob_all, axis=0),
+                            np.percentile(by_ob_all, 95, axis=0))
 
     # ---------------------------------------------------------------------------------------------
     @staticmethod

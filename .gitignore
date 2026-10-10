@@ -10,3 +10,4 @@ data/cache/
 data/ledger.db
 data/_raw/
 .DS_Store
+.claude/

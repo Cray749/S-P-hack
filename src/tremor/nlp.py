@@ -312,6 +312,10 @@ EXEMPLARS: dict[str, list[str]] = {
         "Morgan Stanley raises price target on shares and keeps overweight",
         "Analyst upgrades stock to buy and initiates coverage",
         "Stocks on the move: top premarket gainers",
+        "Credit Suisse maintains outperform rating on the stock and lowers price target",
+        "Analyst reiterates market perform and sets a new price target",
+        "Jefferies upgrades shares to buy with a higher target",
+        "Benzinga's top upgrades, downgrades and initiations for the day",
     ],
 }
 LABELS = C.EVENT_CLASSES + ["OTHER"]
@@ -327,8 +331,13 @@ _RULES: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"recall|outage|cyber|layoff|furlough|shutdown|plant clos|grounded", re.I), "OPERATIONAL"),
     (re.compile(r"earnings|\beps\b|guidance|quarterly results|revenue", re.I), "EARNINGS_GUIDANCE"),
     (re.compile(r"\blaunch|unveil|debut|new product|approval", re.I), "PRODUCT_LAUNCH"),
+    # routine analyst chatter: never an event (checked last so it can outvote the cue words above)
+    (re.compile(r"price target|maintains|reiterat|initiates|outperform|underperform|market perform|overweight|"
+                r"underweight|\banalyst|top gainers|premarket|upgrades? .{0,40}to (buy|hold|neutral)|"
+                r"downgrades? .{0,40}to (hold|neutral|sell)", re.I), "OTHER"),
 ]
 RULE_BONUS = 0.10
+OTHER_BONUS = 0.28
 CLASS_TEMP = 0.06
 
 
@@ -352,7 +361,7 @@ class EventClassifier:
         for i, t in enumerate(texts):
             for rx, lab in _RULES:
                 if rx.search(t):
-                    bonus[i, LABELS.index(lab)] += RULE_BONUS
+                    bonus[i, LABELS.index(lab)] += OTHER_BONUS if lab == "OTHER" else RULE_BONUS
         z = (logits + bonus) / CLASS_TEMP
         z -= z.max(axis=1, keepdims=True)
         p = np.exp(z)

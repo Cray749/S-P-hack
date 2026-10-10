@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TREMOR · event-to-exposure risk engine</title>
+<meta name="description" content="Turns news and social text into book-specific loss ranges, traceable to sources and exactly reproducible.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='6' fill='%23ff6a1f'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23ff2e7e' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%238a45ff' stroke-width='3' stroke-dasharray='6 6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div id="app">
+
+  <header id="top">
+    <canvas id="seismo"></canvas>
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc23d"/><stop offset=".55" stop-color="#ff6a1f"/><stop offset="1" stop-color="#ff2e7e"/></linearGradient></defs>
+        <circle cx="32" cy="32" r="6" fill="url(#g1)"/>
+        <circle cx="32" cy="32" r="14" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".95"/>
+        <circle cx="32" cy="32" r="22" fill="none" stroke="#ff2e7e" stroke-width="2.5" stroke-dasharray="9 7" opacity=".8"><animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="24s" repeatCount="indefinite"/></circle>
+        <circle cx="32" cy="32" r="29" fill="none" stroke="#8a45ff" stroke-width="2" stroke-dasharray="3 9" opacity=".7"><animateTransform attributeName="transform" type="rotate" from="360 32 32" to="0 32 32" dur="40s" repeatCount="indefinite"/></circle>
+      </svg>
+      <div><h1>TREMOR</h1><small>event &rarr; exposure &rarr; loss range</small></div>
+    </div>
+    <div class="scen" id="scen"></div>
+    <div class="transport">
+      <button class="pbtn" id="play" title="Play / pause (space)" aria-label="Play or pause">&#9654;</button>
+      <div class="speed" id="speed">
+        <button data-h="1">1h/s</button><button data-h="4" class="on">4h/s</button><button data-h="12">12h/s</button><button data-h="36">36h/s</button>
+      </div>
+      <div class="clock"><small>replay clock (UTC)</small><span id="clock">--</span></div>
+      <div class="chain" title="SHA-256 hash chain of the append-only ledger"><i></i><span id="chain">ledger&nbsp;&middot;&nbsp;...</span></div>
+    </div>
+  </header>
+
+  <nav id="tabs">
+    <button data-v="control" class="on">Control room</button>
+    <button data-v="rebal">Module A &middot; Rebalancer</button>
+    <button data-v="proof">Proof &amp; evaluation</button>
+    <button data-v="wire">Live wire</button>
+    <button data-v="arch">Architecture</button>
+    <span class="grow"></span>
+    <span class="meta" id="meta">--</span>
+  </nav>
+
+  <main>
+    <!-- ===================== CONTROL ROOM ===================== -->
+    <section class="view on" id="v-control">
+      <div class="grid3">
+        <div class="panel">
+          <h3>Tremor feed <span class="tag" id="feedcount">0 events</span></h3>
+          <div class="speed" id="minimp" style="margin:10px 12px 0;width:max-content"><button data-m="0">all</button><button data-m="4.5" class="on">impact ≥ 4.5</button><button data-m="6">≥ 6</button></div>
+          <div id="feed"><div class="empty">Pick an episode above and press play.<br>Events appear here as the ledger replays.</div></div>
+        </div>
+
+        <div class="panel stage">
+          <h3>Epicentre &middot; exposure map <span class="tag" id="stagetag">102 obligors</span></h3>
+          <canvas id="constel"></canvas>
+          <div class="hint">hover a node &middot; click to pin<br><span id="epihint"></span></div>
+          <div class="legend">
+            <span><i style="border-color:#ff6a1f"></i>control (subsidiary / parent)</span>
+            <span><i style="border-color:#ff2e7e;border-top-style:dotted"></i>promoter group</span>
+            <span><i style="border-color:#7fd4ff;border-top-style:dashed"></i>industry peer</span>
+          </div>
+        </div>
+
+        <div class="panel impact">
+          <h3>Book impact <span class="tag" id="sigid">--</span></h3>
+          <div class="pad" id="impact"><div class="empty">Select a tremor to see the loss range, its drivers and what would break the limit.</div></div>
+        </div>
+      </div>
+
+      <div class="panel dock">
+        <div class="dockbar" id="dockbar">
+          <button data-d="evidence" class="on">Evidence &amp; lineage</button>
+          <button data-d="replay">Replay &amp; integrity</button>
+          <button data-d="trigger">Module B log</button>
+          <button data-d="paths">Obligor paths</button>
+        </div>
+        <div class="dockbody" id="dock"></div>
+      </div>
+    </section>
+
+    <!-- ===================== MODULE A ===================== -->
+    <section class="view" id="v-rebal">
+      <div class="row2">
+        <div class="panel"><h3>Index weights over time <span class="tag" id="a-turn">turnover --</span></h3><div class="pad"><svg id="a-chart" viewBox="0 0 700 360" style="width:100%"></svg><div id="a-why" class="faint mono" style="font-size:11px;margin-top:6px"></div></div></div>
+        <div class="panel"><h3>Current weights <span class="tag">20-stock mock index</span></h3><div class="pad bars" id="a-bars"></div>
+          <div class="pad" style="padding-top:0"><div class="callout"><b>How it works.</b> Each signal that names an index stock adds <span class="mono">sentiment &times; confidence &times; impact/10</span> to that stock's score. Scores decay with a 36&nbsp;h half-life. Weights are an exponentially tilted equal-weight index with 2%&ndash;10% caps and a 0.4% no-trade band so noise does not churn the book. This module is a second subscriber on the same bus: <b>no engine change was needed</b>.</div></div></div>
+      </div>
+    </section>
+
+    <!-- ===================== PROOF ===================== -->
+    <section class="view" id="v-proof"><div id="proof"><div class="empty">loading evaluation...</div></div></section>
+
+    <!-- ===================== LIVE WIRE ===================== -->
+    <section class="view" id="v-wire">
+      <div class="row2">
+        <div class="panel"><h3>Post a headline into the ledger <span class="tag">live path</span></h3><div class="pad">
+          <p class="mute" style="font-size:13px">Anything posted here is appended to the same hash-chained ledger and flows through the identical pipeline as replayed data. Try posting a rumour as <b>social</b>, then a report from a news publisher, and watch the status flip.</p>
+          <label>Text</label><textarea id="w-text" rows="3">Hertz is reported to be preparing a Chapter 11 bankruptcy filing as lenders refuse to extend its fleet financing</textarea>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><label>Source</label><select id="w-src"><option value="social">social</option><option value="news">news</option></select></div>
+          <div><label>Publisher</label><input type="text" id="w-pub" value="twitter"></div></div>
+          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap"><button class="btn" id="w-send">Append to ledger</button>
+            <button class="btn ghost" id="w-ex1">Example: news confirmation</button><button class="btn ghost" id="w-ex2">Example: unrelated oil shock</button></div>
+        </div></div>
+        <div class="panel"><h3>Result <span class="tag" id="w-tag">--</span></h3><div class="pad" id="w-out"><div class="empty">Signals produced by your post appear here.</div></div></div>
+      </div>
+    </section>
+
+    <!-- ===================== ARCHITECTURE ===================== -->
+    <section class="view" id="v-arch"><div class="panel"><h3>Architecture <span class="tag">kappa-style, event-sourced</span></h3><div class="pad" id="arch"></div></div></section>
+  </main>
+</div>
+<div id="tip"></div>
+<script src="/static/viz.js"></script>
+<script src="/static/proof.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

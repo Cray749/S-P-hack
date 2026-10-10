@@ -64,6 +64,16 @@ class Components:
                 log.warning("book hash %s differs from committed snapshot %s", self.book.hash, ref)
 
 
+def impact_score(ev: Event, p_sys: float) -> float:
+    """Impact 1-10: a transparent triage score, not a price forecast (see docs/EVALUATION.md).
+
+    0.40 evidence intensity (volume, independent corroboration, polarity)  + 0.30 P(systemic | class)
+    + 0.20 confidence + 0.10 |sentiment|, mapped linearly onto [1, 10].
+    """
+    raw = 0.40 * ev.intensity + 0.30 * p_sys + 0.20 * ev.confidence + 0.10 * abs(ev.sentiment)
+    return float(np.clip(1.0 + 9.0 * raw, 1.0, 10.0))
+
+
 class Pipeline:
     """Event state + emitted signals for one pass over the ledger."""
 
@@ -89,6 +99,8 @@ class Pipeline:
             return []
         if ev.n_news == 0 and ev.n_social < MIN_SOCIAL_EVIDENCE:
             return []
+        if ev.n_docs < 2 and not (ev.n_news >= 1 and ev.named_entities()):
+            return []                                  # a lone unnamed item is not yet an event
         key = (ev.status, ev.independent_sources, int(np.log2(max(ev.n_docs, 1))))
         if self._key.get(ev.id) == key:
             return []
@@ -115,6 +127,7 @@ class Pipeline:
         post = c.lib.posterior(ev.centroid, cp, ev.intensity, ev.last_ts)
         if post is None:
             return None
+        impact = impact_score(ev, p_sys)
         exposures = c.graph.propagate(named)
         seed = int(hashlib.sha256(f"{ev.id}|{offset}|{c.config_hash}|{c.book.hash}".encode()).hexdigest()[:8], 16)
         res = c.stress.run(post, exposures, seed, p_sys=p_sys)
@@ -131,13 +144,30 @@ class Pipeline:
                                    exposure_usd_m=round(exp, 3), expected_loss_usd_m=round(float(np.median(arr)), 4),
                                    loss_p95_usd_m=round(float(np.percentile(arr, 95)), 4)))
         hits.sort(key=lambda h: -h.expected_loss_usd_m)
+        market_role: set[str] = set()
+        if len(hits) < 6:
+            # market-wide or lightly-named event: surface the obligors that carry the loss through sector / market moves
+            by_ratio = sorted(range(c.stress.O), key=lambda j: -(res.ob_median[j] / max(float(c.stress.expo.get(c.stress.ob_ids[j], 0.0)), 1.0)))  # type: ignore[index]
+            for j in by_ratio:
+                eid = c.stress.ob_ids[j]
+                if eid in exposures or float(res.ob_median[j]) <= 0:  # type: ignore[index]
+                    continue
+                exp = float(c.stress.expo.get(eid, 0.0))
+                hits.append(ObligorHit(entity_id=eid, name=ents[eid].name, role="MARKET", edge="MARKET",
+                                       path=["market-wide shock", f"{c.stress.ob_sector[j]} sector", ents[eid].name],
+                                       exposure_usd_m=round(exp, 3), expected_loss_usd_m=round(float(res.ob_median[j]), 4),  # type: ignore[index]
+                                       loss_p95_usd_m=round(float(res.ob_p95[j]), 4)))  # type: ignore[index]
+                market_role.add(eid)
+                if len(market_role) >= 14:
+                    break
+            hits.sort(key=lambda h: -h.expected_loss_usd_m)
         omap = []
         st = c.stress
         for j, eid in enumerate(st.ob_ids):
             omap.append(ObligorPoint(entity_id=eid, name=ents[eid].name, sector=st.ob_sector[j], region=st.ob_region[j],
                                      exposure_usd_m=round(float(st.expo.get(eid, 0.0)), 2),
                                      loss_p50_usd_m=round(float(res.ob_median[j]), 4),  # type: ignore[index]
-                                     role=exposures[eid].role if eid in exposures else None))  # type: ignore[arg-type]
+                                     role=exposures[eid].role if eid in exposures else ("MARKET" if eid in market_role else None)))  # type: ignore[arg-type]
         counts, edges = np.histogram(res.loss_total, bins=40)
         named_obl = [e for e in named if e in res.by_obligor or e in c.stress.oid]
 
@@ -151,7 +181,7 @@ class Pipeline:
         probs = {C.EVENT_CLASSES[i]: round(float(p), 4) for i, p in enumerate(cp)}
         core = {
             "event_id": ev.id, "version": version, "offset": offset, "entities": named, "cls": ev.top_class,
-            "sentiment": round(ev.sentiment, 4), "impact": round(post.impact, 2), "status": ev.status,
+            "sentiment": round(ev.sentiment, 4), "impact": round(impact, 2), "status": ev.status,
             "confidence": round(ev.confidence, 3), "n_docs": ev.n_docs, "src": ev.independent_sources,
             "p5": round(q["p5"], 2), "p50": round(q["p50"], 2), "p95": round(q["p95"], 2),
             "book": c.book.hash, "cfg": c.config_hash,
@@ -160,7 +190,7 @@ class Pipeline:
         return Signal(
             signal_id=f"{ev.id}.v{version}", event_id=ev.id, version=version, as_of=ev.last_ts, ledger_offset=offset,
             config_hash=c.config_hash, book_hash=c.book.hash, entities=named, sentiment=ev.sentiment,
-            event_class=ev.top_class, impact=round(post.impact, 1), class_probs=probs, status=ev.status,  # type: ignore[arg-type]
+            event_class=ev.top_class, impact=round(impact, 1), class_probs=probs, status=ev.status,  # type: ignore[arg-type]
             confidence=round(ev.confidence, 3), independent_sources=ev.independent_sources,
             corroboration_weight=round(ev.corroboration, 3), n_docs=ev.n_docs, n_social=ev.n_social,
             n_news=ev.n_news, novelty=round(ev.novelty, 3), headline=ev.headline(),

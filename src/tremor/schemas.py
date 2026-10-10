@@ -46,7 +46,7 @@ class Evidence(BaseModel):
 class ObligorHit(BaseModel):
     entity_id: str
     name: str
-    role: Literal["SELF", "GROUP", "PEER"]
+    role: Literal["SELF", "GROUP", "PEER", "MARKET"]
     edge: str
     path: list[str]
     exposure_usd_m: float
@@ -80,7 +80,7 @@ class ObligorPoint(BaseModel):
     region: str
     exposure_usd_m: float
     loss_p50_usd_m: float
-    role: Literal["SELF", "GROUP", "PEER"] | None = None
+    role: Literal["SELF", "GROUP", "PEER", "MARKET"] | None = None
 
 
 class Signal(BaseModel):

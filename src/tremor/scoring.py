@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from pathlib import Path
 
 import numpy as np
@@ -11,6 +12,15 @@ from .entities import get_linker
 from .events import DocState
 from .nlp import DocCache, Embedder, EventClassifier, SentimentCascade
 from .schemas import Document
+
+
+_CASHTAG = re.compile(r"\$[A-Za-z_]{1,6}\b")
+_HASHTAG = re.compile(r"#\w+")
+
+
+def is_spam(text: str) -> bool:
+    """Cashtag/hashtag walls ('$AAL $ACB $AMC $AMD ...') carry no event information and poison entity links."""
+    return len(set(t.lower() for t in _CASHTAG.findall(text))) >= 4 or len(_HASHTAG.findall(text)) >= 5
 
 
 class Scorer:
@@ -49,8 +59,13 @@ class Scorer:
             self.prepare([doc], log=lambda *_: None)
         emb = self.cache.emb[doc.id]
         sc, tier = self.cache.sent[doc.id]
-        probs = self.clf.probs(emb[None, :], [doc.text])[0]
-        ments = [m.entity_id for m in self.linker.link(doc.text)]
+        if is_spam(doc.text):
+            probs = np.zeros(len(self.clf.protos))
+            probs[-1] = 1.0                      # routine / noise: never forms an event
+            ments: list[str] = []
+        else:
+            probs = self.clf.probs(emb[None, :], [doc.text])[0]
+            ments = [m.entity_id for m in self.linker.link(doc.text)]
         return DocState(offset=offset, doc=doc, emb=emb, sentiment=sc, tier=tier, probs=probs, mentions=ments)
 
     def cascade_stats(self) -> dict[str, float]:

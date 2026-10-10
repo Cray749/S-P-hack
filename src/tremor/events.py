@@ -23,8 +23,9 @@ from .nlp import LABELS
 from .schemas import Document
 
 NON_OTHER = len(LABELS) - 1          # LABELS[-1] == "OTHER"
-SIM_WITH_ENTITY = 0.46               # cosine needed to join an event when a named entity is shared
-SIM_NO_ENTITY = 0.55                 # cosine needed (plus same top class) when no entity is shared
+SIM_WITH_ENTITY = 0.55               # cosine needed to join an event when a named entity is shared
+SIM_NO_ENTITY = 0.64                 # cosine needed (plus same top class) when no entity is shared
+MAX_EVENT_AGE_H = 40                 # an event stops accepting documents after this long; a continuing story starts a new event
 SOCIAL_WEIGHT = 0.25                 # a tweet counts for a quarter of a news item in aggregates
 OTHER_GATE = 0.5                     # documents that look routine (analyst notes, chatter) never form events
 
@@ -163,9 +164,10 @@ class Event:
     def named_entities(self) -> list[str]:
         if not self._ent:
             return []
-        top = max(self._ent.values())
-        keep = [e for e, c in self._ent.most_common() if c >= max(0.5, 0.2 * top)]
-        return keep[:8]
+        # an entity is *named* by the event only if it carries a real share of the evidence mass
+        floor = max(1.0, 0.25 * self._w_sum)
+        keep = [e for e, c in self._ent.most_common() if c >= floor]
+        return keep[:6]
 
     @property
     def confidence(self) -> float:
@@ -234,8 +236,10 @@ class EventTracker:
         ments = set(ds.mentions)
         for eid in self._active:
             ev = self.events[eid]
+            if (ds.doc.ts - ev.first_ts).total_seconds() > MAX_EVENT_AGE_H * 3600:
+                continue
             sim = float(ev.centroid @ ds.emb)
-            shared = bool(ments & set(ev._ent))
+            shared = bool(ments & set(ev.named_entities()))
             need = SIM_WITH_ENTITY if shared else SIM_NO_ENTITY
             if not shared and C.EVENT_CLASSES[top] != ev.top_class:
                 continue
