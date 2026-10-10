@@ -195,6 +195,13 @@ class ExposureGraph:
     def propagate(self, named: list[str]) -> dict[str, Exposure]:
         t = self.t
         out: dict[str, Exposure] = {}
+        for n in named:                       # a promoter group named as a whole lights up every member
+            if n in t.by_id and t.by_id[n].kind == "group":
+                gn = t.by_id[n]
+                for m, me in t.by_id.items():
+                    if me.group_id == n and me.kind != "group":
+                        out.setdefault(m, Exposure(m, "GROUP", [f"{gn.name} (named)", "group member", me.name], "PROMOTER_GROUP"))
+        named = [n for n in named if n in t.by_id and t.by_id[n].kind != "group"]
         for n in named:
             if n not in t.by_id:
                 continue
