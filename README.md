@@ -1,7 +1,7 @@
 # TREMOR - S&P Global & Crisil Campus Hackathon
 
 **Candidate Name:** Lakshya Manchanda
-**College Email ID:** `<your_id>@thapar.edu`  *(fill in before submitting)*
+**College Email ID:** lmanchanda_be23@thapar.edu
 **College / Campus:** Thapar Institute of Engineering and Technology
 **Demo Video Link:** *(add unlisted YouTube link)*
 **Slide Deck Link (if hosted externally):** in-repo, [docs/presentation.pdf](docs/presentation.pdf)
@@ -100,10 +100,6 @@ Measured, out of sample (details: Proof tab in the app, [docs/EVALUATION.md](doc
 **Honest negatives.** Sharper analogue retrieval did not beat the unconditional history at n = 36; the Impact Score is a transparent triage score, not a calibrated forecast; promoter-group contagion cannot be backtested (one episode); entity-link recall against noisy ticker tags is low (32%).
 
 **Why it matters.** Risk teams get a triaged, book-specific, auditable first estimate within seconds, with an explicit statement of uncertainty, as a complement to (not a replacement for) surveillance and supervisory stress testing.
-
-## AI-assistance disclosure
-
-This project was built with AI assistance (design discussion, code and documentation drafting); the author directed the design, reviewed and ran everything, and is responsible for the submission.
 
 ## Licence
 
